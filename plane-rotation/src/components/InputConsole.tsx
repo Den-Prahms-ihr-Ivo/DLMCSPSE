@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, GridItem, VStack } from "@chakra-ui/react";
+import { Button, Flex, Grid, GridItem, VStack } from "@chakra-ui/react";
 import { Psi, Phi, Theta } from "../assets/greekIcons";
 import { MathInputType } from "./MathInput";
 import InputForm from "./InputForm";

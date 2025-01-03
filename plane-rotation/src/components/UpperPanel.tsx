@@ -1,6 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import InputConsole from "./InputConsole";
-import Bird from "./Bird";
+import ThreatPanel from "./ThreatPanel";
 
 const UpperPanel = () => {
   return (
@@ -8,13 +8,13 @@ const UpperPanel = () => {
       height="100%"
       templateAreas={`"inputs pigeon"`}
       templateColumns="1fr 1fr"
-      gap={1}
+      gap={7}
     >
       <GridItem width="100%" area="inputs">
         <InputConsole />
       </GridItem>
       <GridItem width="100%" area="pigeon">
-        <Bird />
+        <ThreatPanel />
       </GridItem>
     </Grid>
   );

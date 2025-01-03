@@ -4,11 +4,14 @@ import { colourSystem } from "../theme";
 
 interface Props {
   avatar: string;
+  isSelected: boolean;
 }
 
-const Bird = ({ avatar }: Props) => {
+const Bird = ({ avatar, isSelected }: Props) => {
+  let border = isSelected ? "3px solid " + colourSystem.Accent.accent_1 : "";
+
   return (
-    <Avatar src={avatar}>
+    <Avatar src={avatar} border={border}>
       <AvatarBadge
         cursor="pointer"
         borderColor={colourSystem.Background.foreground}
