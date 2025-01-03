@@ -7,6 +7,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { colourSystem, typographySystem } from "../theme";
 
 interface Link {
   displayText: string;
@@ -22,21 +23,31 @@ const LinkTree = ({ heading, links }: Props) => {
   return (
     <VStack
       width="100%"
-      paddingLeft="4"
-      paddingBottom="6"
+      paddingLeft="3"
+      paddingBottom="3"
       alignItems="flex-start"
     >
-      <Heading fontWeight="bold" paddingBottom="2.5" as="h2" size="md">
+      <Heading fontSize={typographySystem.size_3} paddingBottom="1">
         {heading}
       </Heading>
-      <VStack width="100%" alignItems="flex-start">
+      <VStack width="100%" alignItems="flex-start" gap="0.25rem">
         {links.map((link) => {
           let className = "link" + (link.isActive ? "-active" : "");
           return (
-            <Container className={className} width="100%">
+            <Container
+              key={link.displayText}
+              className={className}
+              width="100%"
+            >
               <HStack height={10}>
-                <Icon as={link.icon} />
-                <Link>{link.displayText}</Link>
+                <Icon
+                  fontSize={typographySystem.size_3}
+                  as={link.icon}
+                  color={colourSystem.Text.secondary}
+                />
+                <Link fontSize={typographySystem.size_2}>
+                  {link.displayText}
+                </Link>
               </HStack>
             </Container>
           );

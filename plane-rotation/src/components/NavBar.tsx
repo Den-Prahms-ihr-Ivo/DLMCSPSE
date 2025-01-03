@@ -10,6 +10,7 @@ import {
   FaSuperscript,
   FaMap,
 } from "react-icons/fa6";
+import { typographySystem } from "../theme";
 
 const tmpLinksOne = [
   { displayText: "Home", icon: FaHouse, isActive: false },
@@ -28,7 +29,7 @@ const NavBar = () => {
       <VStack>
         <HStack padding={4} paddingBottom={8}>
           <Image src={logo} boxSize="50px" paddingRight={2} />
-          <Text fontSize="2xl" fontWeight="bold">
+          <Text fontSize={typographySystem.size_6} fontWeight="bold">
             PaperPlane
           </Text>
         </HStack>

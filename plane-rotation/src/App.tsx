@@ -5,7 +5,7 @@ import MainPage from "./components/MainPage";
 function App() {
   return (
     //templateColumns='repeat(5, 1fr)' gap={6}
-    <Grid templateAreas={`"nav main"`} templateColumns="250px 1fr" gap={2}>
+    <Grid templateAreas={`"nav main"`} templateColumns="210px 1fr" gap={0}>
       <GridItem area="nav">
         <NavBar />
       </GridItem>
