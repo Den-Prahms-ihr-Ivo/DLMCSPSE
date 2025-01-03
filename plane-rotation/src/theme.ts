@@ -8,7 +8,7 @@ const theme = extendTheme({
       body: {
         bgGradient: "linear(to-t, #4B379D, #262C83, #20253D)",
         minHeight: "100vh",
-        color: "white",
+        color: "#F8F8FA",
       },
     },
   },
