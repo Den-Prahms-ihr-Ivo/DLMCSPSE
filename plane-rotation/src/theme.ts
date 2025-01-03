@@ -20,8 +20,12 @@ const theme = extendTheme({
         height: "100%",
         bg: "#FCFEFF",
         borderRadius: 15,
-        boxShadow:
-          "rgba(252, 254, 255, 0.5) 0px 13px 27px -5px, rgba(19, 62, 83, 0.3) 0px 8px 16px -8px",
+      },
+      variants: {
+        "with-shadow": {
+          boxShadow:
+            "rgba(252, 254, 255, 0.5) 0px 13px 27px -5px, rgba(19, 62, 83, 0.4) 0px 8px 16px -8px",
+        },
       },
     },
     // styles for the `a`

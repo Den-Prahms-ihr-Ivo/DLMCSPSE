@@ -9,17 +9,17 @@ const MainPage = () => {
     >
       <GridItem marginTop={4} marginBottom={1} area="inputField">
         <Center height="100%" width="100%">
-          <Container>Input</Container>
+          <Container variant="with-shadow">Input</Container>
         </Center>
       </GridItem>
       <GridItem marginTop={1} marginRight={1} marginBottom={4} area="diagram">
         <Center height="100%" width="100%">
-          <Container>Diagram</Container>
+          <Container variant="with-shadow">Diagram</Container>
         </Center>
       </GridItem>
       <GridItem marginTop={1} marginLeft={1} marginBottom={4} area="compass">
         <Center height="100%" width="100%">
-          <Container margin={0}>Compass</Container>
+          <Container variant="with-shadow">Compass</Container>
         </Center>
       </GridItem>
     </Grid>
