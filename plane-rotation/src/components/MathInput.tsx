@@ -31,18 +31,18 @@ const MathInput = ({ icon, unit, heading, placeholder }: MathInputType) => {
           {heading}
         </Heading>
         <InputGroup>
-          <InputLeftElement
-            fontSize={typographySystem.size_2}
-            pointerEvents="none"
-          >
-            {icon && (
+          {icon && (
+            <InputLeftElement
+              fontSize={typographySystem.size_2}
+              pointerEvents="none"
+            >
               <Icon
                 as={icon}
                 fontSize={typographySystem.size_5}
                 color="gray.500"
               />
-            )}
-          </InputLeftElement>
+            </InputLeftElement>
+          )}
 
           <Input
             type="number"
