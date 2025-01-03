@@ -5,9 +5,9 @@ import InputForm from "./InputForm";
 import { fontWeightSystem, typographySystem } from "../theme";
 
 const yawPitchRollInputs: MathInputType[] = [
-  { placeholder: "Yaw", heading: "Yaw", unit: "°", icon: Psi },
-  { placeholder: "Pitch", heading: "Pitch", unit: "°", icon: Theta },
   { placeholder: "Roll", heading: "Roll", unit: "°", icon: Phi },
+  { placeholder: "Pitch", heading: "Pitch", unit: "°", icon: Theta },
+  { placeholder: "Yaw", heading: "Yaw", unit: "°", icon: Psi },
 ];
 const xyzInputs: MathInputType[] = [
   { placeholder: "x", heading: "X-Axis", unit: "m" },

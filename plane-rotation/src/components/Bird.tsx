@@ -15,7 +15,7 @@ const Bird = ({ avatar, isSelected }: Props) => {
       <AvatarBadge
         cursor="pointer"
         borderColor={colourSystem.Background.foreground}
-        bg={colourSystem.Accent.accent_2}
+        bg={colourSystem.Text.secondary}
         boxSize="1.25em"
       >
         <Icon as={FaXmark} />
