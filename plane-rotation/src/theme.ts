@@ -1,4 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
+import { baseStyle } from "@chakra-ui/react/dist/types/avatar/avatar";
 
 const theme = extendTheme({
   styles: {
@@ -9,15 +10,25 @@ const theme = extendTheme({
         minHeight: "100vh",
         color: "white",
       },
-      ".maincontainer": {
-        color: "#373546",
+    },
+  },
+  components: {
+    Container: {
+      baseStyle: {
+        width: "100%",
+        maxWidth: "100%",
+        height: "100%",
+        bg: "#FCFEFF",
+        borderRadius: 15,
+        boxShadow:
+          "rgba(252, 254, 255, 0.5) 0px 13px 27px -5px, rgba(19, 62, 83, 0.3) 0px 8px 16px -8px",
       },
-      // styles for the `a`
-      a: {
-        color: "teal.500",
-        _hover: {
-          textDecoration: "underline",
-        },
+    },
+    // styles for the `a`
+    a: {
+      color: "teal.500",
+      _hover: {
+        textDecoration: "underline",
       },
     },
   },

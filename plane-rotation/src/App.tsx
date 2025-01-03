@@ -1,5 +1,6 @@
 import { Grid, GridItem, Container, Center } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import MainPage from "./components/MainPage";
 
 function App() {
   return (
@@ -11,7 +12,6 @@ function App() {
       <GridItem area="main">
         <Center height="100vh" width="100%">
           <Container
-            className="maincontainer"
             width="100%"
             maxWidth="98%"
             height="97vh"
@@ -20,7 +20,7 @@ function App() {
             bg="#F5F6F7"
             color="#373546"
           >
-            Main
+            <MainPage />
           </Container>
         </Center>
       </GridItem>
