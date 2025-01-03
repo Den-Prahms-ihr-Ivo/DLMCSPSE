@@ -1,0 +1,24 @@
+import { Avatar, AvatarBadge, Icon, Stack } from "@chakra-ui/react";
+import { FaXmark } from "react-icons/fa6";
+import { colourSystem } from "../theme";
+
+interface Props {
+  avatar: string;
+}
+
+const Bird = ({ avatar }: Props) => {
+  return (
+    <Avatar src={avatar}>
+      <AvatarBadge
+        cursor="pointer"
+        borderColor={colourSystem.Background.foreground}
+        bg={colourSystem.Accent.accent_2}
+        boxSize="1.25em"
+      >
+        <Icon as={FaXmark} />
+      </AvatarBadge>
+    </Avatar>
+  );
+};
+
+export default Bird;
