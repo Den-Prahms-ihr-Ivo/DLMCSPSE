@@ -1,7 +1,8 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, GridItem, VStack } from "@chakra-ui/react";
 import { Psi, Phi, Theta } from "../assets/greekIcons";
 import { MathInputType } from "./MathInput";
 import InputForm from "./InputForm";
+import { fontWeightSystem, typographySystem } from "../theme";
 
 const yawPitchRollInputs: MathInputType[] = [
   { placeholder: "Yaw", heading: "Yaw", unit: "°", icon: Psi },
@@ -16,12 +17,32 @@ const xyzInputs: MathInputType[] = [
 
 const InputConsole = () => {
   return (
-    <Grid>
-      <GridItem>
-        <InputForm inputs={yawPitchRollInputs} />
-        <InputForm inputs={xyzInputs} />
-      </GridItem>
-    </Grid>
+    <VStack paddingBottom={4} height="100%" justifyContent="space-between">
+      <Grid>
+        <GridItem>
+          <InputForm
+            inputs={yawPitchRollInputs}
+            superheading="Plane Rotation"
+            description="Rotate the plane along its internal axes. New rotations are added to the current rotation."
+          />
+          <InputForm
+            inputs={xyzInputs}
+            superheading="Plane Translation"
+            description="Move plane along ground axes. These values are added to the current location of the plane."
+          />
+        </GridItem>
+      </Grid>
+      <Flex width="100%" justifyContent="flex-end">
+        <Button
+          className="btn-secondary"
+          fontWeight={fontWeightSystem.SemiBold}
+          fontSize={typographySystem.size_2}
+          size="sm"
+        >
+          Reset Plane
+        </Button>
+      </Flex>
+    </VStack>
   );
 };
 

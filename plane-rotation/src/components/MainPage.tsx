@@ -1,6 +1,6 @@
 import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
-import InputConsole from "./InputConsole";
 import { colourSystem } from "../theme";
+import UpperPanel from "./UpperPanel";
 
 const MainPage = () => {
   return (
@@ -15,7 +15,7 @@ const MainPage = () => {
             bg={colourSystem.Background.foreground}
             variant="with-shadow"
           >
-            <InputConsole />
+            <UpperPanel />
           </Container>
         </Center>
       </GridItem>

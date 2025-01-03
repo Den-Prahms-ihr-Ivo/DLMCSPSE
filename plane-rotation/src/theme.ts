@@ -3,6 +3,7 @@ import { extendTheme, textDecoration, typography } from "@chakra-ui/react";
 export const colourSystem = {
   Accent: {
     accent_1: "#F64851",
+    accent_2: "#432682",
   },
   Text: {
     light: "#F8F8FA",
@@ -11,6 +12,9 @@ export const colourSystem = {
   },
   Background: {
     foreground: "#FCFEFF",
+  },
+  Grays: {
+    light: "#EEF1F4",
   },
 };
 
@@ -121,6 +125,22 @@ const theme = extendTheme({
         fontWeight: fontWeightSystem.SemiBold,
         bg: "rgba(148, 171, 202, 0.2)",
         cursor: "pointer",
+      },
+      ".btn-primary": {
+        bg: colourSystem.Accent.accent_1 + "!important",
+        color: "white!important",
+        _hover: {
+          color: colourSystem.Accent.accent_1 + "!important",
+          bg: colourSystem.Grays.light + "!important",
+        },
+      },
+      ".btn-secondary": {
+        bg: colourSystem.Accent.accent_2 + "!important",
+        color: "white!important",
+        _hover: {
+          color: colourSystem.Accent.accent_2 + "!important",
+          bg: colourSystem.Grays.light + "!important",
+        },
       },
     },
   },

@@ -5,14 +5,16 @@ import { colourSystem, typographySystem } from "../theme";
 
 interface Props {
   inputs: MathInputType[];
+  superheading: string;
+  description?: string;
 }
 
-const InputForm = ({ inputs }: Props) => {
+const InputForm = ({ inputs, superheading, description }: Props) => {
   return (
     <VStack paddingY={4}>
       <Box width="100%">
         <Heading fontSize={typographySystem.size_5} paddingBottom={2}>
-          Popo
+          {superheading}
         </Heading>
       </Box>
 
@@ -27,15 +29,16 @@ const InputForm = ({ inputs }: Props) => {
           />
         ))}
       </HStack>
-      <Box width="100%">
-        <Text
-          fontSize={typographySystem.size_1}
-          color={colourSystem.Text.secondary}
-        >
-          Rotate the plane along its internal axes. New rotations are added to
-          the current roatation.{" "}
-        </Text>
-      </Box>
+      {description && (
+        <Box width="100%">
+          <Text
+            fontSize={typographySystem.size_2}
+            color={colourSystem.Text.secondary}
+          >
+            {description}
+          </Text>
+        </Box>
+      )}
     </VStack>
   );
 };
