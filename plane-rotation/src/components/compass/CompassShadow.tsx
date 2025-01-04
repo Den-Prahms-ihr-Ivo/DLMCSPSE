@@ -1,16 +1,10 @@
 import { Box } from "@chakra-ui/react";
 
-interface Props {
-  degree: number;
-  threatColor: string;
-}
-
-const CompassThreatFar = ({ degree, threatColor }: Props) => {
+const CompassShadow = () => {
   return (
     <Box
       position="absolute"
       transformOrigin="center"
-      transform={"rotate(" + degree + "deg)"}
       transitionProperty="all"
       transitionDuration="1s"
       transitionTimingFunction={"ease"}
@@ -31,11 +25,18 @@ const CompassThreatFar = ({ degree, threatColor }: Props) => {
         }}
       >
         <g transform="matrix(5.50247,0,0,5.50247,-13796.1,-10261.4)">
-          <g transform="matrix(-1,-5.55112e-17,5.55112e-17,-1,5282.94,3790.43)">
-            <path
-              d="M2589.37,1902.16L2601.07,1925.56L2577.66,1925.56L2589.37,1902.16Z"
-              style={{ fill: threatColor }}
-            />
+          <g transform="matrix(3.13606,0,0,3.13606,-5740.99,-4362.43)">
+            <clipPath id="_clip1">
+              <rect x="2630.13" y="1985.71" width="118.822" height="120.114" />
+            </clipPath>
+            <g clipPath="url(#_clip1)">
+              <circle
+                cx="2693.17"
+                cy="2054.65"
+                r="64.687"
+                style={{ fill: "url(#_Radial2)" }}
+              />
+            </g>
           </g>
         </g>
         <g transform="matrix(5.50247,0,0,5.50247,-13796.1,-10261.4)">
@@ -49,9 +50,28 @@ const CompassThreatFar = ({ degree, threatColor }: Props) => {
             />
           </g>
         </g>
+        <defs>
+          <radialGradient
+            id="_Radial2"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="matrix(39.0787,39.0787,-39.0787,39.0787,2693.17,2053.91)"
+          >
+            <stop
+              offset="0"
+              style={{ stopColor: "rgb(211,228,252)", stopOpacity: 1 }}
+            />
+            <stop
+              offset="1"
+              style={{ stopColor: "rgb(92,160,255)", stopOpacity: 0 }}
+            />
+          </radialGradient>
+        </defs>
       </svg>
     </Box>
   );
 };
 
-export default CompassThreatFar;
+export default CompassShadow;
