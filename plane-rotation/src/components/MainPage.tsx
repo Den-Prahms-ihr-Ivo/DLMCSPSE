@@ -37,7 +37,9 @@ const MainPage = () => {
             bg={colourSystem.Background.foreground}
             variant="with-shadow"
           >
-            <SVGTest2 />
+            <Center>
+              <SVGTest2 />
+            </Center>
           </Container>
         </Center>
       </GridItem>

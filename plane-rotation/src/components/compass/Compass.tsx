@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import CompassBG from "./compassBG";
+import CompassBG from "./CompassBG";
 import CompassTriangle from "./CompassTriangle";
 import CompassThreatFar from "./CompassThreatFar";
 
