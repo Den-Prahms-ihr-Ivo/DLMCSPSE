@@ -9,6 +9,7 @@ import {
   FaCrow,
   FaSuperscript,
   FaMap,
+  FaChartLine,
 } from "react-icons/fa6";
 import { typographySystem } from "../theme";
 
@@ -16,6 +17,7 @@ const tmpLinksOne = [
   { displayText: "Home", icon: FaHouse, isActive: false },
   { displayText: "Paper Plane", icon: FaPaperPlane, isActive: true },
   { displayText: "Bird Details", icon: FaCrow, isActive: false },
+  { displayText: "Graph Detail View", icon: FaChartLine, isActive: false },
 ];
 
 const tmpLinksTwo = [
