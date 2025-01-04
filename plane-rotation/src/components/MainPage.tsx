@@ -3,6 +3,7 @@ import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import SVGTest from "./svgTest";
 import SVGTest2 from "./compass/Compass";
+import TestPlot from "./diagram/testdiagram";
 
 const MainPage = () => {
   return (
@@ -27,7 +28,7 @@ const MainPage = () => {
             bg={colourSystem.Background.foreground}
             variant="with-shadow"
           >
-            Diagram
+            <TestPlot />
           </Container>
         </Center>
       </GridItem>
