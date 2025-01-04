@@ -12,7 +12,7 @@ import crow from "../../assets/birds/crow.webp";
 
 const Compass = () => {
   return (
-    <Box position="relative" width="400px" height="400px">
+    <Box padding={4} position="relative" width="400px" height="400px">
       <CompassShadow />
       <CompassBG degree={0} />
       <CompassTriangle />

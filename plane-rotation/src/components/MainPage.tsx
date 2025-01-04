@@ -1,8 +1,7 @@
 import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
-import SVGTest from "./svgTest";
-import SVGTest2 from "./compass/Compass";
+import Compass from "./compass/Compass";
 import TestPlot from "./diagram/testdiagram";
 
 const MainPage = () => {
@@ -22,24 +21,38 @@ const MainPage = () => {
           </Container>
         </Center>
       </GridItem>
-      <GridItem marginTop={1} marginRight={1} marginBottom={4} area="diagram">
-        <Center height="100%" width="100%">
-          <Container
-            bg={colourSystem.Background.foreground}
-            variant="with-shadow"
-          >
-            <TestPlot />
-          </Container>
-        </Center>
-      </GridItem>
-      <GridItem marginTop={1} marginLeft={1} marginBottom={4} area="compass">
+      <GridItem
+        minWidth="540px"
+        marginTop={1}
+        marginRight={1}
+        marginBottom={4}
+        area="diagram"
+      >
         <Center height="100%" width="100%">
           <Container
             bg={colourSystem.Background.foreground}
             variant="with-shadow"
           >
             <Center>
-              <SVGTest2 />
+              <TestPlot />
+            </Center>
+          </Container>
+        </Center>
+      </GridItem>
+      <GridItem
+        minHeight="430px"
+        marginTop={1}
+        marginLeft={1}
+        marginBottom={4}
+        area="compass"
+      >
+        <Center height="100%" width="100%">
+          <Container
+            bg={colourSystem.Background.foreground}
+            variant="with-shadow"
+          >
+            <Center>
+              <Compass />
             </Center>
           </Container>
         </Center>
