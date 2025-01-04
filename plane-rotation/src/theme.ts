@@ -114,6 +114,12 @@ const theme = extendTheme({
         lineHeight: 1,
         fontWeight: fontWeightSystem.Default,
       },
+      ".stroke": {
+        stroke: "green",
+        strokeDasharray: "5 10%",
+        strokeWidth: "10%",
+        fill: "none",
+      },
       ".link": {
         height: "s",
         _hover: {

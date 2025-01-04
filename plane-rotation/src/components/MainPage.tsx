@@ -1,6 +1,8 @@
 import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
+import SVGTest from "./svgTest";
+import SVGTest2 from "./compass/Compass";
 
 const MainPage = () => {
   return (
@@ -35,7 +37,7 @@ const MainPage = () => {
             bg={colourSystem.Background.foreground}
             variant="with-shadow"
           >
-            Compass
+            <SVGTest2 />
           </Container>
         </Center>
       </GridItem>

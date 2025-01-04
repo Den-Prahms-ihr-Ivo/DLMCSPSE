@@ -5,10 +5,8 @@ import {
   GridItem,
   HStack,
   Stack,
-  Text,
   VStack,
 } from "@chakra-ui/react";
-import { Psi, Phi, Theta } from "../assets/greekIcons";
 import { MathInputType } from "./MathInput";
 import InputForm from "./InputForm";
 import { fontWeightSystem, typographySystem } from "../theme";
@@ -43,8 +41,22 @@ const ThreatPanel = () => {
           <InputForm
             inputs={yawPitchRollInputs}
             superheading="Threat Location"
-            description="Initial location of a new bird of prey."
+            description="Initial location of a new vicious bird of prey."
           />
+        </GridItem>
+        <GridItem>
+          <Flex width="100%" justifyContent="flex-end">
+            <Button
+              className="btn-primary"
+              fontWeight={fontWeightSystem.SemiBold}
+              fontSize={typographySystem.size_2}
+              size="sm"
+            >
+              Add Threat
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem>
           <InputForm
             inputs={xyzInputs}
             superheading="Move Selected Threat"
@@ -62,16 +74,6 @@ const ThreatPanel = () => {
             />
           ))}
         </Stack>
-        <Flex width="100%" justifyContent="flex-end">
-          <Button
-            className="btn-primary"
-            fontWeight={fontWeightSystem.SemiBold}
-            fontSize={typographySystem.size_2}
-            size="sm"
-          >
-            Add Threat
-          </Button>
-        </Flex>
       </HStack>
     </VStack>
   );
