@@ -48,7 +48,10 @@ const coordinateSystem: Data[] = [
 ];
 
 const TestPlot = () => {
-  const [planeCoordinates, setCoordinates] = useState(new Plane().coordinates);
+  const plane = new Plane();
+  const planeCoordinates = plane.coordinates;
+  console.log("Hallo");
+  console.log(plane.marbleCS_X);
 
   return (
     <Box width="500px" height="400px">
@@ -60,9 +63,9 @@ const TestPlot = () => {
           {
             opacity: 1,
             type: "scatter3d",
-            x: [marbleX],
-            y: [marbleY],
-            z: [marbleZ],
+            x: [plane.marbleX],
+            y: [plane.marbleY],
+            z: [plane.marbleZ],
             mode: "markers",
             marker: {
               color: "rgb(230, 18, 117)",
@@ -71,8 +74,42 @@ const TestPlot = () => {
               opacity: 0.8,
             },
           },
+          // TODO: TMP CS
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: plane.marbleCS_X[0],
+            y: plane.marbleCS_X[1],
+            z: plane.marbleCS_X[2],
+            line: {
+              width: marbleCS_Thickness,
+              color: "red",
+            },
+          },
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: plane.marbleCS_Y[0],
+            y: plane.marbleCS_Y[1],
+            z: plane.marbleCS_Y[2],
+            line: {
+              width: marbleCS_Thickness,
+              color: "blue",
+            },
+          },
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: plane.marbleCS_Z[0],
+            y: plane.marbleCS_Z[1],
+            z: plane.marbleCS_Z[2],
+            line: {
+              width: marbleCS_Thickness,
+              color: "green",
+            },
+          },
           // COORDINATE SYSTEM
-          ...coordinateSystem,
+          //...coordinateSystem,
         ]}
         layout={{
           /*

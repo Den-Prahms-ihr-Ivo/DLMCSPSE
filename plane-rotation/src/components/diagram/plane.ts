@@ -30,7 +30,6 @@ function translateMap(
    * I had to add these assertions and encapsulate them into a function to shut him up.
    */
   if (value !== undefined && typeof value === "number") return value + offset;
-  console.log("Fuck");
   return 0;
 }
 
@@ -47,8 +46,33 @@ export class Plane {
   // plane Depth
   pD = 1.4;
 
+  marbleX = 0;
+  marbleY = 0;
+  marbleZ = -1.3;
+  marbleCS_Length = 2;
+
+  // Coordinate System of the Marble
+  // X-Axis
+  marbleCS_X = [
+    [0, this.marbleCS_Length],
+    [0, 0],
+    [this.marbleZ, this.marbleZ],
+  ];
+  // Y-Axis
+  marbleCS_Y = [
+    [0, 0],
+    [0, this.marbleCS_Length],
+    [this.marbleZ, this.marbleZ],
+  ];
+  // Z-Axis
+  marbleCS_Z = [
+    [0, 0],
+    [0, 0],
+    [this.marbleZ, this.marbleCS_Length + this.marbleZ],
+  ];
+
   /*
-      expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
     expect(y).toEqual([-3, 0, -0.5, 3, 0.5, 0]);
     expect(z).toEqual([-0.7, -0.7, -0.7, -0.7, -0.7, 0.7]);
    */
@@ -74,20 +98,14 @@ export class Plane {
 
   // Verschiebungs Vektor aller Punkte im Raum
   translationVector: [number, number, number] = [0, 0, 0];
-  translationMatrix: number[][] = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 1],
-  ];
 
   rotationMatrix: number[][] = [
-    //[0, 1, 0],
-    //[1, 0, 0],
-    //[0, 0, -1],
-    [1, 0, 0],
     [0, 1, 0],
-    [0, 0, 1],
+    [1, 0, 0],
+    [0, 0, -1],
+    //[1, 0, 0],
+    //[0, 1, 0],
+    //[0, 0, 1],
   ];
 
   constructor() {
@@ -107,19 +125,45 @@ export class Plane {
   }
 
   matrixTransform() {
-    // irgendwie die einzige Lösung für eine Deep Copy??
-    let m = structuredClone(this.rotationMatrix);
-    m[0].push(this.translationVector[0]);
-    m[1].push(this.translationVector[1]);
-    m[2].push(this.translationVector[2]);
+    let M = structuredClone(this.rotationMatrix);
+    M[0].push(this.translationVector[0]);
+    M[1].push(this.translationVector[1]);
+    M[2].push(this.translationVector[2]);
 
-    m = m.concat([[0, 0, 0, 1]]);
+    M = M.concat([[0, 0, 0, 1]]);
 
-    m = multiply(m, [...this.initialCoordinates].concat([[1, 1, 1, 1, 1, 1]]));
+    let tmpPlane = structuredClone(this.initialCoordinates);
+    tmpPlane = multiply(M, tmpPlane.concat([[1, 1, 1, 1, 1, 1]]));
 
-    this.coordinates.x = m[0];
-    this.coordinates.y = m[1];
-    this.coordinates.z = m[2];
+    // Translate Plane
+    this.coordinates.x = tmpPlane[0];
+    this.coordinates.y = tmpPlane[1];
+    this.coordinates.z = tmpPlane[2];
+
+    // Translate Marble
+    let tmpMarble = multiply(M, [
+      [this.marbleX],
+      [this.marbleY],
+      [this.marbleZ],
+      [1],
+    ]);
+
+    this.marbleX = tmpMarble[0][0];
+    this.marbleY = tmpMarble[1][0];
+    this.marbleZ = tmpMarble[2][0];
+
+    // Translate CS
+    let tmpCS_X = structuredClone(this.marbleCS_X);
+    tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1]]));
+    this.marbleCS_X = tmpCS_X.slice(0, 3);
+
+    let tmpCS_Y = structuredClone(this.marbleCS_Y);
+    tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1]]));
+    this.marbleCS_Y = tmpCS_Y.slice(0, 3);
+
+    let tmpCS_Z = structuredClone(this.marbleCS_Z);
+    tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1]]));
+    this.marbleCS_Z = tmpCS_Z.slice(0, 3);
   }
 
   translatePlane(x: number, y: number, z: number) {
