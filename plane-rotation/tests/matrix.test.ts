@@ -17,8 +17,8 @@ describe("Plane", () => {
     const z = plane.coordinates.z;
 
     // Assert - Confirm
-    expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
-    expect(y).toEqual([-3, 0, -0.5, 3, 0.5, 0]);
-    expect(z).toEqual([-0.7, -0.7, -0.7, -0.7, -0.7, 0.7]);
+    expect(x).toEqual([-3, 0, -0.5, 3, 0.5, 0]);
+    expect(y).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(z).toEqual([0.7, 0.7, 0.7, 0.7, 0.7, -0.7]);
   });
 });

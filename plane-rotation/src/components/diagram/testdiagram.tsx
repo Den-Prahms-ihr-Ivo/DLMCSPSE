@@ -59,6 +59,20 @@ const TestPlot = () => {
         data={[
           // PLANE
           planeCoordinates,
+
+          // SHAODW
+          {
+            type: "mesh3d",
+            //@ts-expect-error
+            color: "#cacaca",
+            opacity: 0.5,
+            x: planeCoordinates.x,
+            y: planeCoordinates.y,
+            z: [0, 0, 0, 0, 0, 0],
+            i: new Float64Array([0, 3, 2, 4]),
+            j: new Float64Array([1, 1, 1, 1]),
+            k: new Float64Array([2, 4, 5, 5]),
+          },
           // MARBLE
           {
             opacity: 1,
@@ -74,7 +88,6 @@ const TestPlot = () => {
               opacity: 0.8,
             },
           },
-          // TODO: TMP CS
           {
             type: "scatter3d",
             mode: "lines",
@@ -108,8 +121,7 @@ const TestPlot = () => {
               color: "green",
             },
           },
-          // COORDINATE SYSTEM
-          //...coordinateSystem,
+          // SHADOW
         ]}
         layout={{
           /*
@@ -119,6 +131,13 @@ const TestPlot = () => {
           autosize: false,
           width: 500,
           height: 400,
+          margin: {
+            l: 0,
+            r: 0,
+            b: 0,
+            t: 0,
+            pad: 0,
+          },
           showlegend: false,
           scene: {
             aspectmode: "manual",
@@ -137,7 +156,7 @@ const TestPlot = () => {
             },
             zaxis: {
               nticks: 10,
-              range: [-5, 5],
+              range: [0, 5],
             },
           },
         }}

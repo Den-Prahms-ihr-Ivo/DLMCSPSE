@@ -130,7 +130,7 @@ export class Plane {
   constructor() {
     this.coordinates = {
       type: "mesh3d",
-      opacity: 0.8,
+      opacity: 1,
       x: this.initialCoordinates[0],
       y: this.initialCoordinates[1],
       z: this.initialCoordinates[2],
