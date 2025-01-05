@@ -12,7 +12,7 @@ const PlaneTranslationInput = () => {
     <InputForm
       inputs={xyzInputs}
       superheading="Plane Translation"
-      description="Move plane along ground axes. These values are added to the current location of the plane."
+      description="Move plane along the worlds coordinate axes in space. These values are added to the current location of the plane."
     />
   );
 };

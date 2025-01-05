@@ -1,10 +1,16 @@
-import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
+import { Button, Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import Compass from "./compass/Compass";
 import TestPlot from "./diagram/testdiagram";
+import { useState } from "react";
+import { Plane } from "./diagram/plane";
+import { newPlot, restyle } from "plotly.js";
 
 const MainPage = () => {
+  const [plane, setPlane] = useState(new Plane());
+  const [tmp, setTmp] = useState(1);
+
   return (
     <Grid
       height="100%"
@@ -34,7 +40,18 @@ const MainPage = () => {
             variant="with-shadow"
           >
             <Center>
-              <TestPlot />
+              <Button
+                onClick={() => {
+                  //plane.translatePlane(2, 0, 0);
+                  setPlane(plane.translatePlane(1, 0, 1));
+                  // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
+                  // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
+                  setTmp(tmp + 1);
+                }}
+              >
+                Mum
+              </Button>
+              <TestPlot plane={plane} tmp={tmp} />
             </Center>
           </Container>
         </Center>

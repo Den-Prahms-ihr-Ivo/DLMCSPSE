@@ -49,6 +49,11 @@ export class Plane {
   marbleX = 0;
   marbleY = 0;
   marbleZ = -1.3;
+
+  initialMarbleX = this.marbleX;
+  initialMarbleY = this.marbleY;
+  initialMarbleZ = this.marbleZ;
+
   marbleCS_Length = 2;
   marbleCS_ArrowLength = 0.5;
 
@@ -89,6 +94,10 @@ export class Plane {
       this.marbleCS_Length + this.marbleZ - this.marbleCS_ArrowLength,
     ],
   ];
+
+  initialMarbleCS_X = structuredClone(this.marbleCS_X);
+  initialMarbleCS_Y = structuredClone(this.marbleCS_Y);
+  initialMarbleCS_Z = structuredClone(this.marbleCS_Z);
 
   /*
     expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
@@ -161,9 +170,9 @@ export class Plane {
 
     // Translate Marble
     let tmpMarble = multiply(M, [
-      [this.marbleX],
-      [this.marbleY],
-      [this.marbleZ],
+      [this.initialMarbleX],
+      [this.initialMarbleY],
+      [this.initialMarbleZ],
       [1],
     ]);
 
@@ -172,15 +181,15 @@ export class Plane {
     this.marbleZ = tmpMarble[2][0];
 
     // Translate CS
-    let tmpCS_X = structuredClone(this.marbleCS_X);
+    let tmpCS_X = structuredClone(this.initialMarbleCS_X);
     tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_X = tmpCS_X.slice(0, 3);
 
-    let tmpCS_Y = structuredClone(this.marbleCS_Y);
+    let tmpCS_Y = structuredClone(this.initialMarbleCS_Y);
     tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Y = tmpCS_Y.slice(0, 3);
 
-    let tmpCS_Z = structuredClone(this.marbleCS_Z);
+    let tmpCS_Z = structuredClone(this.initialMarbleCS_Z);
     tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Z = tmpCS_Z.slice(0, 3);
   }
@@ -191,5 +200,6 @@ export class Plane {
     this.translationVector[2] += z;
 
     this.matrixTransform();
+    return this;
   }
 }

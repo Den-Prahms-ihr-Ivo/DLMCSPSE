@@ -2,11 +2,8 @@ import { Box } from "@chakra-ui/react";
 import Plot from "react-plotly.js";
 import { Data } from "plotly.js";
 import { Plane } from "./plane";
-import { useState } from "react";
+import { useEffect } from "react";
 
-const marbleX = 0;
-const marbleY = 0;
-const marbleZ = -1.3;
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
 
@@ -47,19 +44,21 @@ const coordinateSystem: Data[] = [
   },
 ];
 
-const TestPlot = () => {
-  const plane = new Plane();
+interface Props {
+  plane: Plane;
+  tmp: number;
+}
+
+const TestPlot = ({ plane, tmp }: Props) => {
   const planeCoordinates = plane.coordinates;
-  console.log("Hallo");
-  console.log(plane.marbleCS_X);
 
   return (
     <Box width="500px" height="400px">
       <Plot
+        id="Bitches"
         data={[
           // PLANE
           planeCoordinates,
-
           // SHAODW
           {
             type: "mesh3d",
@@ -138,6 +137,7 @@ const TestPlot = () => {
             t: 0,
             pad: 0,
           },
+          hovermode: false,
           showlegend: false,
           scene: {
             aspectmode: "manual",
@@ -156,7 +156,7 @@ const TestPlot = () => {
             },
             zaxis: {
               nticks: 10,
-              range: [0, 5],
+              range: [0, 10],
             },
           },
         }}
