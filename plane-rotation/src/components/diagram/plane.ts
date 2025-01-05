@@ -50,25 +50,44 @@ export class Plane {
   marbleY = 0;
   marbleZ = -1.3;
   marbleCS_Length = 2;
+  marbleCS_ArrowLength = 0.5;
 
   // Coordinate System of the Marble
   // X-Axis
   marbleCS_X = [
-    [0, this.marbleCS_Length],
-    [0, 0],
-    [this.marbleZ, this.marbleZ],
+    [
+      0,
+      this.marbleCS_Length,
+      this.marbleCS_Length - this.marbleCS_ArrowLength,
+      this.marbleCS_Length,
+      this.marbleCS_Length - this.marbleCS_ArrowLength,
+    ],
+    [0, 0, this.marbleCS_ArrowLength, 0, -this.marbleCS_ArrowLength],
+    [this.marbleZ, this.marbleZ, this.marbleZ, this.marbleZ, this.marbleZ],
   ];
   // Y-Axis
   marbleCS_Y = [
-    [0, 0],
-    [0, this.marbleCS_Length],
-    [this.marbleZ, this.marbleZ],
+    [0, 0, this.marbleCS_ArrowLength, 0, -this.marbleCS_ArrowLength],
+    [
+      0,
+      this.marbleCS_Length,
+      this.marbleCS_Length - this.marbleCS_ArrowLength,
+      this.marbleCS_Length,
+      this.marbleCS_Length - this.marbleCS_ArrowLength,
+    ],
+    [this.marbleZ, this.marbleZ, this.marbleZ, this.marbleZ, this.marbleZ],
   ];
   // Z-Axis
   marbleCS_Z = [
-    [0, 0],
-    [0, 0],
-    [this.marbleZ, this.marbleCS_Length + this.marbleZ],
+    [0, 0, 0, 0, 0],
+    [0, 0, this.marbleCS_ArrowLength, 0, -this.marbleCS_ArrowLength],
+    [
+      this.marbleZ,
+      this.marbleCS_Length + this.marbleZ,
+      this.marbleCS_Length + this.marbleZ - this.marbleCS_ArrowLength,
+      this.marbleCS_Length + this.marbleZ,
+      this.marbleCS_Length + this.marbleZ - this.marbleCS_ArrowLength,
+    ],
   ];
 
   /*
@@ -154,15 +173,15 @@ export class Plane {
 
     // Translate CS
     let tmpCS_X = structuredClone(this.marbleCS_X);
-    tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1]]));
+    tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_X = tmpCS_X.slice(0, 3);
 
     let tmpCS_Y = structuredClone(this.marbleCS_Y);
-    tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1]]));
+    tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Y = tmpCS_Y.slice(0, 3);
 
     let tmpCS_Z = structuredClone(this.marbleCS_Z);
-    tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1]]));
+    tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Z = tmpCS_Z.slice(0, 3);
   }
 

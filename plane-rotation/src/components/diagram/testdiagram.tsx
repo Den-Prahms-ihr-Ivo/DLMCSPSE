@@ -15,9 +15,9 @@ const coordinateSystem: Data[] = [
   {
     type: "scatter3d",
     mode: "lines",
-    x: [0, marbleCS_Length],
-    y: [0, 0],
-    z: [-1.3, -1.3],
+    x: [0, marbleCS_Length, marbleCS_Length - 0.2],
+    y: [0, 0, 0.2],
+    z: [-1.3, -1.3, -1.3],
     line: {
       width: marbleCS_Thickness,
       color: "red",
