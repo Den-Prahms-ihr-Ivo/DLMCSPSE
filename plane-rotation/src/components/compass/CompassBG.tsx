@@ -590,7 +590,7 @@ const CompassBG = ({ degree }: Props) => {
                 fill: "#9EB3C7",
               }}
             >
-              30m
+              10m
             </text>
           </g>
         </g>
@@ -609,7 +609,7 @@ const CompassBG = ({ degree }: Props) => {
                 fill: "#9EB3C7",
               }}
             >
-              20m
+              5m
             </text>
           </g>
         </g>
@@ -628,7 +628,7 @@ const CompassBG = ({ degree }: Props) => {
                 fill: "#9EB3C7",
               }}
             >
-              10m
+              2m
             </text>
           </g>
         </g>
