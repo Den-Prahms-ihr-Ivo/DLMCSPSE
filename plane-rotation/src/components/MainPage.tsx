@@ -11,6 +11,8 @@ const MainPage = () => {
   const [plane, setPlane] = useState(new Plane());
   const [tmp, setTmp] = useState(1);
 
+  // TODO: WIRING :(
+
   return (
     <Grid
       height="100%"

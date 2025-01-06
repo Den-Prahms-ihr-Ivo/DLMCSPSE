@@ -35,18 +35,36 @@ const UpperPanel = () => {
     >
       <GridItem area="planeRotation" width="100%">
         <PlaneRotationInput />
+        <Flex width="100%" justifyContent="flex-end">
+          <Button
+            className="btn-secondary"
+            fontWeight={fontWeightSystem.SemiBold}
+            fontSize={typographySystem.size_2}
+            size="sm"
+          >
+            Rotate Plane
+          </Button>
+        </Flex>
       </GridItem>
       <GridItem area="planeTranslation" width="100%">
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
           <PlaneTranslationInput />
-          <Flex width="100%" justifyContent="flex-end">
+          <Flex width="100%" justifyContent="space-between">
+            <Button
+              className="btn-tertiary"
+              fontWeight={fontWeightSystem.SemiBold}
+              fontSize={typographySystem.size_2}
+              size="sm"
+            >
+              Reset Plane
+            </Button>
             <Button
               className="btn-secondary"
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
             >
-              Reset Plane
+              Move Plane
             </Button>
           </Flex>
         </VStack>
@@ -56,7 +74,7 @@ const UpperPanel = () => {
           <ThreatInput />
           <Flex width="100%" justifyContent="flex-end">
             <Button
-              className="btn-primary"
+              className="btn-secondary"
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
@@ -79,6 +97,15 @@ const UpperPanel = () => {
                 />
               ))}
             </Stack>
+
+            <Button
+              className="btn-secondary"
+              fontWeight={fontWeightSystem.SemiBold}
+              fontSize={typographySystem.size_2}
+              size="sm"
+            >
+              Move Threat
+            </Button>
           </HStack>
         </VStack>
       </GridItem>

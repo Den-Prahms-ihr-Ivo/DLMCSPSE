@@ -11,7 +11,7 @@ const MoveThreatInput = () => {
   return (
     <InputForm
       inputs={moveInputs}
-      superheading="Move Selected Threat"
+      superheading="Move Selected Bird"
       description="Move the selected bird in space."
     />
   );

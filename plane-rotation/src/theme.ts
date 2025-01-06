@@ -15,6 +15,7 @@ export const colourSystem = {
   },
   Grays: {
     light: "#EEF1F4",
+    default: "#6A708E",
   },
 };
 
@@ -145,6 +146,14 @@ const theme = extendTheme({
         color: "white!important",
         _hover: {
           color: colourSystem.Accent.accent_2 + "!important",
+          bg: colourSystem.Grays.light + "!important",
+        },
+      },
+      ".btn-tertiary": {
+        bg: colourSystem.Grays.default + "!important",
+        color: "white!important",
+        _hover: {
+          color: colourSystem.Text.secondary + "!important",
           bg: colourSystem.Grays.light + "!important",
         },
       },

@@ -11,7 +11,7 @@ const ThreatInput = () => {
   return (
     <InputForm
       inputs={threatInputs}
-      superheading="Threat Location"
+      superheading="Add a New Slightly Offended Bird"
       description="Initial location of a new vicious bird of prey."
     />
   );

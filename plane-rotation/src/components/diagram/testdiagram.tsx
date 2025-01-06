@@ -7,39 +7,20 @@ import { useEffect } from "react";
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
 
-const coordinateSystem: Data[] = [
+const threats: Data[] = [
   // X-Axis
   {
+    opacity: 1,
     type: "scatter3d",
-    mode: "lines",
-    x: [0, marbleCS_Length, marbleCS_Length - 0.2],
-    y: [0, 0, 0.2],
-    z: [-1.3, -1.3, -1.3],
-    line: {
-      width: marbleCS_Thickness,
-      color: "red",
-    },
-  },
-  {
-    type: "scatter3d",
-    mode: "lines",
-    x: [0, 0],
-    y: [0, marbleCS_Length],
-    z: [-1.3, -1.3],
-    line: {
-      width: marbleCS_Thickness,
-      color: "blue",
-    },
-  },
-  {
-    type: "scatter3d",
-    mode: "lines",
-    x: [0, 0],
-    y: [0, 0],
-    z: [-1.3, marbleCS_Length - 1.3],
-    line: {
-      width: marbleCS_Thickness,
-      color: "green",
+    x: [-4],
+    y: [-4],
+    z: [5],
+    mode: "markers",
+    marker: {
+      color: "rgb(207, 13, 13)",
+      size: 6,
+      symbol: "circle",
+      opacity: 1,
     },
   },
 ];
@@ -120,7 +101,8 @@ const TestPlot = ({ plane, tmp }: Props) => {
               color: "green",
             },
           },
-          // SHADOW
+          // THREATS
+          ...threats,
         ]}
         layout={{
           /*
