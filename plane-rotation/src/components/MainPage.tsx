@@ -43,13 +43,14 @@ const MainPage = () => {
               <Button
                 onClick={() => {
                   //plane.translatePlane(2, 0, 0);
+                  plane.rotatePlane(45, 0, 0);
                   setPlane(plane.translatePlane(1, 0, 1));
                   // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
                   // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
                   setTmp(tmp + 1);
                 }}
               >
-                Mum
+                Test
               </Button>
               <TestPlot plane={plane} tmp={tmp} />
             </Center>

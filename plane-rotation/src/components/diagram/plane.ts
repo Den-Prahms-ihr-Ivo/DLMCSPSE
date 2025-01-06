@@ -1,4 +1,5 @@
 import { Datum, PlotData } from "plotly.js";
+import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
 
 function multiply(a: number[][], b: number[][]) {
   var aNumRows = a.length,
@@ -127,6 +128,8 @@ export class Plane {
   // Verschiebungs Vektor aller Punkte im Raum
   translationVector: [number, number, number] = [0, 0, 0];
 
+  initialTranslationVector = structuredClone(this.translationVector);
+
   rotationMatrix: number[][] = [
     [0, 1, 0],
     [1, 0, 0],
@@ -135,6 +138,8 @@ export class Plane {
     //[0, 1, 0],
     //[0, 0, 1],
   ];
+
+  initialRotationMatrix = structuredClone(this.rotationMatrix);
 
   constructor() {
     this.coordinates = {
@@ -192,6 +197,29 @@ export class Plane {
     let tmpCS_Z = structuredClone(this.initialMarbleCS_Z);
     tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Z = tmpCS_Z.slice(0, 3);
+  }
+
+  resetPlane() {
+    this.rotationMatrix = this.initialRotationMatrix;
+    this.translationVector = this.initialTranslationVector;
+
+    this.coordinates.x = this.initialCoordinates[0];
+    this.coordinates.y = this.initialCoordinates[1];
+    this.coordinates.z = this.initialCoordinates[2];
+
+    this.marbleCS_X = this.initialMarbleCS_X;
+    this.marbleCS_Y = this.initialMarbleCS_Y;
+    this.marbleCS_Z = this.initialMarbleCS_Z;
+  }
+
+  rotatePlane(yaw: number, pitch: number, roll: number) {
+    this.rotationMatrix = multiply(
+      this.rotationMatrix,
+      yawPitchRoll2Matrix(yaw, pitch, roll)
+    );
+
+    this.matrixTransform();
+    return this;
   }
 
   translatePlane(x: number, y: number, z: number) {
