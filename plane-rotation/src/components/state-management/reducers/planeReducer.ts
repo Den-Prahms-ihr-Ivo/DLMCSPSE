@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { Plane } from "../../diagram/plane";
-import RedrawContext from "../context/redrawContext";
 
 interface PlaneRotateAction {
   type: "ROTATE";
@@ -16,7 +14,7 @@ interface PlaneTranslateAction {
   z: number;
 }
 
-type PlaneAction = PlaneRotateAction | PlaneTranslateAction;
+export type PlaneAction = PlaneRotateAction | PlaneTranslateAction;
 
 const planeReducer = (plane: Plane, action: PlaneAction): Plane => {
   // NE, das ist quatsch!! Hier useContext!!
@@ -36,11 +34,3 @@ const planeReducer = (plane: Plane, action: PlaneAction): Plane => {
 };
 
 export default planeReducer;
-/**
- * Gude Carsten,
- * ich wollte mich einfach mal für mein Verhalten während der WG Zeit entschuldigen!
- * Das war kindisch und nicht ok. Das ist mir neulich klar geworden. Höchstwahrscheinlich war ich einfach eifersüchtig,
- * dass Maria plötzlich so viel Aufmerksamkeit bekam.
- *
- * All
- */

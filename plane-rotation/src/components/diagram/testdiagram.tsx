@@ -76,7 +76,7 @@ const TestPlot = ({ plane, tmp }: Props) => {
             z: plane.marbleCS_X[2],
             line: {
               width: marbleCS_Thickness,
-              color: "red",
+              color: "#A31400",
             },
           },
           {
@@ -87,7 +87,7 @@ const TestPlot = ({ plane, tmp }: Props) => {
             z: plane.marbleCS_Y[2],
             line: {
               width: marbleCS_Thickness,
-              color: "blue",
+              color: "#255181",
             },
           },
           {
@@ -98,7 +98,7 @@ const TestPlot = ({ plane, tmp }: Props) => {
             z: plane.marbleCS_Z[2],
             line: {
               width: marbleCS_Thickness,
-              color: "green",
+              color: "#9DBB58",
             },
           },
           {
@@ -109,7 +109,7 @@ const TestPlot = ({ plane, tmp }: Props) => {
             z: plane.foldLinesZ,
             line: {
               width: marbleCS_Thickness,
-              color: "#255181",
+              color: "#83C0DD",
             },
           },
 

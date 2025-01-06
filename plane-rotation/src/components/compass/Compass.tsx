@@ -44,6 +44,26 @@ const Compass = () => {
           </VStack>
         </Center>
       </Box>
+      <Box position="absolute" zIndex="999" left="0px" bottom="10px">
+        <Center>
+          <VStack gap={0}>
+            <Text
+              fontSize={typographySystem.size_6}
+              fontWeight={fontWeightSystem.SemiBold}
+              color={colourSystem.Accent.accent_1}
+            >
+              333°
+            </Text>
+            <Text
+              fontSize={typographySystem.size_2}
+              fontWeight={fontWeightSystem.SemiBold}
+              color={colourSystem.Text.dark}
+            >
+              Crow at
+            </Text>
+          </VStack>
+        </Center>
+      </Box>
     </Box>
   );
 };
