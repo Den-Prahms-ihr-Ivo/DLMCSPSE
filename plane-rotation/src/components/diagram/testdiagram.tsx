@@ -101,6 +101,18 @@ const TestPlot = ({ plane, tmp }: Props) => {
               color: "green",
             },
           },
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: plane.foldLinesX,
+            y: plane.foldLinesY,
+            z: plane.foldLinesZ,
+            line: {
+              width: marbleCS_Thickness,
+              color: "#255181",
+            },
+          },
+
           // THREATS
           ...threats,
         ]}

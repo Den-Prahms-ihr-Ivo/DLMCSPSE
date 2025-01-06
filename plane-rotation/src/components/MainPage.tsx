@@ -53,7 +53,6 @@ const MainPage = () => {
                 onClick={() => {
                   dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
                   dispatchPlane({ type: "TRANSLATE", x: 0, y: 0, z: 1 });
-
                   // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
                   // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
                   dispatchRedraw({ type: "TRIGGER" });

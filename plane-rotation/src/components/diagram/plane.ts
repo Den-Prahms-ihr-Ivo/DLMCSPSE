@@ -100,11 +100,14 @@ export class Plane {
   initialMarbleCS_Y = structuredClone(this.marbleCS_Y);
   initialMarbleCS_Z = structuredClone(this.marbleCS_Z);
 
-  /*
-    expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
-    expect(y).toEqual([-3, 0, -0.5, 3, 0.5, 0]);
-    expect(z).toEqual([-0.7, -0.7, -0.7, -0.7, -0.7, 0.7]);
-   */
+  foldLinesX = [-this.pL / 2, this.pL / 2, -this.pL / 2];
+  foldLinesY = [-this.pS, 0, this.pS];
+  foldLinesZ = [-this.pD / 2, -this.pD / 2, -this.pD / 2];
+
+  initialFoldLinesX = structuredClone(this.foldLinesX);
+  initialFoldLinesY = structuredClone(this.foldLinesY);
+  initialFoldLinesZ = structuredClone(this.foldLinesZ);
+
   initialCoordinates = [
     [
       -this.pL / 2,
@@ -152,7 +155,6 @@ export class Plane {
       j: new Float64Array([1, 1, 1, 1]),
       k: new Float64Array([2, 4, 5, 5]),
     };
-
     // TODO: Marbel und Coordinate System sollen Teil des Fulgzeuges sein.
     this.matrixTransform();
   }
@@ -197,6 +199,20 @@ export class Plane {
     let tmpCS_Z = structuredClone(this.initialMarbleCS_Z);
     tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
     this.marbleCS_Z = tmpCS_Z.slice(0, 3);
+
+    // Translate Fold Lines
+    let tmpFoldLines = multiply(M, [
+      this.initialFoldLinesX,
+      this.initialFoldLinesY,
+      this.initialFoldLinesZ,
+      [1, 1, 1],
+    ]);
+
+    this.foldLinesX = tmpFoldLines[0];
+    this.foldLinesY = tmpFoldLines[1];
+    this.foldLinesZ = tmpFoldLines[2];
+
+    console.log(tmpFoldLines);
   }
 
   resetPlane() {
@@ -210,6 +226,10 @@ export class Plane {
     this.marbleCS_X = this.initialMarbleCS_X;
     this.marbleCS_Y = this.initialMarbleCS_Y;
     this.marbleCS_Z = this.initialMarbleCS_Z;
+
+    this.foldLinesX = this.initialFoldLinesX;
+    this.foldLinesY = this.initialFoldLinesY;
+    this.foldLinesZ = this.initialFoldLinesZ;
   }
 
   rotatePlane(yaw: number, pitch: number, roll: number) {
