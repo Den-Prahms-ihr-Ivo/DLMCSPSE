@@ -1,17 +1,20 @@
 import {
+  Text,
   Button,
   Flex,
   Grid,
   GridItem,
   HStack,
   Stack,
+  Switch,
   VStack,
+  Center,
 } from "@chakra-ui/react";
 import PlaneRotationInput from "./upperPanel/PlaneRotationInput";
 import PlaneTranslationInput from "./upperPanel/PlaneTranslationInput";
 import ThreatInput from "./upperPanel/ThreatInput";
 import MoveThreatInput from "./upperPanel/MoveThreatInput";
-import { fontWeightSystem, typographySystem } from "../theme";
+import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
 import Bird from "./Bird";
 
 import crow from "../assets/birds/crow.webp";
@@ -49,6 +52,18 @@ const UpperPanel = () => {
       <GridItem area="planeTranslation" width="100%">
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
           <PlaneTranslationInput />
+          <Flex paddingBottom={3} width="100%" justifyContent="flex-start">
+            <Center>
+              <Text
+                paddingRight={3}
+                fontSize={typographySystem.size_2}
+                color={colourSystem.Text.secondary}
+              >
+                Show Coordinate System?
+              </Text>
+            </Center>
+            <Switch colorScheme="teal" />
+          </Flex>
           <Flex width="100%" justifyContent="space-between">
             <Button
               className="btn-tertiary"

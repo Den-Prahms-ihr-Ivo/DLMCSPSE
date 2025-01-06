@@ -45,7 +45,7 @@ const TestPlot = ({ plane, tmp }: Props) => {
             type: "mesh3d",
             //@ts-expect-error
             color: "#cacaca",
-            opacity: 0.5,
+            opacity: 0.3,
             x: planeCoordinates.x,
             y: planeCoordinates.y,
             z: [0, 0, 0, 0, 0, 0],

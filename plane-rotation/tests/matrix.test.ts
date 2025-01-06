@@ -21,4 +21,8 @@ describe("Plane", () => {
     expect(y).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
     expect(z).toEqual([0.7, 0.7, 0.7, 0.7, 0.7, -0.7]);
   });
+
+  // TODO: better and more tests
+
+  // Angle to Threat
 });

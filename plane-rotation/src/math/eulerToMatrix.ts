@@ -39,7 +39,5 @@ export function yawPitchRoll2Matrix(
   A[2][1] = sin_phi * cos_theta;
   A[2][2] = cos_phi * cos_theta;
 
-  console.log(A);
-
   return A;
 }

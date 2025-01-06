@@ -55,7 +55,7 @@ export class Plane {
   initialMarbleY = this.marbleY;
   initialMarbleZ = this.marbleZ;
 
-  marbleCS_Length = 2;
+  marbleCS_Length = 3;
   marbleCS_ArrowLength = 0.5;
 
   // Coordinate System of the Marble
@@ -222,7 +222,9 @@ export class Plane {
     return this;
   }
 
-  translatePlane(x: number, y: number, z: number) {
+  calculateAngleAndDistance2Point() {}
+
+  translatePlane(x: number, y: number, z: number): Plane {
     this.translationVector[0] += x;
     this.translationVector[1] += y;
     this.translationVector[2] += z;

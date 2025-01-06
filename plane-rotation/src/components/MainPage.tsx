@@ -3,15 +3,22 @@ import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import Compass from "./compass/Compass";
 import TestPlot from "./diagram/testdiagram";
-import { useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import { Plane } from "./diagram/plane";
 import { newPlot, restyle } from "plotly.js";
+import planeReducer from "./state-management/reducers/planeReducer";
+import triggerRedrawReducer from "./state-management/reducers/triggerRedrawReducer";
+import RedrawContext from "./state-management/context/redrawContext";
 
 const MainPage = () => {
-  const [plane, setPlane] = useState(new Plane());
+  // const [plane, setPlane] = useState(new Plane());
   const [tmp, setTmp] = useState(1);
 
   // TODO: WIRING :(
+  const { trigger: redrawTrigger, dispatch: dispatchRedraw } =
+    useContext(RedrawContext);
+
+  const [plane, dispatchPlane] = useReducer(planeReducer, new Plane());
 
   return (
     <Grid
@@ -44,17 +51,17 @@ const MainPage = () => {
             <Center>
               <Button
                 onClick={() => {
-                  //plane.translatePlane(2, 0, 0);
-                  plane.rotatePlane(45, 0, 0);
-                  setPlane(plane.translatePlane(1, 0, 1));
+                  dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
+                  dispatchPlane({ type: "TRANSLATE", x: 0, y: 0, z: 1 });
+
                   // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
                   // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
-                  setTmp(tmp + 1);
+                  dispatchRedraw({ type: "TRIGGER" });
                 }}
               >
                 Test
               </Button>
-              <TestPlot plane={plane} tmp={tmp} />
+              <TestPlot plane={plane} tmp={redrawTrigger} />
             </Center>
           </Container>
         </Center>
