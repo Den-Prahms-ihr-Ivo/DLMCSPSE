@@ -26,6 +26,7 @@ const InputForm = ({ inputs, superheading, description }: Props) => {
             heading={input.heading}
             icon={input.icon}
             placeholder={input.placeholder}
+            inputRef={input.inputRef}
           />
         ))}
       </HStack>

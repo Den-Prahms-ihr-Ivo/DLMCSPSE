@@ -9,16 +9,23 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
-import { ElementType } from "react";
+import { ElementType, useRef } from "react";
 
 export interface MathInputType {
   icon?: ElementType;
   unit?: string;
   placeholder: string;
   heading: string;
+  inputRef: React.MutableRefObject<HTMLInputElement | null>;
 }
 
-const MathInput = ({ icon, unit, heading, placeholder }: MathInputType) => {
+const MathInput = ({
+  icon,
+  unit,
+  heading,
+  placeholder,
+  inputRef,
+}: MathInputType) => {
   return (
     <VStack>
       <Box width="100%">
@@ -50,6 +57,7 @@ const MathInput = ({ icon, unit, heading, placeholder }: MathInputType) => {
             placeholder={placeholder}
             color={colourSystem.Text.dark}
             fontWeight={fontWeightSystem.SemiBold}
+            ref={inputRef}
           />
           {unit && (
             <InputRightElement

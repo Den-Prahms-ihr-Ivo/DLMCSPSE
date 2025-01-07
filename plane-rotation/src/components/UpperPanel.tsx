@@ -20,6 +20,8 @@ import Bird from "./Bird";
 import crow from "../assets/birds/crow.webp";
 import penguin from "../assets/birds/penguin.webp";
 import pigeon from "../assets/birds/pigeon.webp";
+import { useContext, useRef } from "react";
+import BirdContext from "./state-management/context/birdContext";
 
 const birds = [
   { name: "Crow", link: crow },
@@ -28,6 +30,14 @@ const birds = [
 ];
 
 const UpperPanel = () => {
+  const { birds, dispatch: dispatchBird } = useContext(BirdContext);
+
+  const newThreatRefX = useRef<HTMLInputElement>(null);
+  const newThreatRefY = useRef<HTMLInputElement>(null);
+  const newThreatRefZ = useRef<HTMLInputElement>(null);
+
+  const showOnlyNBirds = 7;
+
   return (
     <Grid
       height="100%"
@@ -86,13 +96,25 @@ const UpperPanel = () => {
       </GridItem>
       <GridItem area="addThreat" width="100%">
         <VStack paddingBottom={0} height="100%" justifyContent="space-between">
-          <ThreatInput />
+          <ThreatInput
+            newThreatRefX={newThreatRefX}
+            newThreatRefY={newThreatRefY}
+            newThreatRefZ={newThreatRefZ}
+          />
           <Flex width="100%" justifyContent="flex-end">
             <Button
               className="btn-secondary"
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
+              onClick={() => {
+                if (newThreatRefX.current !== null) {
+                  console.log(Number(newThreatRefX.current?.value));
+                  newThreatRefX.current.value = "";
+
+                  dispatchBird({ type: "ADD", x: 0, y: 0, z: 0 });
+                }
+              }}
             >
               Add Threat
             </Button>
@@ -103,12 +125,19 @@ const UpperPanel = () => {
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
           <MoveThreatInput />
           <HStack width="100%" justifyContent="space-between">
-            <Stack spacing={4} direction="row" align="center">
-              {birds.map((bird) => (
+            <Stack spacing={4} maxWidth="200px" direction="row" align="center">
+              {birds.slice(0, showOnlyNBirds).map((bird) => (
+                // Du darfst maximal 7 Vögel anzeigen
                 <Bird
-                  key={bird.name}
-                  avatar={bird.link}
-                  isSelected={bird.name === "Crow"}
+                  key={bird.id}
+                  avatar={bird.thumbnailURL}
+                  onSelect={() => {
+                    dispatchBird({ type: "SELECT", id: bird.id });
+                  }}
+                  onDelete={() => {
+                    dispatchBird({ type: "REMOVE", id: bird.id });
+                  }}
+                  isSelected={bird.isSelected}
                 />
               ))}
             </Stack>

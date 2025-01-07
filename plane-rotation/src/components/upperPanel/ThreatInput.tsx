@@ -1,13 +1,24 @@
+import { useRef } from "react";
 import InputForm from "../InputForm";
 import { MathInputType } from "../MathInput";
 
-const threatInputs: MathInputType[] = [
-  { placeholder: "x", heading: "X-Axis", unit: "m" },
-  { placeholder: "y", heading: "Y-Axis", unit: "m" },
-  { placeholder: "z", heading: "Z-Axis", unit: "m" },
-];
+interface Props {
+  newThreatRefX: React.RefObject<HTMLInputElement | null>;
+  newThreatRefY: React.RefObject<HTMLInputElement | null>;
+  newThreatRefZ: React.RefObject<HTMLInputElement | null>;
+}
 
-const ThreatInput = () => {
+const ThreatInput = ({
+  newThreatRefX,
+  newThreatRefY,
+  newThreatRefZ,
+}: Props) => {
+  const threatInputs: MathInputType[] = [
+    { placeholder: "x", heading: "X-Axis", unit: "m", inputRef: newThreatRefX },
+    { placeholder: "y", heading: "Y-Axis", unit: "m", inputRef: newThreatRefY },
+    { placeholder: "z", heading: "Z-Axis", unit: "m", inputRef: newThreatRefZ },
+  ];
+
   return (
     <InputForm
       inputs={threatInputs}

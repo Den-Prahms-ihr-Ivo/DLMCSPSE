@@ -26,6 +26,7 @@ const birds: Bird[] = [
     thumbnailURL: tanne_thumbnail,
     color: "#ffc857",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 2,
@@ -34,6 +35,7 @@ const birds: Bird[] = [
     thumbnailURL: torpedo_thumbnail,
     color: "#db3a34",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ const birds: Bird[] = [
     thumbnailURL: traurig_thumbnail,
     color: "#177e89",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 4,
@@ -50,6 +53,7 @@ const birds: Bird[] = [
     thumbnailURL: turmfalke_thumbnail,
     color: "#dd2804",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 5,
@@ -58,6 +62,7 @@ const birds: Bird[] = [
     thumbnailURL: ahhhh_thumbnail,
     color: "#321951",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 6,
@@ -66,6 +71,7 @@ const birds: Bird[] = [
     thumbnailURL: ast_thumbnail,
     color: "#B22E37",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 7,
@@ -74,6 +80,7 @@ const birds: Bird[] = [
     thumbnailURL: demokratiefogel_thumbnail,
     color: "#f68318",
     location: defaultLocation,
+    isSelected: false,
   },
   {
     id: 8,
@@ -82,6 +89,7 @@ const birds: Bird[] = [
     thumbnailURL: upskirt_thumbnail,
     color: "#08652C",
     location: defaultLocation,
+    isSelected: false,
   },
 ];
 /**

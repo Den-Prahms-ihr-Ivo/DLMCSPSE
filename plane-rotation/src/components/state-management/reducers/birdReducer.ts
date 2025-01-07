@@ -5,6 +5,7 @@ export interface Bird {
   imageURL: string;
   thumbnailURL: string;
   color: string;
+  isSelected: boolean;
   location: { x: number; y: number; z: number };
 }
 
@@ -15,16 +16,29 @@ interface AddAction {
   z: number;
 }
 
+interface SelectAction {
+  type: "SELECT";
+  id: number;
+}
+
+interface MoveAction {
+  type: "MOVE";
+  id: number;
+  x: number;
+  y: number;
+  z: number;
+}
+
 interface RemoveAction {
   type: "REMOVE";
   id: number;
 }
 
-export type BirdAction = AddAction | RemoveAction;
+export type BirdAction = AddAction | RemoveAction | SelectAction | MoveAction;
 
 function getRandomBird(birds: Bird[]): Bird | null {
-  const usedIndices = birds.map((b) => b.id);
-  const tmp = birdData.filter((b) => !(b.id in usedIndices));
+  let usedIndices = birds.map((b) => b.id);
+  let tmp = birdData.filter((b) => !usedIndices.includes(b.id));
 
   if (tmp.length < 1) return null;
 
@@ -34,6 +48,7 @@ function getRandomBird(birds: Bird[]): Bird | null {
 const birdReducer = (birds: Bird[], action: BirdAction): Bird[] => {
   switch (action.type) {
     case "ADD":
+      console.log("Adding Bird!! :)");
       const tmp = getRandomBird(birds);
       if (tmp === null) return birds;
 
@@ -41,6 +56,15 @@ const birdReducer = (birds: Bird[], action: BirdAction): Bird[] => {
       return [tmp, ...birds];
     case "REMOVE":
       return birds.filter((bird) => bird.id !== action.id);
+    case "SELECT":
+      console.log("Selected Bird:  ", action.id);
+      // TODO!!!! Update with Immer
+      // Set isSelected to True
+      return birds;
+    case "MOVE":
+      // TODO!!!! Update with Immer
+      // Update Location
+      return birds;
   }
 
   return birds;
