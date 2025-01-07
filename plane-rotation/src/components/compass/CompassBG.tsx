@@ -22,6 +22,8 @@ const CompassBG = ({ degree }: Props) => {
         viewBox="0 0 2051 2073"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        xmlSpace="preserve"
         style={{
           fillRule: "evenodd",
           clipRule: "evenodd",
@@ -537,7 +539,7 @@ const CompassBG = ({ degree }: Props) => {
           <g transform="matrix(-1.83697e-16,1,-1,-1.83697e-16,4750.54,-639.004)">
             <g id="G14" transform="matrix(1,0,0,1,-2.14781,-1.21081)">
               <text
-                x="2683.21px"
+                x="2687.07px"
                 y="1937.93px"
                 style={{
                   fontFamily: "'Arial-BoldMT', 'Arial', sans-serif",
@@ -545,7 +547,7 @@ const CompassBG = ({ degree }: Props) => {
                   fontSize: "13.892px",
                 }}
               >
-                180°
+                90°
               </text>
             </g>
             <g
@@ -587,7 +589,7 @@ const CompassBG = ({ degree }: Props) => {
                 fontFamily: "'Arial-BoldMT', 'Arial', sans-serif",
                 fontWeight: 700,
                 fontSize: "13.892px",
-                fill: "#9EB3C7",
+                fill: "rgb(158,179,200)",
               }}
             >
               10m
@@ -600,13 +602,13 @@ const CompassBG = ({ degree }: Props) => {
             transform="matrix(0.58775,-6.52534e-17,-3.26267e-17,0.58775,1047.03,922.032)"
           >
             <text
-              x="2683.67px"
+              x="2687.53px"
               y="1937.93px"
               style={{
                 fontFamily: "'Arial-BoldMT', 'Arial', sans-serif",
                 fontWeight: 700,
                 fontSize: "13.892px",
-                fill: "#9EB3C7",
+                fill: "rgb(158,179,200)",
               }}
             >
               5m
@@ -619,13 +621,13 @@ const CompassBG = ({ degree }: Props) => {
             transform="matrix(0.58775,-6.52534e-17,-3.26267e-17,0.58775,1068.05,922.032)"
           >
             <text
-              x="2683.67px"
+              x="2687.53px"
               y="1937.93px"
               style={{
                 fontFamily: "'Arial-BoldMT', 'Arial', sans-serif",
                 fontWeight: 700,
                 fontSize: "13.892px",
-                fill: "#9EB3C7",
+                fill: "rgb(158,179,200)",
               }}
             >
               2m

@@ -7,6 +7,14 @@ import traurig from "../assets/birds/traurig.webp";
 import traurig_thumbnail from "../assets/birds/traurig_thumbnail.webp";
 import turmfalke from "../assets/birds/turmfalke.webp";
 import turmfalke_thumbnail from "../assets/birds/turmfalke_thumbnail.webp";
+import ahhhh from "../assets/birds/ahhhh.webp";
+import ahhhh_thumbnail from "../assets/birds/ahhhh_thumbnail.webp";
+import ast from "../assets/birds/ast.webp";
+import ast_thumbnail from "../assets/birds/ast_thumbnail.webp";
+import demokratiefogel from "../assets/birds/demokratiefogel.webp";
+import demokratiefogel_thumbnail from "../assets/birds/demokratiefogel_thumbnail.webp";
+import upskirt from "../assets/birds/upskirt.webp";
+import upskirt_thumbnail from "../assets/birds/upskirt_thumbnail.webp";
 
 const defaultLocation = { x: 0, y: 0, z: 0 };
 
@@ -43,6 +51,49 @@ const birds: Bird[] = [
     color: "#dd2804",
     location: defaultLocation,
   },
+  {
+    id: 5,
+    name: "Nora",
+    imageURL: ahhhh,
+    thumbnailURL: ahhhh_thumbnail,
+    color: "#321951",
+    location: defaultLocation,
+  },
+  {
+    id: 6,
+    name: "Emil",
+    imageURL: ast,
+    thumbnailURL: ast_thumbnail,
+    color: "#B22E37",
+    location: defaultLocation,
+  },
+  {
+    id: 7,
+    name: "Sophie & Wiliam",
+    imageURL: demokratiefogel,
+    thumbnailURL: demokratiefogel_thumbnail,
+    color: "#f68318",
+    location: defaultLocation,
+  },
+  {
+    id: 8,
+    name: "Maja",
+    imageURL: upskirt,
+    thumbnailURL: upskirt_thumbnail,
+    color: "#08652C",
+    location: defaultLocation,
+  },
 ];
+/**
+ * #80A416
+ * #08652C
+ * #fd1d75
+ * #055ccc
+ * #09d8c7
+ * #313575
+ *  #633090
+ *  #f68318
+ *  #FDC005
+ */
 
 export default birds;

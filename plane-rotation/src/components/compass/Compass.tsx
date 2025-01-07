@@ -48,6 +48,13 @@ const Compass = () => {
         <Center>
           <VStack gap={0}>
             <Text
+              fontSize={typographySystem.size_2}
+              fontWeight={fontWeightSystem.SemiBold}
+              color={colourSystem.Text.secondary}
+            >
+              Crow at
+            </Text>
+            <Text
               fontSize={typographySystem.size_6}
               fontWeight={fontWeightSystem.SemiBold}
               color={colourSystem.Accent.accent_1}
@@ -57,9 +64,9 @@ const Compass = () => {
             <Text
               fontSize={typographySystem.size_2}
               fontWeight={fontWeightSystem.SemiBold}
-              color={colourSystem.Text.dark}
+              color={colourSystem.Text.secondary}
             >
-              Crow at
+              from Plane
             </Text>
           </VStack>
         </Center>

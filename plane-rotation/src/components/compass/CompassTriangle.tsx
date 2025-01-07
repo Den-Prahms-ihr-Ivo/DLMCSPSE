@@ -17,6 +17,8 @@ const CompassTriangle = () => {
         viewBox="0 0 2051 2073"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        xmlSpace="preserve"
         style={{
           fillRule: "evenodd",
           clipRule: "evenodd",
@@ -24,7 +26,7 @@ const CompassTriangle = () => {
           strokeMiterlimit: 2,
         }}
       >
-        <g transform="matrix(5.50289,0,0,5.50289,-13797.2,-10262.2)">
+        <g transform="matrix(5.50247,0,0,5.50247,-13796.1,-10261.4)">
           <g transform="matrix(0.245709,0,0,0.38699,2302.16,1456.48)">
             <rect
               x="834.72"
@@ -35,15 +37,15 @@ const CompassTriangle = () => {
             />
           </g>
         </g>
-        <g transform="matrix(5.50289,0,0,5.50289,-13797.2,-10262.2)">
-          <g transform="matrix(-2.92028,-3.57632e-16,2.18315e-16,-1.78268,10724.8,5556.86)">
+        <g transform="matrix(5.50247,0,0,5.50247,-13796.1,-10261.4)">
+          <g transform="matrix(-2.97611,-3.64468e-16,2.18639e-16,-1.78533,10878.7,5561.86)">
             <path
-              d="M2750.16,1965.69L2803.87,2054.65L2696.45,2054.65L2750.16,1965.69Z"
+              d="M2750.16,1965.69L2802.74,2054.65L2695.07,2054.65L2750.16,1965.69Z"
               style={{ fill: "url(#_Linear1)" }}
             />
           </g>
         </g>
-        <g transform="matrix(5.50289,0,0,5.50289,-13797.2,-10262.2)">
+        <g transform="matrix(5.50247,0,0,5.50247,-13796.1,-10261.4)">
           <g transform="matrix(1,0,0,1,-2.7575,-3.05046)">
             <path
               d="M2696.33,2049.51L2706.45,2069.89L2686.21,2069.89L2696.33,2049.51Z"
@@ -63,7 +65,7 @@ const CompassTriangle = () => {
           >
             <stop
               offset="0"
-              style={{ stopColor: "rgb(174,44,104)", stopOpacity: "0.5" }}
+              style={{ stopColor: "rgb(174,44,104)", stopOpacity: 0.5 }}
             />
             <stop
               offset="0.53"

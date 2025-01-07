@@ -3,22 +3,16 @@ import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import Compass from "./compass/Compass";
 import TestPlot from "./diagram/testdiagram";
-import { useContext, useReducer, useState } from "react";
-import { Plane } from "./diagram/plane";
-import { newPlot, restyle } from "plotly.js";
-import planeReducer from "./state-management/reducers/planeReducer";
-import triggerRedrawReducer from "./state-management/reducers/triggerRedrawReducer";
+import { useContext } from "react";
 import RedrawContext from "./state-management/context/redrawContext";
+import PlaneContext from "./state-management/context/planeContext";
 
 const MainPage = () => {
-  // const [plane, setPlane] = useState(new Plane());
-  const [tmp, setTmp] = useState(1);
-
   // TODO: WIRING :(
   const { trigger: redrawTrigger, dispatch: dispatchRedraw } =
     useContext(RedrawContext);
 
-  const [plane, dispatchPlane] = useReducer(planeReducer, new Plane());
+  const { plane, dispatch: dispatchPlane } = useContext(PlaneContext);
 
   return (
     <Grid
