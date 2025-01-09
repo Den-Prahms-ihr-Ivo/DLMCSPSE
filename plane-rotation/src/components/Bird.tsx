@@ -1,4 +1,4 @@
-import { Avatar, AvatarBadge, Icon, Stack } from "@chakra-ui/react";
+import { Avatar, AvatarBadge, Icon, Stack, Tooltip } from "@chakra-ui/react";
 import { FaXmark } from "react-icons/fa6";
 import { colourSystem } from "../theme";
 
@@ -8,6 +8,7 @@ interface Props {
   highlightColor: string;
   onDelete: () => void;
   onSelect: () => void;
+  birdName?: string;
 }
 
 const Bird = ({
@@ -16,29 +17,35 @@ const Bird = ({
   onDelete,
   onSelect,
   highlightColor,
+  birdName,
 }: Props) => {
-  let border = isSelected ? "3px solid " + highlightColor : "";
-
   return (
-    <Avatar
-      //width={avatarWidth}
-      //height={avatarHeight}
-      size="lg"
-      src={avatar}
-      border={border}
-      cursor="pointer"
-      onClick={onSelect}
-      margin={2}
+    <Tooltip
+      hasArrow
+      label={birdName ? birdName : ""}
+      bg={highlightColor}
+      placement="top"
     >
-      <AvatarBadge
+      <Avatar
+        //width={avatarWidth}
+        //height={avatarHeight}
+        size="lg"
+        src={avatar}
+        border={isSelected ? "3px solid " + highlightColor : ""}
         cursor="pointer"
-        borderColor={colourSystem.Background.foreground}
-        bg={highlightColor}
-        boxSize="1.25em"
+        onClick={onSelect}
+        margin={2}
       >
-        <Icon as={FaXmark} onClick={onDelete} />
-      </AvatarBadge>
-    </Avatar>
+        <AvatarBadge
+          cursor="pointer"
+          borderColor={colourSystem.Background.foreground}
+          bg={highlightColor}
+          boxSize="1.25em"
+        >
+          <Icon as={FaXmark} onClick={onDelete} />
+        </AvatarBadge>
+      </Avatar>
+    </Tooltip>
   );
 };
 

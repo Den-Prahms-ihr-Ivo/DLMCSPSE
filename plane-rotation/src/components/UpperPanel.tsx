@@ -159,6 +159,7 @@ const UpperPanel = () => {
                   }}
                   isSelected={bird.isSelected}
                   highlightColor={bird.color}
+                  birdName={bird.name}
                 />
               ))}
             </AvatarGroup>
