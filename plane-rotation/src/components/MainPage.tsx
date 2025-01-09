@@ -2,7 +2,7 @@ import { Button, Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import Compass from "./compass/Compass";
-import TestPlot from "./diagram/testdiagram";
+import PlaneDiagram from "./diagram/planeDiagram";
 import { useContext } from "react";
 import RedrawContext from "./state-management/context/redrawContext";
 import PlaneContext from "./state-management/context/planeContext";
@@ -13,7 +13,6 @@ const MainPage = () => {
     useContext(RedrawContext);
 
   const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
-  const { plane } = planeWithErrors;
 
   return (
     <Grid
@@ -54,7 +53,7 @@ const MainPage = () => {
               >
                 Test
               </Button>
-              <TestPlot plane={plane} tmp={redrawTrigger} />
+              <PlaneDiagram tmp={redrawTrigger} />
             </Center>
           </Container>
         </Center>

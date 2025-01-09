@@ -3,7 +3,6 @@ import {
   GridItem,
   Container,
   Center,
-  ToastProvider,
 } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import MainPage from "./components/MainPage";

@@ -2,7 +2,10 @@ import { Box } from "@chakra-ui/react";
 import Plot from "react-plotly.js";
 import { Data } from "plotly.js";
 import { Plane } from "./plane";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import BirdContext from "../state-management/context/birdContext";
+import PlaneContext from "../state-management/context/planeContext";
+import { Bird } from "../state-management/reducers/birdReducer";
 
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
@@ -26,12 +29,63 @@ const threats: Data[] = [
 ];
 
 interface Props {
-  plane: Plane;
   tmp: number;
 }
 
-const TestPlot = ({ plane, tmp }: Props) => {
+interface ViewCube {
+  x: number[];
+  y: number[];
+  z: number[];
+}
+
+function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
+  // Calculate the distance to all birds.
+  let distances = birds.map((bird) => [
+    plane.getHorizontalDistance2Plane(bird.location),
+    plane.getVerticalDistance2Plane(bird.location),
+  ]);
+
+  // get largest distance
+  let ViewPortDistance = Math.ceil(
+    distances.reduce((acc, curr) => {
+      let m = Math.max(...curr);
+      return m > acc ? m : acc;
+    }, 0)
+  );
+
+  // ViewPortWidth is set to min 10m and otherwise to the furthest threat.
+  ViewPortDistance = Math.max(
+    ViewPortDistance,
+    5,
+    plane.getDistanceFromGround()
+  );
+
+  return {
+    x: [
+      plane.translationVector[0] - ViewPortDistance,
+      plane.translationVector[0] + ViewPortDistance,
+    ],
+    y: [
+      plane.translationVector[1] - ViewPortDistance,
+      plane.translationVector[1] + ViewPortDistance,
+    ],
+    z: [0, 2 * ViewPortDistance],
+  };
+}
+
+const PlaneDiagram = ({ tmp }: Props) => {
+  const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
+  const { birds } = birdsWithErrors;
+  const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const { plane } = planeWithErrors;
+
   const planeCoordinates = plane.coordinates;
+
+  const {
+    x: viewCubeX,
+    y: viewCubeY,
+    z: viewCubeZ,
+  } = calculateViewBoxCube(plane, birds);
 
   return (
     <Box width="500px" height="400px">
@@ -141,16 +195,16 @@ const TestPlot = ({ plane, tmp }: Props) => {
               z: 1,
             },
             xaxis: {
-              nticks: 9,
-              range: [-5, 5],
+              nticks: 10,
+              range: viewCubeX,
             },
             yaxis: {
-              nticks: 7,
-              range: [-5, 5],
+              nticks: 10,
+              range: viewCubeY,
             },
             zaxis: {
               nticks: 10,
-              range: [0, 10],
+              range: viewCubeZ,
             },
           },
         }}
@@ -159,4 +213,4 @@ const TestPlot = ({ plane, tmp }: Props) => {
   );
 };
 
-export default TestPlot;
+export default PlaneDiagram;
