@@ -1,9 +1,9 @@
 import React from "react";
-import { PlaneAction } from "../reducers/planeReducer";
+import { PlaneAction, PlaneWithErrors } from "../reducers/planeReducer";
 import { Plane } from "../../diagram/plane";
 
 interface PlaneContextType {
-  plane: Plane;
+  planeWithErrors: PlaneWithErrors;
   dispatch: React.Dispatch<PlaneAction>;
 }
 

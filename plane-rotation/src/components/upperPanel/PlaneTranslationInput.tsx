@@ -1,13 +1,38 @@
 import InputForm from "../InputForm";
 import { MathInputType } from "../MathInput";
 
-const xyzInputs: MathInputType[] = [
-  { placeholder: "x", heading: "X-Axis", unit: "m" },
-  { placeholder: "y", heading: "Y-Axis", unit: "m" },
-  { placeholder: "z", heading: "Z-Axis", unit: "m" },
-];
+interface Props {
+  translatePlaneRefX: React.RefObject<HTMLInputElement | null>;
+  translatePlaneRefY: React.RefObject<HTMLInputElement | null>;
+  translatePlaneRefZ: React.RefObject<HTMLInputElement | null>;
+}
 
-const PlaneTranslationInput = () => {
+const PlaneTranslationInput = ({
+  translatePlaneRefX,
+  translatePlaneRefY,
+  translatePlaneRefZ,
+}: Props) => {
+  const xyzInputs: MathInputType[] = [
+    {
+      placeholder: "x",
+      heading: "X-Axis",
+      unit: "m",
+      inputRef: translatePlaneRefX,
+    },
+    {
+      placeholder: "y",
+      heading: "Y-Axis",
+      unit: "m",
+      inputRef: translatePlaneRefY,
+    },
+    {
+      placeholder: "z",
+      heading: "Z-Axis",
+      unit: "m",
+      inputRef: translatePlaneRefZ,
+    },
+  ];
+
   return (
     <InputForm
       inputs={xyzInputs}

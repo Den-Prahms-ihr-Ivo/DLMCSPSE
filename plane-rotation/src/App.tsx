@@ -23,7 +23,10 @@ function App() {
     birds: [] as Bird[],
     error: null,
   });
-  const [plane, dispatchPlane] = useReducer(planeReducer, new Plane());
+  const [planeWithErrors, dispatchPlane] = useReducer(planeReducer, {
+    plane: new Plane(),
+    error: null,
+  });
   const [redrawTrigger, dispatchRedrawTrigger] = useReducer(
     triggerRedrawReducer,
     0
@@ -31,7 +34,7 @@ function App() {
 
   return (
     //templateColumns='repeat(5, 1fr)' gap={6}
-    <PlaneContext.Provider value={{ plane, dispatch: dispatchPlane }}>
+    <PlaneContext.Provider value={{ planeWithErrors, dispatch: dispatchPlane }}>
       <BirdContext.Provider
         value={{ birdsWithErrors, dispatch: dispatchBirds }}
       >

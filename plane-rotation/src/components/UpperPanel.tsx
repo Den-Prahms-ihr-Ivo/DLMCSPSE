@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
   HStack,
-  Stack,
   Switch,
   VStack,
   Center,
@@ -19,22 +18,27 @@ import MoveThreatInput from "./upperPanel/MoveThreatInput";
 import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
 import Bird from "./Bird";
 
-import crow from "../assets/birds/crow.webp";
-import penguin from "../assets/birds/penguin.webp";
-import pigeon from "../assets/birds/pigeon.webp";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import BirdContext from "./state-management/context/birdContext";
 import PlaneContext from "./state-management/context/planeContext";
+import RedrawContext from "./state-management/context/redrawContext";
 
 const UpperPanel = () => {
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
   const { birds, error: birdError } = birdsWithErrors;
-  const { plane, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const { plane, error: planeError } = planeWithErrors;
+
+  const { trigger, dispatch: dispatchRedraw } = useContext(RedrawContext);
   const toast = useToast();
 
   const newThreatRefX = useRef<HTMLInputElement>(null);
   const newThreatRefY = useRef<HTMLInputElement>(null);
   const newThreatRefZ = useRef<HTMLInputElement>(null);
+
+  const translatePlaneRefX = useRef<HTMLInputElement>(null);
+  const translatePlaneRefY = useRef<HTMLInputElement>(null);
+  const translatePlaneRefZ = useRef<HTMLInputElement>(null);
 
   const showOnlyNBirds = 5;
 
@@ -48,7 +52,16 @@ const UpperPanel = () => {
         isClosable: true,
       });
     }
-  }, [birdError]);
+    if (planeError) {
+      toast({
+        title: planeError.title,
+        description: planeError.description,
+        status: planeError.status,
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [birdError, planeError]);
 
   return (
     <Grid
@@ -73,7 +86,11 @@ const UpperPanel = () => {
       </GridItem>
       <GridItem area="planeTranslation" width="100%">
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
-          <PlaneTranslationInput />
+          <PlaneTranslationInput
+            translatePlaneRefX={translatePlaneRefX}
+            translatePlaneRefY={translatePlaneRefY}
+            translatePlaneRefZ={translatePlaneRefZ}
+          />
           <Flex paddingBottom={3} width="100%" justifyContent="flex-start">
             <Center>
               <Text
@@ -100,6 +117,16 @@ const UpperPanel = () => {
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
+              onClick={() => {
+                dispatchPlane({
+                  type: "TRANSLATE",
+                  x: Number(translatePlaneRefX.current?.value),
+                  y: Number(translatePlaneRefY.current?.value),
+                  z: Number(translatePlaneRefZ.current?.value),
+                  plane: plane,
+                });
+                dispatchRedraw({ type: "TRIGGER" });
+              }}
             >
               Move Plane
             </Button>

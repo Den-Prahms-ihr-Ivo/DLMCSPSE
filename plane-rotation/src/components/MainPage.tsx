@@ -12,7 +12,8 @@ const MainPage = () => {
   const { trigger: redrawTrigger, dispatch: dispatchRedraw } =
     useContext(RedrawContext);
 
-  const { plane, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const { plane } = planeWithErrors;
 
   return (
     <Grid
@@ -46,7 +47,6 @@ const MainPage = () => {
               <Button
                 onClick={() => {
                   dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
-                  dispatchPlane({ type: "TRANSLATE", x: 0, y: 0, z: 1 });
                   // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
                   // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
                   dispatchRedraw({ type: "TRIGGER" });
