@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import Plot from "react-plotly.js";
 import { Data } from "plotly.js";
 import { Plane } from "./plane";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import BirdContext from "../state-management/context/birdContext";
 import PlaneContext from "../state-management/context/planeContext";
 import { Bird } from "../state-management/reducers/birdReducer";
@@ -19,6 +19,10 @@ const threats: Data[] = [
     y: [-4],
     z: [5],
     mode: "markers",
+    text: ["Bitches"],
+    hovertemplate: "<b>%{text}</b><extra></extra><br>(%{x},%{y},%{z})",
+    showlegend: false,
+    showscale: false,
     marker: {
       color: "rgb(207, 13, 13)",
       size: 6,
@@ -73,6 +77,8 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
   };
 }
 
+/* tslint:disable */
+// @ts-nocheck
 const PlaneDiagram = ({ tmp }: Props) => {
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
   const { birds } = birdsWithErrors;
@@ -86,7 +92,6 @@ const PlaneDiagram = ({ tmp }: Props) => {
     y: viewCubeY,
     z: viewCubeZ,
   } = calculateViewBoxCube(plane, birds);
-
   return (
     <Box width="500px" height="400px">
       <Plot
@@ -100,6 +105,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             //@ts-expect-error
             color: "#cacaca",
             opacity: 0.3,
+            hovertemplate: "<extra></extra>",
             x: planeCoordinates.x,
             y: planeCoordinates.y,
             z: [0, 0, 0, 0, 0, 0],
@@ -115,6 +121,11 @@ const PlaneDiagram = ({ tmp }: Props) => {
             y: [plane.marbleY],
             z: [plane.marbleZ],
             mode: "markers",
+            hovertemplate:
+              '<b>"Pilots" Head</b><extra></extra><br>(%{x},%{y},%{z})',
+            showlegend: false,
+            hoveron: "points",
+            showscale: false,
             marker: {
               color: "rgb(230, 18, 117)",
               size: 6,
@@ -128,6 +139,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             x: plane.marbleCS_X[0],
             y: plane.marbleCS_X[1],
             z: plane.marbleCS_X[2],
+            hovertemplate: "<extra></extra>",
             line: {
               width: marbleCS_Thickness,
               color: "#A31400",
@@ -139,6 +151,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             x: plane.marbleCS_Y[0],
             y: plane.marbleCS_Y[1],
             z: plane.marbleCS_Y[2],
+            hovertemplate: "<extra></extra>",
             line: {
               width: marbleCS_Thickness,
               color: "#255181",
@@ -150,6 +163,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             x: plane.marbleCS_Z[0],
             y: plane.marbleCS_Z[1],
             z: plane.marbleCS_Z[2],
+            hovertemplate: "<extra></extra>",
             line: {
               width: marbleCS_Thickness,
               color: "#9DBB58",
@@ -161,6 +175,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             x: plane.foldLinesX,
             y: plane.foldLinesY,
             z: plane.foldLinesZ,
+            hovertemplate: "<extra></extra>",
             line: {
               width: marbleCS_Thickness,
               color: "#83C0DD",
@@ -185,7 +200,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
             t: 0,
             pad: 0,
           },
-          hovermode: false,
+          hovermode: "closest",
           showlegend: false,
           scene: {
             aspectmode: "manual",

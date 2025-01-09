@@ -155,6 +155,8 @@ export class Plane {
       i: new Float64Array([0, 3, 2, 4]),
       j: new Float64Array([1, 1, 1, 1]),
       k: new Float64Array([2, 4, 5, 5]),
+
+      hovertemplate: "<extra></extra>",
     };
     // TODO: Marbel und Coordinate System sollen Teil des Fulgzeuges sein.
     this.matrixTransform();
