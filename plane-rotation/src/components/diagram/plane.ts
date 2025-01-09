@@ -1,23 +1,7 @@
 import { Datum, PlotData } from "plotly.js";
 import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
+import { multiply } from "../../math/matrices";
 import { Point } from "../../math/types";
-
-function multiply(a: number[][], b: number[][]) {
-  var aNumRows = a.length,
-    aNumCols = a[0].length,
-    bNumCols = b[0].length,
-    m = new Array(aNumRows); // initialize array of rows
-  for (let r = 0; r < aNumRows; ++r) {
-    m[r] = new Array(bNumCols); // initialize the current row
-    for (var c = 0; c < bNumCols; ++c) {
-      m[r][c] = 0; // initialize the current cell
-      for (var i = 0; i < aNumCols; ++i) {
-        m[r][c] += a[r][i] * b[i][c];
-      }
-    }
-  }
-  return m;
-}
 
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
@@ -170,8 +154,9 @@ export class Plane {
 
     M = M.concat([[0, 0, 0, 1]]);
 
+    console.log(M);
     let tmpPlane = structuredClone(this.initialCoordinates);
-    tmpPlane = multiply(M, tmpPlane.concat([[1, 1, 1, 1, 1, 1]]));
+    tmpPlane = multiply(M, tmpPlane.concat([[0, 0, 0, 0, 0, 0]]));
 
     // Translate Plane
     this.coordinates.x = tmpPlane[0];
@@ -239,6 +224,9 @@ export class Plane {
       yawPitchRoll2Matrix(yaw, pitch, roll)
     );
 
+    // AUSLAGERN IN MATRIX!!!
+
+    console.log(this.rotationMatrix);
     this.matrixTransform();
     return this;
   }

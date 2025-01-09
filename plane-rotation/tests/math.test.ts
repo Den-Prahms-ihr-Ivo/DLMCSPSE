@@ -107,6 +107,26 @@ describe("Euler 2 Matrix", () => {
         [0, 0, 1],
       ],
     },
+    {
+      yaw: 0,
+      pitch: 0,
+      roll: 45,
+      expected: [
+        [1.0, 0.0, 0.0],
+        [0.0, 0.7071068, -0.7071068],
+        [0.0, 0.7071068, 0.7071068],
+      ],
+    },
+    {
+      yaw: 45,
+      pitch: 45,
+      roll: 45,
+      expected: [
+        [0.4725979, -0.3009115, 0.8283136],
+        [0.8283136, 0.4725979, -0.3009115],
+        [-0.3009115, 0.8283136, 0.4725979],
+      ],
+    },
   ])(
     "should calculate $yaw, $pitch, $roll correctly",
     ({ yaw, pitch, roll, expected }) => {
@@ -116,11 +136,11 @@ describe("Euler 2 Matrix", () => {
       const numCols = actual[0].length;
 
       expect(numRows).toBe(expected.length);
-      expect(numCols).toBe(expected.length);
+      expect(numCols).toBe(expected[0].length);
 
       for (var i = 0; i < numRows; i++) {
         for (var j = 0; j < numCols; j++) {
-          expect(actual[i][j]).toBeCloseTo(expected[i][j]);
+          expect(expected[i][j]).toBeCloseTo(actual[i][j]);
         }
       }
     }

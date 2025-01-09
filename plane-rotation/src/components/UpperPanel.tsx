@@ -40,6 +40,10 @@ const UpperPanel = () => {
   const translatePlaneRefY = useRef<HTMLInputElement>(null);
   const translatePlaneRefZ = useRef<HTMLInputElement>(null);
 
+  const rotatePlaneRefYaw = useRef<HTMLInputElement>(null);
+  const rotatePlaneRefPitch = useRef<HTMLInputElement>(null);
+  const rotatePlaneRefRoll = useRef<HTMLInputElement>(null);
+
   const showOnlyNBirds = 5;
 
   useEffect(() => {
@@ -72,13 +76,25 @@ const UpperPanel = () => {
       gap={0}
     >
       <GridItem area="planeRotation" width="100%">
-        <PlaneRotationInput />
+        <PlaneRotationInput
+          rotatePlaneRefRoll={rotatePlaneRefRoll}
+          rotatePlaneRefPitch={rotatePlaneRefPitch}
+          rotatePlaneRefYaw={rotatePlaneRefYaw}
+        />
         <Flex width="100%" justifyContent="flex-end">
           <Button
             className="btn-secondary"
             fontWeight={fontWeightSystem.SemiBold}
             fontSize={typographySystem.size_2}
             size="sm"
+            onClick={() => {
+              dispatchPlane({
+                type: "ROTATE",
+                yaw: Number(rotatePlaneRefYaw.current?.value) % 360,
+                pitch: Number(rotatePlaneRefPitch.current?.value) % 360,
+                roll: Number(rotatePlaneRefRoll.current?.value) % 360,
+              });
+            }}
           >
             Rotate Plane
           </Button>
@@ -123,7 +139,6 @@ const UpperPanel = () => {
                   x: Number(translatePlaneRefX.current?.value),
                   y: Number(translatePlaneRefY.current?.value),
                   z: Number(translatePlaneRefZ.current?.value),
-                  plane: plane,
                 });
                 dispatchRedraw({ type: "TRIGGER" });
               }}
