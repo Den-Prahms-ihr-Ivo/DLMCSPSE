@@ -1,5 +1,6 @@
 import { Datum, PlotData } from "plotly.js";
 import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
+import { Point } from "../../math/types";
 
 function multiply(a: number[][], b: number[][]) {
   var aNumRows = a.length,
@@ -251,5 +252,11 @@ export class Plane {
 
     this.matrixTransform();
     return this;
+  }
+
+  getHorizontalDistance2Plane(location: Point): number {
+    // TODO: implement
+    console.log("Im not implemented Yet");
+    return 0;
   }
 }

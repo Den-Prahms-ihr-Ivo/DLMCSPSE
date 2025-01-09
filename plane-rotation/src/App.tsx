@@ -1,17 +1,28 @@
-import { Grid, GridItem, Container, Center } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Container,
+  Center,
+  ToastProvider,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import MainPage from "./components/MainPage";
 import RedrawContext from "./components/state-management/context/redrawContext";
 import { useReducer } from "react";
 import triggerRedrawReducer from "./components/state-management/reducers/triggerRedrawReducer";
 import BirdContext from "./components/state-management/context/birdContext";
-import birdReducer from "./components/state-management/reducers/birdReducer";
+import birdReducer, {
+  Bird,
+} from "./components/state-management/reducers/birdReducer";
 import PlaneContext from "./components/state-management/context/planeContext";
 import planeReducer from "./components/state-management/reducers/planeReducer";
 import { Plane } from "./components/diagram/plane";
 
 function App() {
-  const [birds, dispatchBirds] = useReducer(birdReducer, []);
+  const [birdsWithErrors, dispatchBirds] = useReducer(birdReducer, {
+    birds: [] as Bird[],
+    error: null,
+  });
   const [plane, dispatchPlane] = useReducer(planeReducer, new Plane());
   const [redrawTrigger, dispatchRedrawTrigger] = useReducer(
     triggerRedrawReducer,
@@ -21,7 +32,9 @@ function App() {
   return (
     //templateColumns='repeat(5, 1fr)' gap={6}
     <PlaneContext.Provider value={{ plane, dispatch: dispatchPlane }}>
-      <BirdContext.Provider value={{ birds, dispatch: dispatchBirds }}>
+      <BirdContext.Provider
+        value={{ birdsWithErrors, dispatch: dispatchBirds }}
+      >
         <RedrawContext.Provider
           value={{ trigger: redrawTrigger, dispatch: dispatchRedrawTrigger }}
         >

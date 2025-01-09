@@ -5,19 +5,40 @@ import { colourSystem } from "../theme";
 interface Props {
   avatar: string;
   isSelected: boolean;
+  highlightColor: string;
   onDelete: () => void;
   onSelect: () => void;
+  avatarWidth?: string;
+  avatarHeight?: string;
 }
 
-const Bird = ({ avatar, isSelected, onDelete, onSelect }: Props) => {
-  let border = isSelected ? "3px solid " + colourSystem.Accent.accent_1 : "";
+const Bird = ({
+  avatar,
+  isSelected,
+  onDelete,
+  onSelect,
+  highlightColor,
+  avatarWidth,
+  avatarHeight,
+}: Props) => {
+  let border = isSelected ? "3px solid " + highlightColor : "";
+
+  avatarWidth = avatarWidth ? avatarWidth : "60px"; // "48px"
+  avatarHeight = avatarHeight ? avatarHeight : "60px";
 
   return (
-    <Avatar src={avatar} border={border} cursor="pointer" onClick={onSelect}>
+    <Avatar
+      width={avatarWidth}
+      height={avatarHeight}
+      src={avatar}
+      border={border}
+      cursor="pointer"
+      onClick={onSelect}
+    >
       <AvatarBadge
         cursor="pointer"
         borderColor={colourSystem.Background.foreground}
-        bg={colourSystem.Text.secondary}
+        bg={highlightColor}
         boxSize="1.25em"
       >
         <Icon as={FaXmark} onClick={onDelete} />

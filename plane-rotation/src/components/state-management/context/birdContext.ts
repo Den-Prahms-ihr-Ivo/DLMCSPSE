@@ -1,8 +1,8 @@
 import React from "react";
-import { Bird, BirdAction } from "../reducers/birdReducer";
+import { BirdAction, BirdsWithErrors } from "../reducers/birdReducer";
 
 interface BirdContextType {
-  birds: Bird[];
+  birdsWithErrors: BirdsWithErrors;
   dispatch: React.Dispatch<BirdAction>;
 }
 

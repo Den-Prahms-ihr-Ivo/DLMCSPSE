@@ -9,6 +9,7 @@ import {
   Switch,
   VStack,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 import PlaneRotationInput from "./upperPanel/PlaneRotationInput";
 import PlaneTranslationInput from "./upperPanel/PlaneTranslationInput";
@@ -20,23 +21,33 @@ import Bird from "./Bird";
 import crow from "../assets/birds/crow.webp";
 import penguin from "../assets/birds/penguin.webp";
 import pigeon from "../assets/birds/pigeon.webp";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BirdContext from "./state-management/context/birdContext";
-
-const birds = [
-  { name: "Crow", link: crow },
-  { name: "Penguin", link: penguin },
-  { name: "Pigeon", link: pigeon },
-];
+import PlaneContext from "./state-management/context/planeContext";
 
 const UpperPanel = () => {
-  const { birds, dispatch: dispatchBird } = useContext(BirdContext);
+  const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
+  const { birds, error: birdError } = birdsWithErrors;
+  const { plane, dispatch: dispatchPlane } = useContext(PlaneContext);
+  const toast = useToast();
 
   const newThreatRefX = useRef<HTMLInputElement>(null);
   const newThreatRefY = useRef<HTMLInputElement>(null);
   const newThreatRefZ = useRef<HTMLInputElement>(null);
 
-  const showOnlyNBirds = 7;
+  const showOnlyNBirds = 6;
+
+  useEffect(() => {
+    if (birdError) {
+      toast({
+        title: birdError.title,
+        description: birdError.description,
+        status: birdError.status,
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }, [birdError]);
 
   return (
     <Grid
@@ -108,12 +119,14 @@ const UpperPanel = () => {
               fontSize={typographySystem.size_2}
               size="sm"
               onClick={() => {
-                if (newThreatRefX.current !== null) {
-                  console.log(Number(newThreatRefX.current?.value));
-                  newThreatRefX.current.value = "";
-
-                  dispatchBird({ type: "ADD", x: 0, y: 0, z: 0 });
-                }
+                dispatchBird({
+                  type: "ADD",
+                  x: Number(newThreatRefX.current?.value),
+                  y: Number(newThreatRefY.current?.value),
+                  z: Number(newThreatRefZ.current?.value),
+                  plane: plane,
+                });
+                // newThreatRefX.current.value = "";
               }}
             >
               Add Threat
@@ -138,6 +151,7 @@ const UpperPanel = () => {
                     dispatchBird({ type: "REMOVE", id: bird.id });
                   }}
                   isSelected={bird.isSelected}
+                  highlightColor={bird.color}
                 />
               ))}
             </Stack>
