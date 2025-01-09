@@ -1,7 +1,6 @@
-import { ToastProps } from "@chakra-ui/react";
 import birdData from "../../../data/birds";
 import { Plane } from "../../diagram/plane";
-import { Dispatch, SetStateAction } from "react";
+import produce from "immer";
 
 export interface BirdsWithErrors {
   birds: Bird[];
@@ -101,10 +100,19 @@ const birdReducer = (
         error: null,
       };
     case "SELECT":
-      console.log("Selected Bird:  ", action.id);
-      // TODO!!!! Update with Immer
-      // Set isSelected to True
-      return { birds, error: null };
+      const selectedBirds = birds.map((bo) => {
+        const b = structuredClone(bo);
+
+        if (b.id === action.id) {
+          b.isSelected = !b.isSelected;
+        } else {
+          b.isSelected = false;
+        }
+        return b;
+      });
+
+      return { birds: selectedBirds, error: null };
+
     case "MOVE":
       // TODO!!!! Update with Immer
       // Update Location

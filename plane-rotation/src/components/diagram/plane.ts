@@ -212,8 +212,6 @@ export class Plane {
     this.foldLinesX = tmpFoldLines[0];
     this.foldLinesY = tmpFoldLines[1];
     this.foldLinesZ = tmpFoldLines[2];
-
-    console.log(tmpFoldLines);
   }
 
   resetPlane() {
@@ -255,6 +253,12 @@ export class Plane {
   }
 
   getHorizontalDistance2Plane(location: Point): number {
+    // TODO: implement
+    console.log("Im not implemented Yet");
+    return 0;
+  }
+
+  getAngle2Plane(location: Point): number {
     // TODO: implement
     console.log("Im not implemented Yet");
     return 0;
