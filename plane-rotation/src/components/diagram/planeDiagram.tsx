@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Plot from "react-plotly.js";
-import { Data } from "plotly.js";
+import { Data, PlotData } from "plotly.js";
 import { Plane } from "./plane";
 import { useContext } from "react";
 import BirdContext from "../state-management/context/birdContext";
@@ -10,6 +10,7 @@ import { Bird } from "../state-management/reducers/birdReducer";
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
 
+/*
 const threats: Data[] = [
   // X-Axis
   {
@@ -31,6 +32,7 @@ const threats: Data[] = [
     },
   },
 ];
+*/
 
 interface Props {
   tmp: number;
@@ -86,6 +88,26 @@ const PlaneDiagram = ({ tmp }: Props) => {
   const { plane } = planeWithErrors;
 
   const planeCoordinates = plane.coordinates;
+
+  const threats: Partial<PlotData>[] = birds.map((bird) => {
+    return {
+      opacity: 1,
+      type: "scatter3d",
+      x: [bird.location.x],
+      y: [bird.location.y],
+      z: [bird.location.z],
+      mode: "markers",
+      text: [bird.name],
+      hovertemplate: "<b>%{text}</b><extra></extra><br>(%{x},%{y},%{z})",
+      marker: {
+        color: bird.color,
+        size: 6,
+        symbol: "circle",
+        opacity: 1,
+      },
+    };
+  });
+  console.log(threats);
 
   const {
     x: viewCubeX,
