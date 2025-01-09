@@ -8,8 +8,6 @@ interface Props {
   highlightColor: string;
   onDelete: () => void;
   onSelect: () => void;
-  avatarWidth?: string;
-  avatarHeight?: string;
 }
 
 const Bird = ({
@@ -18,22 +16,19 @@ const Bird = ({
   onDelete,
   onSelect,
   highlightColor,
-  avatarWidth,
-  avatarHeight,
 }: Props) => {
   let border = isSelected ? "3px solid " + highlightColor : "";
 
-  avatarWidth = avatarWidth ? avatarWidth : "60px"; // "48px"
-  avatarHeight = avatarHeight ? avatarHeight : "60px";
-
   return (
     <Avatar
-      width={avatarWidth}
-      height={avatarHeight}
+      //width={avatarWidth}
+      //height={avatarHeight}
+      size="lg"
       src={avatar}
       border={border}
       cursor="pointer"
       onClick={onSelect}
+      margin={2}
     >
       <AvatarBadge
         cursor="pointer"

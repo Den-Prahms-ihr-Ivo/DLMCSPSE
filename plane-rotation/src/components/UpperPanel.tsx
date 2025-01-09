@@ -10,6 +10,7 @@ import {
   VStack,
   Center,
   useToast,
+  AvatarGroup,
 } from "@chakra-ui/react";
 import PlaneRotationInput from "./upperPanel/PlaneRotationInput";
 import PlaneTranslationInput from "./upperPanel/PlaneTranslationInput";
@@ -35,7 +36,7 @@ const UpperPanel = () => {
   const newThreatRefY = useRef<HTMLInputElement>(null);
   const newThreatRefZ = useRef<HTMLInputElement>(null);
 
-  const showOnlyNBirds = 6;
+  const showOnlyNBirds = 5;
 
   useEffect(() => {
     if (birdError) {
@@ -138,8 +139,14 @@ const UpperPanel = () => {
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
           <MoveThreatInput />
           <HStack width="100%" justifyContent="space-between">
-            <Stack spacing={4} maxWidth="200px" direction="row" align="center">
-              {birds.slice(0, showOnlyNBirds).map((bird) => (
+            {/* <Stack spacing={4} maxWidth="200px" direction="row" align="center"> */}
+            <AvatarGroup
+              size="lg"
+              maxWidth="200px"
+              max={showOnlyNBirds}
+              spacing={-5}
+            >
+              {birds.map((bird) => (
                 // Du darfst maximal 7 Vögel anzeigen
                 <Bird
                   key={bird.id}
@@ -154,7 +161,8 @@ const UpperPanel = () => {
                   highlightColor={bird.color}
                 />
               ))}
-            </Stack>
+            </AvatarGroup>
+            {/*</Stack>*/}
 
             <Button
               className="btn-secondary"
