@@ -1,6 +1,22 @@
 import { it, expect, describe, beforeAll } from "vitest";
 import { Plane } from "../src/components/diagram/plane";
-import { multiply } from "../src/math/matrices";
+import {
+  buildTransformationMatrix,
+  matrixTransformation,
+  multiply,
+} from "../src/math/matrices";
+import { yawPitchRoll2Matrix } from "../src/math/eulerToMatrix";
+
+function compareMatrix(actual: number[][], expected: number[][]) {
+  const numRows = actual.length;
+  const numCols = actual[0].length;
+
+  for (var i = 0; i < numRows; i++) {
+    for (var j = 0; j < numCols; j++) {
+      expect(actual[i][j]).toBeCloseTo(expected[i][j]);
+    }
+  }
+}
 
 describe("Matrix multiplication", () => {
   it.each([
@@ -51,8 +67,6 @@ describe("Matrix multiplication", () => {
   ])("should b", ({ A, B, expected }) => {
     const actual = multiply(A, B);
 
-    console.log(actual);
-
     const numRows = actual.length;
     const numCols = actual[0].length;
 
@@ -87,9 +101,66 @@ describe("Plane", () => {
     expect(y).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
     expect(z).toEqual([0.7, 0.7, 0.7, 0.7, 0.7, -0.7]);
   });
+});
 
-  it("should be rotated correctly", () => {});
-  // TODO: better and more tests
+describe("Matrix Transform", () => {
+  it.each([
+    {
+      rotationMatrix: [
+        [1, 0, 0],
+        [0, -1, 0],
+        [0, 0, -1],
+      ],
+      translationVector: [1, 0, 0],
+      matrix: [[1], [2], [3]],
+      expected: [[2], [-2], [-3]],
+      description: "Rotation around X axis and transform it x about 1.",
+    },
+    {
+      rotationMatrix: [
+        [1.0, 0, 0],
+        [0, 0.866, -0.5],
+        [0, 0.5, 0.866],
+      ],
+      translationVector: [1, 2, 3],
+      matrix: [
+        [1, 1],
+        [2, 2],
+        [3, 3],
+      ],
+      expected: [
+        [2, 2],
+        [2.232, 2.232],
+        [6.598, 6.598],
+      ],
+      description: "Rotation 30° around X axis and transform it afterwards.",
+    },
+  ])(
+    "should rotate and transform $name",
+    ({ rotationMatrix, translationVector, matrix, expected }) => {
+      const transformationMatrix = buildTransformationMatrix(
+        rotationMatrix,
+        translationVector
+      );
+      const result = matrixTransformation(transformationMatrix, matrix);
+      compareMatrix(result, expected);
+    }
+  );
+});
 
-  // Angle to Threat
+describe("Matrix Transform", () => {
+  it("should add a 45° rotation to the initial rotation", () => {
+    const M = yawPitchRoll2Matrix(45, 0, 0);
+    const initialRotation = [
+      [0, 1, 0],
+      [1, 0, 0],
+      [0, 0, -1],
+    ];
+
+    compareMatrix(multiply(initialRotation, M), [
+      [0.71, 0.71, 0],
+      [0.71, -0.71, 0],
+      [0, 0, -1],
+    ]);
+  });
 });

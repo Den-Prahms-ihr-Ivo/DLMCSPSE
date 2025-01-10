@@ -1,6 +1,10 @@
 import { Datum, PlotData } from "plotly.js";
 import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
-import { multiply } from "../../math/matrices";
+import {
+  buildTransformationMatrix,
+  matrixTransformation,
+  multiply,
+} from "../../math/matrices";
 import { Point } from "../../math/types";
 
 function deepCopy(array: number[][]) {
@@ -147,16 +151,15 @@ export class Plane {
   }
 
   matrixTransform() {
-    let M = structuredClone(this.rotationMatrix);
-    M[0].push(this.translationVector[0]);
-    M[1].push(this.translationVector[1]);
-    M[2].push(this.translationVector[2]);
+    const transformationMatrix = buildTransformationMatrix(
+      this.rotationMatrix,
+      this.translationVector
+    );
 
-    M = M.concat([[0, 0, 0, 1]]);
-
-    console.log(M);
-    let tmpPlane = structuredClone(this.initialCoordinates);
-    tmpPlane = multiply(M, tmpPlane.concat([[0, 0, 0, 0, 0, 0]]));
+    const tmpPlane = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialCoordinates)
+    );
 
     // Translate Plane
     this.coordinates.x = tmpPlane[0];
@@ -164,11 +167,10 @@ export class Plane {
     this.coordinates.z = tmpPlane[2];
 
     // Translate Marble
-    let tmpMarble = multiply(M, [
+    const tmpMarble = matrixTransformation(transformationMatrix, [
       [this.initialMarbleX],
       [this.initialMarbleY],
       [this.initialMarbleZ],
-      [1],
     ]);
 
     this.marbleX = tmpMarble[0][0];
@@ -176,24 +178,24 @@ export class Plane {
     this.marbleZ = tmpMarble[2][0];
 
     // Translate CS
-    let tmpCS_X = structuredClone(this.initialMarbleCS_X);
-    tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_X = tmpCS_X.slice(0, 3);
-
-    let tmpCS_Y = structuredClone(this.initialMarbleCS_Y);
-    tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_Y = tmpCS_Y.slice(0, 3);
-
-    let tmpCS_Z = structuredClone(this.initialMarbleCS_Z);
-    tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_Z = tmpCS_Z.slice(0, 3);
+    this.marbleCS_X = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_X)
+    );
+    this.marbleCS_Y = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_Y)
+    );
+    this.marbleCS_Z = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_Z)
+    );
 
     // Translate Fold Lines
-    let tmpFoldLines = multiply(M, [
+    let tmpFoldLines = matrixTransformation(transformationMatrix, [
       this.initialFoldLinesX,
       this.initialFoldLinesY,
       this.initialFoldLinesZ,
-      [1, 1, 1],
     ]);
 
     this.foldLinesX = tmpFoldLines[0];
@@ -225,8 +227,6 @@ export class Plane {
     );
 
     // AUSLAGERN IN MATRIX!!!
-
-    console.log(this.rotationMatrix);
     this.matrixTransform();
     return this;
   }
