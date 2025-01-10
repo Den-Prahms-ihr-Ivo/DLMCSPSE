@@ -18,7 +18,6 @@ interface PlaneRotateAction {
 
 interface PlaneTranslateAction {
   type: "TRANSLATE";
-  plane: Plane;
   x: number;
   y: number;
   z: number;
@@ -34,13 +33,15 @@ const planeReducer = (
 
   switch (action.type) {
     case "ROTATE":
-      // ADDING:
-      // return [bird, ...state]
       const { yaw, pitch, roll } = action;
-      return { plane: plane.rotatePlane(yaw, pitch, roll), error: null };
+      console.log(yaw, pitch, roll);
+      return {
+        plane: plane.rotatePlane(yaw, pitch, roll),
+        error: null,
+      };
     case "TRANSLATE":
       const { x, y, z } = action;
-      if (action.plane.translationVector[2] + z < 0) {
+      if (plane.translationVector[2] + z < 0) {
         return {
           plane,
           error: {
@@ -50,7 +51,6 @@ const planeReducer = (
           },
         };
       }
-
       return { plane: plane.translatePlane(x, y, z), error: null };
   }
 

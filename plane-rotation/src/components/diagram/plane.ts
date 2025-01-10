@@ -1,23 +1,11 @@
 import { Datum, PlotData } from "plotly.js";
 import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
+import {
+  buildTransformationMatrix,
+  matrixTransformation,
+  multiply,
+} from "../../math/matrices";
 import { Point } from "../../math/types";
-
-function multiply(a: number[][], b: number[][]) {
-  var aNumRows = a.length,
-    aNumCols = a[0].length,
-    bNumCols = b[0].length,
-    m = new Array(aNumRows); // initialize array of rows
-  for (let r = 0; r < aNumRows; ++r) {
-    m[r] = new Array(bNumCols); // initialize the current row
-    for (var c = 0; c < bNumCols; ++c) {
-      m[r][c] = 0; // initialize the current cell
-      for (var i = 0; i < aNumCols; ++i) {
-        m[r][c] += a[r][i] * b[i][c];
-      }
-    }
-  }
-  return m;
-}
 
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
@@ -163,15 +151,15 @@ export class Plane {
   }
 
   matrixTransform() {
-    let M = structuredClone(this.rotationMatrix);
-    M[0].push(this.translationVector[0]);
-    M[1].push(this.translationVector[1]);
-    M[2].push(this.translationVector[2]);
+    const transformationMatrix = buildTransformationMatrix(
+      this.rotationMatrix,
+      this.translationVector
+    );
 
-    M = M.concat([[0, 0, 0, 1]]);
-
-    let tmpPlane = structuredClone(this.initialCoordinates);
-    tmpPlane = multiply(M, tmpPlane.concat([[1, 1, 1, 1, 1, 1]]));
+    const tmpPlane = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialCoordinates)
+    );
 
     // Translate Plane
     this.coordinates.x = tmpPlane[0];
@@ -179,11 +167,10 @@ export class Plane {
     this.coordinates.z = tmpPlane[2];
 
     // Translate Marble
-    let tmpMarble = multiply(M, [
+    const tmpMarble = matrixTransformation(transformationMatrix, [
       [this.initialMarbleX],
       [this.initialMarbleY],
       [this.initialMarbleZ],
-      [1],
     ]);
 
     this.marbleX = tmpMarble[0][0];
@@ -191,24 +178,24 @@ export class Plane {
     this.marbleZ = tmpMarble[2][0];
 
     // Translate CS
-    let tmpCS_X = structuredClone(this.initialMarbleCS_X);
-    tmpCS_X = multiply(M, tmpCS_X.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_X = tmpCS_X.slice(0, 3);
-
-    let tmpCS_Y = structuredClone(this.initialMarbleCS_Y);
-    tmpCS_Y = multiply(M, tmpCS_Y.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_Y = tmpCS_Y.slice(0, 3);
-
-    let tmpCS_Z = structuredClone(this.initialMarbleCS_Z);
-    tmpCS_Z = multiply(M, tmpCS_Z.concat([[1, 1, 1, 1, 1]]));
-    this.marbleCS_Z = tmpCS_Z.slice(0, 3);
+    this.marbleCS_X = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_X)
+    );
+    this.marbleCS_Y = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_Y)
+    );
+    this.marbleCS_Z = matrixTransformation(
+      transformationMatrix,
+      structuredClone(this.initialMarbleCS_Z)
+    );
 
     // Translate Fold Lines
-    let tmpFoldLines = multiply(M, [
+    let tmpFoldLines = matrixTransformation(transformationMatrix, [
       this.initialFoldLinesX,
       this.initialFoldLinesY,
       this.initialFoldLinesZ,
-      [1, 1, 1],
     ]);
 
     this.foldLinesX = tmpFoldLines[0];
@@ -239,6 +226,7 @@ export class Plane {
       yawPitchRoll2Matrix(yaw, pitch, roll)
     );
 
+    // AUSLAGERN IN MATRIX!!!
     this.matrixTransform();
     return this;
   }
