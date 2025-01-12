@@ -1,23 +1,22 @@
-import {
-  Grid,
-  GridItem,
-  Container,
-  Center,
-} from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import MainPage from "./components/MainPage";
-import RedrawContext from "./components/state-management/context/redrawContext";
+import { Grid, GridItem, Container, Center } from "@chakra-ui/react";
+import NavBar from "../components/NavBar";
+import RedrawContext from "../components/state-management/context/redrawContext";
 import { useReducer } from "react";
-import triggerRedrawReducer from "./components/state-management/reducers/triggerRedrawReducer";
-import BirdContext from "./components/state-management/context/birdContext";
+import triggerRedrawReducer from "../components/state-management/reducers/triggerRedrawReducer";
+import BirdContext from "../components/state-management/context/birdContext";
 import birdReducer, {
   Bird,
-} from "./components/state-management/reducers/birdReducer";
-import PlaneContext from "./components/state-management/context/planeContext";
-import planeReducer from "./components/state-management/reducers/planeReducer";
-import { Plane } from "./components/diagram/plane";
+} from "../components/state-management/reducers/birdReducer";
+import PlaneContext from "../components/state-management/context/planeContext";
+import planeReducer from "../components/state-management/reducers/planeReducer";
+import { Plane } from "../components/diagram/plane";
 
-function App() {
+interface Props {
+  children: React.ReactNode;
+  activeNavItem?: string;
+}
+
+function Template({ children, activeNavItem }: Props) {
   const [birdsWithErrors, dispatchBirds] = useReducer(birdReducer, {
     birds: [] as Bird[],
     error: null,
@@ -46,7 +45,7 @@ function App() {
             gap={0}
           >
             <GridItem area="nav">
-              <NavBar />
+              <NavBar activeNavItem={activeNavItem} />
             </GridItem>
             <GridItem area="main">
               <Center height="100vh" width="100%">
@@ -59,7 +58,7 @@ function App() {
                   bg="#F5F6F7"
                   color="#373546"
                 >
-                  <MainPage />
+                  {children}
                 </Container>
               </Center>
             </GridItem>
@@ -70,4 +69,4 @@ function App() {
   );
 }
 
-export default App;
+export default Template;

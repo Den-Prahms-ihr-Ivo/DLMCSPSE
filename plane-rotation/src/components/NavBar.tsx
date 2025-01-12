@@ -13,19 +13,33 @@ import {
 } from "react-icons/fa6";
 import { typographySystem } from "../theme";
 
+interface Props {
+  activeNavItem?: string;
+}
+
 const tmpLinksOne = [
-  { displayText: "Home", icon: FaHouse, isActive: false },
-  { displayText: "Paper Plane", icon: FaPaperPlane, isActive: true },
-  { displayText: "Bird Details", icon: FaCrow, isActive: false },
-  { displayText: "Graph Detail View", icon: FaChartLine, isActive: false },
+  { displayText: "Home", icon: FaHouse, id: "home", to: "/" },
+  {
+    displayText: "Paper Plane",
+    icon: FaPaperPlane,
+    id: "plane,",
+    to: "/plane",
+  },
+  { displayText: "Bird Details", icon: FaCrow, id: "birds", to: "/birds" },
+  {
+    displayText: "Graph Detail View",
+    icon: FaChartLine,
+    id: "graph",
+    to: "/",
+  },
 ];
 
 const tmpLinksTwo = [
-  { displayText: "Math", icon: FaSuperscript, isActive: false },
-  { displayText: "RoadMap", icon: FaMap, isActive: false },
+  { displayText: "Math", icon: FaSuperscript, id: "math", to: "/" },
+  { displayText: "RoadMap", icon: FaMap, id: "map", to: "/" },
 ];
 
-const NavBar = () => {
+const NavBar = ({ activeNavItem }: Props) => {
   return (
     <VStack height="100vh" justifyContent="space-between">
       <VStack>
@@ -42,8 +56,16 @@ const NavBar = () => {
           align="stretch"
           width="100%"
         >
-          <LinkTree heading="Playground" links={tmpLinksOne} />
-          <LinkTree heading="Explanation" links={tmpLinksTwo} />
+          <LinkTree
+            activeNavItem={activeNavItem}
+            heading="Playground"
+            links={tmpLinksOne}
+          />
+          <LinkTree
+            activeNavItem={activeNavItem}
+            heading="Explanation"
+            links={tmpLinksTwo}
+          />
         </VStack>
       </VStack>
       <Footer />
