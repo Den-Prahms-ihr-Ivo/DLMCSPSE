@@ -1,4 +1,5 @@
 import { extendTheme, textDecoration, typography } from "@chakra-ui/react";
+import hero from "./assets/birds/ente.webp";
 
 export const colourSystem = {
   Accent: {
@@ -115,6 +116,13 @@ const theme = extendTheme({
         //bgGradient: "linear(to-t, #4B379D, #262C83, #20253D)",
         //bgGradient: "linear(#e66465, #9198e5)",
         bgGradient: "linear(#20253D,#262C83, #4B379D)",
+
+        backgroundImage:
+          "linear-gradient(to right bottom, rgba(32, 37, 61, 0.8),rgba(38, 44, 131, 0.8), rgba(75, 55, 157, 0.8)), url('" +
+          hero +
+          "')",
+        //backgroundSize: "cover",
+        //backgroundBlendMode: "screen",
 
         minHeight: "100vh",
         color: colourSystem.Text.light,

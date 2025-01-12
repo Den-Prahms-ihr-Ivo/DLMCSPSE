@@ -257,7 +257,7 @@ const BirdCard = ({
         </Container>
       </CardBody>
 
-      <CardFooter padding={5} justifyContent={"flex-end"}>
+      <CardFooter padding={5} justifyContent={"flex-end"} zIndex="2">
         <ButtonGroup spacing="2">
           <Button
             variant="ghost"
@@ -270,6 +270,20 @@ const BirdCard = ({
           </Button>
         </ButtonGroup>
       </CardFooter>
+      {/*<Container
+        position="absolute"
+        bottom={0}
+        padding={0}
+        //        #ffb900, #ff7730)
+        //backgroundImage="linear-gradient(to left top, #B572F6, #6262EA)"
+        backgroundImage="linear-gradient(to left top, #ffb900, #ff7730)"
+        backgroundBlendMode="screen"
+        clipPath="polygon(0 60%, 100% 0%, 100% 100%, 0% 100%)"
+        width="100%"
+        borderTopRadius={0}
+        height="20%"
+        zIndex="0"
+      />*/}
     </Card>
   );
 };

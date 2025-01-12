@@ -15,6 +15,12 @@ import demokratiefogel from "../assets/birds/demokratiefogel.webp";
 import demokratiefogel_thumbnail from "../assets/birds/demokratiefogel_thumbnail.webp";
 import upskirt from "../assets/birds/upskirt.webp";
 import upskirt_thumbnail from "../assets/birds/upskirt_thumbnail.webp";
+import crow from "../assets/birds/crow-2.webp";
+import crow_thumbnail from "../assets/birds/crow_thumbnail.webp";
+import ente from "../assets/birds/ente.webp";
+import ente_thumbnail from "../assets/birds/ente_thumbnail.webp";
+import eule_1 from "../assets/birds/eule_1.webp";
+import eule_1_thumbnail from "../assets/birds/eule_1_thumbnail.webp";
 
 const defaultLocation = { x: 0, y: 0, z: 0 };
 
@@ -88,6 +94,33 @@ const birds: Bird[] = [
     imageURL: upskirt,
     thumbnailURL: upskirt_thumbnail,
     color: "#08652C",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 9,
+    name: "Odin",
+    imageURL: crow,
+    thumbnailURL: crow_thumbnail,
+    color: "#030C09",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 10,
+    name: "Officer Cuddles",
+    imageURL: ente,
+    thumbnailURL: ente_thumbnail,
+    color: "#055ccc",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 11,
+    name: "Stan",
+    imageURL: eule_1,
+    thumbnailURL: eule_1_thumbnail,
+    color: "#633090",
     location: defaultLocation,
     isSelected: false,
   },
