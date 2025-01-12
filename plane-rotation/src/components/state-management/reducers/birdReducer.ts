@@ -35,10 +35,10 @@ interface SelectAction {
 
 interface MoveAction {
   type: "MOVE";
-  id: number;
   x: number;
   y: number;
   z: number;
+  birds: Bird[];
 }
 
 interface RemoveAction {
@@ -114,9 +114,38 @@ const birdReducer = (
       return { birds: selectedBirds, error: null };
 
     case "MOVE":
-      // TODO!!!! Update with Immer
-      // Update Location
-      return { birds, error: null };
+      const selectedBird = action.birds.find((bird) => bird.isSelected);
+      if (selectedBird) {
+        const { x, y, z } = selectedBird.location;
+        const newX = action.x + x;
+        const newY = action.y + y;
+        const newZ = action.z + z;
+
+        if (newZ < 0)
+          return {
+            birds,
+            error: {
+              title: "A Bird can't go below ground level.",
+              description: "A bird is not a Hamster :)",
+              status: "warning",
+            },
+          };
+
+        selectedBird.location = { x: newX, y: newY, z: newZ };
+        const updatedBirds = birds.map((bird) =>
+          bird.isSelected ? selectedBird : bird
+        );
+        return { birds: updatedBirds, error: null };
+      } else
+        return {
+          birds,
+          error: {
+            title: "No Bird was selected.",
+            description:
+              "You have to select a Bird first to be able to move it.",
+            status: "warning",
+          },
+        };
   }
 
   return { birds, error: null };

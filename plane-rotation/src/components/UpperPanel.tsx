@@ -40,6 +40,10 @@ const UpperPanel = () => {
   const translatePlaneRefY = useRef<HTMLInputElement>(null);
   const translatePlaneRefZ = useRef<HTMLInputElement>(null);
 
+  const translateBirdsRefX = useRef<HTMLInputElement>(null);
+  const translateBirdsRefY = useRef<HTMLInputElement>(null);
+  const translateBirdsRefZ = useRef<HTMLInputElement>(null);
+
   const rotatePlaneRefYaw = useRef<HTMLInputElement>(null);
   const rotatePlaneRefPitch = useRef<HTMLInputElement>(null);
   const rotatePlaneRefRoll = useRef<HTMLInputElement>(null);
@@ -179,7 +183,11 @@ const UpperPanel = () => {
       </GridItem>
       <GridItem area="moveThreat" width="100%">
         <VStack paddingBottom={4} height="100%" justifyContent="space-between">
-          <MoveThreatInput />
+          <MoveThreatInput
+            translateBirdsRefX={translateBirdsRefX}
+            translateBirdsRefY={translateBirdsRefY}
+            translateBirdsRefZ={translateBirdsRefZ}
+          />
           <HStack width="100%" justifyContent="space-between">
             {/* <Stack spacing={4} maxWidth="200px" direction="row" align="center"> */}
             <AvatarGroup
@@ -212,6 +220,15 @@ const UpperPanel = () => {
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
+              onClick={() => {
+                dispatchBird({
+                  type: "MOVE",
+                  x: Number(translateBirdsRefX.current?.value),
+                  y: Number(translateBirdsRefY.current?.value),
+                  z: Number(translateBirdsRefZ.current?.value),
+                  birds: birds,
+                });
+              }}
             >
               Move Threat
             </Button>
