@@ -112,7 +112,10 @@ const theme = extendTheme({
     global: {
       // styles for the `body`
       body: {
-        bgGradient: "linear(to-t, #4B379D, #262C83, #20253D)",
+        //bgGradient: "linear(to-t, #4B379D, #262C83, #20253D)",
+        //bgGradient: "linear(#e66465, #9198e5)",
+        bgGradient: "linear(#20253D,#262C83, #4B379D)",
+
         minHeight: "100vh",
         color: colourSystem.Text.light,
         fontFamily: "Rubik, sans-serif",

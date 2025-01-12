@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { colourSystem, typographySystem } from "../theme";
-import { Link as DOMLink } from "react-router-dom";
+import { Link as DOMLink, useLocation } from "react-router-dom";
 
 interface Link {
   displayText: string;
@@ -24,6 +24,8 @@ interface Props {
 }
 
 const LinkTree = ({ heading, links, activeNavItem }: Props) => {
+  const { pathname } = useLocation();
+
   return (
     <VStack
       width="100%"
@@ -36,7 +38,7 @@ const LinkTree = ({ heading, links, activeNavItem }: Props) => {
       </Heading>
       <VStack width="100%" alignItems="flex-start" gap="0.25rem">
         {links.map((link) => {
-          let className = "link" + (link.id === activeNavItem ? "-active" : "");
+          let className = "link" + (link.id === pathname ? "-active" : "");
           return (
             <Container
               key={link.displayText}

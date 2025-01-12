@@ -53,7 +53,9 @@ const BirdCard = ({
         position="absolute"
         top={0}
         padding={0}
-        backgroundImage="linear-gradient(to right bottom, #B572F6, #6262EA)"
+        //        #ffb900, #ff7730)
+        //backgroundImage="linear-gradient(to left top, #B572F6, #6262EA)"
+        backgroundImage="linear-gradient(to left top, #ffb900, #ff7730)"
         backgroundBlendMode="screen"
         clipPath="polygon(0 0, 100% 0, 100% 85%, 0 100%)"
         width="100%"
@@ -72,7 +74,7 @@ const BirdCard = ({
       <CardBody paddingTop={0} paddingBottom={0} zIndex={2}>
         <Stack width="100%" spacing="3" paddingBottom={4}>
           <HStack marginTop={0} width="100%" justifyContent={"space-between"}>
-            <Heading color={colourSystem.Text.dark} size="lg">
+            <Heading color={colourSystem.Text.light} size="lg">
               {bird.name}
             </Heading>
             <Tooltip

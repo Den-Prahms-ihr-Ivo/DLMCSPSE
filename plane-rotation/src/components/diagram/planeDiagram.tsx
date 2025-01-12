@@ -48,7 +48,7 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
   // Calculate the distance to all birds.
   let distances = birds.map((bird) => [
     plane.getHorizontalDistance2Plane(bird.location),
-    plane.getDistance2Plane(bird.location),
+    plane.getVerticalDistance2Plane(bird.location),
   ]);
 
   // get largest distance

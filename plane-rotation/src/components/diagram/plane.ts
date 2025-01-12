@@ -247,6 +247,11 @@ export class Plane {
     console.log("Im not implemented Yet");
     return 0;
   }
+  getVerticalDistance2Plane(location: Point): number {
+    // TODO: implement
+    console.log("Im not implemented Yet");
+    return 0;
+  }
 
   getDistance2Plane(location: Point): number {
     // TODO: implement

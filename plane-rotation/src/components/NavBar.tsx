@@ -18,25 +18,25 @@ interface Props {
 }
 
 const tmpLinksOne = [
-  { displayText: "Home", icon: FaHouse, id: "home", to: "/" },
+  { displayText: "Home", icon: FaHouse, id: "/", to: "/" },
   {
     displayText: "Paper Plane",
     icon: FaPaperPlane,
-    id: "plane,",
+    id: "/plane",
     to: "/plane",
   },
-  { displayText: "Bird Details", icon: FaCrow, id: "birds", to: "/birds" },
+  { displayText: "Bird Details", icon: FaCrow, id: "/birds", to: "/birds" },
   {
     displayText: "Graph Detail View",
     icon: FaChartLine,
-    id: "graph",
+    id: "/graph",
     to: "/graph",
   },
 ];
 
 const tmpLinksTwo = [
-  { displayText: "Math", icon: FaSuperscript, id: "math", to: "/math" },
-  { displayText: "RoadMap", icon: FaMap, id: "map", to: "/map" },
+  { displayText: "Math", icon: FaSuperscript, id: "/math", to: "/math" },
+  { displayText: "RoadMap", icon: FaMap, id: "/map", to: "/map" },
 ];
 
 const NavBar = ({ activeNavItem }: Props) => {
