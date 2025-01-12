@@ -1,25 +1,29 @@
 import {
   Heading,
-  Link,
   VStack,
   Container,
   HStack,
   Icon,
+  Link,
+  Text,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { colourSystem, typographySystem } from "../theme";
+import { Link as DOMLink } from "react-router-dom";
 
 interface Link {
   displayText: string;
   icon: IconType;
-  isActive: boolean;
+  id: string;
+  to: string;
 }
 interface Props {
   heading: string;
+  activeNavItem?: string;
   links: Link[];
 }
 
-const LinkTree = ({ heading, links }: Props) => {
+const LinkTree = ({ heading, links, activeNavItem }: Props) => {
   return (
     <VStack
       width="100%"
@@ -32,23 +36,26 @@ const LinkTree = ({ heading, links }: Props) => {
       </Heading>
       <VStack width="100%" alignItems="flex-start" gap="0.25rem">
         {links.map((link) => {
-          let className = "link" + (link.isActive ? "-active" : "");
+          let className = "link" + (link.id === activeNavItem ? "-active" : "");
           return (
             <Container
               key={link.displayText}
               className={className}
               width="100%"
             >
-              <HStack height={10}>
-                <Icon
-                  fontSize={typographySystem.size_3}
-                  as={link.icon}
-                  color={colourSystem.Text.secondary}
-                />
-                <Link fontSize={typographySystem.size_2}>
-                  {link.displayText}
-                </Link>
-              </HStack>
+              <DOMLink to={link.to}>
+                <HStack height={10}>
+                  <Icon
+                    fontSize={typographySystem.size_3}
+                    as={link.icon}
+                    color={colourSystem.Text.secondary}
+                  />
+
+                  <Text fontSize={typographySystem.size_2}>
+                    {link.displayText}
+                  </Text>
+                </HStack>
+              </DOMLink>
             </Container>
           );
         })}
