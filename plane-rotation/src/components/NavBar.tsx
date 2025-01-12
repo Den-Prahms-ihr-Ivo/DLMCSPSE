@@ -30,13 +30,13 @@ const tmpLinksOne = [
     displayText: "Graph Detail View",
     icon: FaChartLine,
     id: "graph",
-    to: "/",
+    to: "/graph",
   },
 ];
 
 const tmpLinksTwo = [
-  { displayText: "Math", icon: FaSuperscript, id: "math", to: "/" },
-  { displayText: "RoadMap", icon: FaMap, id: "map", to: "/" },
+  { displayText: "Math", icon: FaSuperscript, id: "math", to: "/math" },
+  { displayText: "RoadMap", icon: FaMap, id: "map", to: "/map" },
 ];
 
 const NavBar = ({ activeNavItem }: Props) => {

@@ -10,7 +10,6 @@ import {
 import { IconType } from "react-icons";
 import { colourSystem, typographySystem } from "../theme";
 import { Link as DOMLink } from "react-router-dom";
-import { useReducer } from "react";
 
 interface Link {
   displayText: string;
