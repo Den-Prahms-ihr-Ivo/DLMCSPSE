@@ -1,22 +1,18 @@
+import { Outlet } from "react-router-dom";
 import { Grid, GridItem, Container, Center } from "@chakra-ui/react";
 import NavBar from "../components/NavBar";
-import RedrawContext from "../components/state-management/context/redrawContext";
-import { useReducer } from "react";
+import PlaneContext from "../components/state-management/context/planeContext";
 import triggerRedrawReducer from "../components/state-management/reducers/triggerRedrawReducer";
-import BirdContext from "../components/state-management/context/birdContext";
+import { Plane } from "../components/diagram/plane";
 import birdReducer, {
   Bird,
 } from "../components/state-management/reducers/birdReducer";
-import PlaneContext from "../components/state-management/context/planeContext";
+import { useReducer } from "react";
 import planeReducer from "../components/state-management/reducers/planeReducer";
-import { Plane } from "../components/diagram/plane";
+import BirdContext from "../components/state-management/context/birdContext";
+import RedrawContext from "../components/state-management/context/redrawContext";
 
-interface Props {
-  children: React.ReactNode;
-  activeNavItem?: string;
-}
-
-function Template({ children, activeNavItem }: Props) {
+const Layout = () => {
   const [birdsWithErrors, dispatchBirds] = useReducer(birdReducer, {
     birds: [] as Bird[],
     error: null,
@@ -31,7 +27,6 @@ function Template({ children, activeNavItem }: Props) {
   );
 
   return (
-    //templateColumns='repeat(5, 1fr)' gap={6}
     <PlaneContext.Provider value={{ planeWithErrors, dispatch: dispatchPlane }}>
       <BirdContext.Provider
         value={{ birdsWithErrors, dispatch: dispatchBirds }}
@@ -45,7 +40,7 @@ function Template({ children, activeNavItem }: Props) {
             gap={0}
           >
             <GridItem area="nav">
-              <NavBar activeNavItem={activeNavItem} />
+              <NavBar activeNavItem={""} />
             </GridItem>
             <GridItem area="main">
               <Center height="100vh" width="100%">
@@ -58,7 +53,7 @@ function Template({ children, activeNavItem }: Props) {
                   bg="#F5F6F7"
                   color="#373546"
                 >
-                  {children}
+                  <Outlet />
                 </Container>
               </Center>
             </GridItem>
@@ -67,6 +62,6 @@ function Template({ children, activeNavItem }: Props) {
       </BirdContext.Provider>
     </PlaneContext.Provider>
   );
-}
+};
 
-export default Template;
+export default Layout;
