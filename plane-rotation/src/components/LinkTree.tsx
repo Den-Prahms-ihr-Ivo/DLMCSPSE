@@ -50,7 +50,8 @@ const LinkTree = ({ heading, links, activeNavItem }: Props) => {
                   <Icon
                     fontSize={typographySystem.size_3}
                     as={link.icon}
-                    color={colourSystem.Text.secondary}
+                    //color={colourSystem.Text.secondary}
+                    color={colourSystem.Accent.accent_3}
                   />
 
                   <Text fontSize={typographySystem.size_2}>

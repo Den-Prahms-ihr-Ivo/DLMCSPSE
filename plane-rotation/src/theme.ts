@@ -5,6 +5,7 @@ export const colourSystem = {
   Accent: {
     accent_1: "#F64851",
     accent_2: "#432682",
+    accent_3: "#ffb900",
   },
   Purple: {
     back: "#6262EA",

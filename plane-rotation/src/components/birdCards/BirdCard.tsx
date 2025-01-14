@@ -67,6 +67,7 @@ const BirdCard = ({
         src={bird.imageURL}
         alt={bird.name}
         borderTopRadius="lg"
+        boxShadow="rgb(202, 93, 8) 0px 5px 15px;"
         margin={2}
         zIndex={2}
       />
