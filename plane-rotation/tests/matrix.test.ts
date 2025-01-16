@@ -147,3 +147,35 @@ describe("Matrix Transform", () => {
     }
   );
 });
+
+describe("getDistance2Plane", () => {
+  it("should return 2.34", () => {
+    const p = new Plane();
+    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(2.34);
+  });
+  it("should return 1.64", () => {
+    const p = new Plane();
+    p.translatePlane(2, 2, 2);
+    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(1.64);
+  });
+});
+
+describe("getVerticalDistance2Plane", () => {
+  it("should return 0.7", () => {
+    const p = new Plane();
+    expect(p.getVerticalDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(0.7);
+  });
+  it("should return 1.3", () => {
+    const p = new Plane();
+    p.translatePlane(2, 2, 2);
+    expect(p.getVerticalDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(1.3);
+  });
+});
+
+describe("getHorizontalDistance2Plane", () => {
+  it("should return 2", () => {
+    const p = new Plane();
+    p.translatePlane(1, 1, 0.7);
+    expect(p.getHorizontalDistance2Plane({ x: -1, y: 1, z: 0 })).toBeCloseTo(2);
+  });
+});

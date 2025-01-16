@@ -264,21 +264,25 @@ export class Plane {
     return azimuthAngle(A, B);
   }
 
-  getHorizontalDistance2Plane(location: Point): number {
+  getHorizontalDistance2Plane(p: Point): number {
     // TODO: implement
-    console.log("Im not implemented Yet");
+    console.log(this.getDistance2Plane(p));
+    console.log(this.getVerticalDistance2Plane(p));
+    return Math.sqrt(
+      this.getDistance2Plane(p) ** 2 - this.getVerticalDistance2Plane(p) ** 2
+    );
     return 0;
   }
-  getVerticalDistance2Plane(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+  getVerticalDistance2Plane(p: Point): number {
+    return Math.abs(this.marbleZ - p.z);
   }
 
-  getDistance2Plane(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+  getDistance2Plane(p: Point): number {
+    return Math.sqrt(
+      (p.x - this.marbleX) ** 2 +
+        (p.y - this.marbleY) ** 2 +
+        (p.z - this.marbleZ) ** 2
+    );
   }
 
   getAzimuth2Threat(location: Point): number {

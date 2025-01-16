@@ -1,4 +1,4 @@
-import { Box, Center, Text, VStack } from "@chakra-ui/react";
+import { Box, Center, Text, Tooltip, VStack } from "@chakra-ui/react";
 import CompassBG from "./CompassBG";
 import CompassTriangle from "./CompassTriangle";
 import CompassThreatFar from "./CompassThreatFar";
@@ -12,6 +12,7 @@ import BirdContext from "../state-management/context/birdContext";
 import PlaneContext from "../state-management/context/planeContext";
 import { Bird } from "../state-management/reducers/birdReducer";
 import { Plane } from "../diagram/plane";
+import { multiply } from "../../math/matrices";
 // "#f64851"
 // #39C656
 // #0686FF
@@ -21,7 +22,9 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
    * Return either a near Threat at the corresponding location if the bird is close
    * or a far threat indicator, if the bird is further away than 15m
    */
-  if (true)
+  const hzDist = plane.getHorizontalDistance2Plane(bird.location);
+
+  if (hzDist >= 14)
     return (
       <CompassThreatFar
         key={bird.id}
@@ -29,16 +32,32 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
         threatColor={bird.color}
       />
     );
-  else
+  else {
+    let x_off =
+      Math.round(
+        Math.cos((plane.getAngle2Plane(bird.location) * Math.PI) / 180) * 100
+      ) / 100;
+    let y_off =
+      Math.round(
+        Math.sin((plane.getAngle2Plane(bird.location) * Math.PI) / 180) * 100
+      ) / 100;
+
+    console.log(x_off);
+    console.log(y_off);
+    //x_off = x_off < 0.2 ? x_off + 0.5 * Math.sign(x_off) : x_off;
+    //y_off = y_off < 0.2 ? y_off + 0.5 * Math.sign(y_off) : y_off;
+    const multiplier = hzDist < 6 ? 4 : 3;
+
     return (
       <CompassThreatNear
         key={bird.id}
-        offsetX={40}
-        offsetY={0}
-        threatColor="#0686FF"
-        birdImage={crow}
+        offsetX={y_off * (multiplier * hzDist)}
+        offsetY={x_off * -(multiplier * hzDist)}
+        threatColor={bird.color}
+        birdImage={bird.thumbnailURL}
       />
     );
+  }
 }
 
 const Compass = () => {
@@ -66,7 +85,10 @@ const Compass = () => {
                 fontWeight={fontWeightSystem.SemiBold}
                 color={colourSystem.Accent.accent_1}
               >
-                {plane.getHorizontalDistance2Plane(selectedBird.location)}m
+                {Math.round(
+                  plane.getHorizontalDistance2Plane(selectedBird.location) * 10
+                ) / 10}
+                m
               </Text>
               <Text
                 fontSize={typographySystem.size_2}
@@ -97,8 +119,8 @@ const Compass = () => {
               >
                 {Math.round(
                   ((360 + plane.getAngle2Plane(selectedBird.location)) % 360) *
-                    100
-                ) / 100}
+                    10
+                ) / 10}
                 °
               </Text>
               <Text
