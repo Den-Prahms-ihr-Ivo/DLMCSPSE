@@ -256,42 +256,42 @@ describe("Relative Angle 2 Plane", () => {
       plane_Y: 1,
       threat_X: -1,
       threat_Y: 1,
-      expected: -90,
+      expected: 180,
     },
     {
       plane_X: 1,
       plane_Y: 0,
       threat_X: -1,
       threat_Y: 1,
-      expected: -63.4349,
+      expected: -153.4349,
     },
     {
       plane_X: 0,
       plane_Y: 0,
       threat_X: -1,
       threat_Y: 1,
-      expected: -45,
+      expected: -135,
     },
     {
       plane_X: -1,
       plane_Y: 1,
       threat_X: 0,
       threat_Y: 0,
-      expected: 135,
+      expected: 45,
     },
     {
       plane_X: -1,
       plane_Y: 1,
       threat_X: 0,
       threat_Y: 1,
-      expected: 90,
+      expected: 0,
     },
     {
       plane_X: -1,
       plane_Y: 1,
       threat_X: -4,
       threat_Y: 1,
-      expected: -90,
+      expected: 180,
     },
   ])(
     "should return $expected°. For Threat at ($threat_X,$threat_Y) and plane af($plane_X,$plane_Y)",
@@ -304,6 +304,19 @@ describe("Relative Angle 2 Plane", () => {
       ).toBeCloseTo(expected);
     }
   );
+});
+
+describe("Plane Angle 2 North", () => {
+  it("should return 0", () => {
+    const p = new Plane();
+    expect(p.getAngle2North()).toBeCloseTo(0);
+  });
+
+  it("should return 0", () => {
+    const p = new Plane();
+    p.rotatePlane(45, 0, 0);
+    expect(p.getAngle2North()).toBeCloseTo(-45);
+  });
 });
 
 /*

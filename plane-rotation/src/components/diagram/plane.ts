@@ -124,8 +124,11 @@ export class Plane {
   initialTranslationVector = structuredClone(this.translationVector);
 
   rotationMatrix: number[][] = [
-    [0, 1, 0],
+    //[0, 1, 0],
+    //[1, 0, 0],
+    //[0, 0, -1],
     [1, 0, 0],
+    [0, -1, 0],
     [0, 0, -1],
     //[1, 0, 0],
     //[0, 1, 0],
@@ -244,7 +247,7 @@ export class Plane {
   }
 
   getAngle2North(): number {
-    return 0;
+    return this.getAngle2Plane({ x: 1, y: 0, z: 0 });
   }
 
   getHorizontalDistance2Plane(location: Point): number {

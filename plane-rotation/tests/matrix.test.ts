@@ -97,8 +97,8 @@ describe("Plane", () => {
     const z = plane.coordinates.z;
 
     // Assert - Confirm
-    expect(x).toEqual([-3, 0, -0.5, 3, 0.5, 0]);
-    expect(y).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(y).toEqual([3, 0, 0.5, -3, -0.5, 0]);
     expect(z).toEqual([0.7, 0.7, 0.7, 0.7, 0.7, -0.7]);
   });
 });
@@ -146,21 +146,4 @@ describe("Matrix Transform", () => {
       compareMatrix(result, expected);
     }
   );
-});
-
-describe("Matrix Transform", () => {
-  it("should add a 45° rotation to the initial rotation", () => {
-    const M = yawPitchRoll2Matrix(45, 0, 0);
-    const initialRotation = [
-      [0, 1, 0],
-      [1, 0, 0],
-      [0, 0, -1],
-    ];
-
-    compareMatrix(multiply(initialRotation, M), [
-      [0.71, 0.71, 0],
-      [0.71, -0.71, 0],
-      [0, 0, -1],
-    ]);
-  });
 });
