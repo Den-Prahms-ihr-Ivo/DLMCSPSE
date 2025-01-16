@@ -6,6 +6,7 @@ import {
   multiply,
 } from "../../math/matrices";
 import { Point } from "../../math/types";
+import { azimuthAngle, subtract2Point, rad2Degrees } from "../../math/helper";
 
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
@@ -276,8 +277,26 @@ export class Plane {
 
   getAngle2Plane(location: Point): number {
     // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    const center = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
+
+    const point = subtract2Point(
+      { x: location.x, y: location.y, z: location.z },
+      center
+    );
+
+    const rotatedPoint = multiply(this.rotationMatrix, [
+      [point.x],
+      [point.y],
+      [point.z],
+    ]);
+
+    const P = {
+      x: rotatedPoint[0][0],
+      y: rotatedPoint[1][0],
+      z: rotatedPoint[2][0],
+    };
+
+    return azimuthAngle(P);
   }
 
   getDistanceFromGround(): number {

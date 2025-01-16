@@ -25,7 +25,7 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
     return (
       <CompassThreatFar
         degree={plane.getAngle2Plane(bird.location)}
-        threatColor="#0686FF"
+        threatColor={bird.color}
       />
     );
   else
@@ -93,7 +93,11 @@ const Compass = () => {
                 fontWeight={fontWeightSystem.SemiBold}
                 color={colourSystem.Accent.accent_1}
               >
-                {plane.getAngle2Plane(selectedBird.location)}°
+                {Math.round(
+                  ((360 + plane.getAngle2Plane(selectedBird.location)) % 360) *
+                    100
+                ) / 100}
+                °
               </Text>
               <Text
                 fontSize={typographySystem.size_2}
