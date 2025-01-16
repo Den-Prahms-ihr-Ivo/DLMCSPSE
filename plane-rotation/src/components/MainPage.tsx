@@ -32,7 +32,7 @@ const MainPage = () => {
         </Center>
       </GridItem>
       <GridItem
-        minWidth="540px"
+        minWidth="560px"
         marginTop={1}
         marginRight={1}
         marginBottom={4}
@@ -45,6 +45,7 @@ const MainPage = () => {
             variant="with-shadow"
           >
             <Center>
+              {/*
               <Button
                 onClick={() => {
                   dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
@@ -54,7 +55,7 @@ const MainPage = () => {
                 }}
               >
                 Test
-              </Button>
+              </Button> */}
               <PlaneDiagram tmp={redrawTrigger} />
             </Center>
           </Container>

@@ -44,8 +44,17 @@ const NavBar = ({ activeNavItem }: Props) => {
     <VStack height="100vh" justifyContent="space-between">
       <VStack>
         <HStack padding={4} paddingBottom={8}>
-          <Image src={logo} boxSize="50px" paddingRight={2} />
-          <Text fontSize={typographySystem.size_6} fontWeight="bold">
+          <Image
+            src={logo}
+            mixBlendMode="soft-light"
+            boxSize="50px"
+            paddingRight={2}
+          />
+          <Text
+            mixBlendMode="soft-light"
+            fontSize={typographySystem.size_6}
+            fontWeight="bold"
+          >
             PaperPlane
           </Text>
         </HStack>

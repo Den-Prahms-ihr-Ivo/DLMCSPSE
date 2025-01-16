@@ -115,7 +115,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
     z: viewCubeZ,
   } = calculateViewBoxCube(plane, birds);
   return (
-    <Box width="500px" height="400px">
+    <Box width="600px" height="400px">
       <Plot
         id="Bitches"
         data={[
@@ -213,7 +213,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
            * https://plotly.com/javascript/axes/
            */
           autosize: false,
-          width: 500,
+          width: 600,
           height: 400,
           margin: {
             l: 0,

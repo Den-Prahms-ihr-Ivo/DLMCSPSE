@@ -242,6 +242,10 @@ export class Plane {
     return this;
   }
 
+  getAngle2North(): number {
+    return 0;
+  }
+
   getHorizontalDistance2Plane(location: Point): number {
     // TODO: implement
     console.log("Im not implemented Yet");
