@@ -6,7 +6,12 @@ import {
   multiply,
 } from "../../math/matrices";
 import { Point } from "../../math/types";
-import { azimuthAngle, subtract2Point, rad2Degrees } from "../../math/helper";
+import {
+  azimuthAngle,
+  subtract2Point,
+  rad2Degrees,
+  calcAngleBetweenMarbleAndPoint,
+} from "../../math/helper";
 
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
@@ -247,7 +252,16 @@ export class Plane {
   }
 
   getAngle2North(): number {
-    return this.getAngle2Plane({ x: 1, y: 0, z: 0 });
+    // return this.getAngle2Plane({ x: this.marbleX + 1, y: this.marbleY, z: 0 });
+
+    const A = {
+      x: this.marbleCS_X[0][1],
+      y: this.marbleCS_X[1][1],
+      z: this.marbleCS_X[2][1],
+    };
+    const B = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
+
+    return azimuthAngle(A, B);
   }
 
   getHorizontalDistance2Plane(location: Point): number {

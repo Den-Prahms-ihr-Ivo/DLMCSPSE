@@ -24,6 +24,7 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
   if (true)
     return (
       <CompassThreatFar
+        key={bird.id}
         degree={plane.getAngle2Plane(bird.location)}
         threatColor={bird.color}
       />
@@ -31,6 +32,7 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
   else
     return (
       <CompassThreatNear
+        key={bird.id}
         offsetX={40}
         offsetY={0}
         threatColor="#0686FF"

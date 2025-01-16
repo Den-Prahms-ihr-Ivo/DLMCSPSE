@@ -61,14 +61,14 @@ export function calcAngleBetweenMarbleAndPoint(
   const Z = structuredClone(marbleVector.A);
   Z.z = 0;
 
+  console.log(Z);
+  console.log(marbleVector.A);
+  console.log(marbleVector.B);
   const n_A = crossProduct(
     subtract2Point(marbleVector.B, marbleVector.A),
     subtract2Point(Z, marbleVector.A)
   );
-  const n_B = crossProduct(
-    subtract2Point(threat, marbleVector.A),
-    subtract2Point(Z, marbleVector.A)
-  );
+  const n_B = crossProduct({ x: 1, y: 0, z: 0 }, { x: 0, y: 0, z: 1 });
 
   const Numerator = Math.abs(dotProduct(n_A, n_B));
   const Denominator = vectorLength(n_A) * vectorLength(n_B);
