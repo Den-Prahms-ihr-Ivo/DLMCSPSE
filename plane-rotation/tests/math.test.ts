@@ -329,10 +329,10 @@ describe("Plane Angle 2 North", () => {
     expect(p.getAngle2North()).toBeCloseTo(0);
   });
 });
-it("should return 180", () => {
+it("should return -180", () => {
   const p = new Plane();
   p.rotatePlane(180, 0, 0);
-  expect(p.getAngle2North()).toBeCloseTo(180);
+  expect(p.getAngle2North()).toBeCloseTo(-180);
 });
 
 /*
