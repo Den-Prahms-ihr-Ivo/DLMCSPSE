@@ -213,21 +213,24 @@ export class Plane {
     this.foldLinesZ = tmpFoldLines[2];
   }
 
-  resetPlane() {
-    this.rotationMatrix = this.initialRotationMatrix;
-    this.translationVector = this.initialTranslationVector;
+  resetPlane(): Plane {
+    this.rotationMatrix = structuredClone(this.initialRotationMatrix);
+    this.translationVector = structuredClone(this.initialTranslationVector);
 
-    this.coordinates.x = this.initialCoordinates[0];
-    this.coordinates.y = this.initialCoordinates[1];
-    this.coordinates.z = this.initialCoordinates[2];
+    this.coordinates.x = structuredClone(this.initialCoordinates[0]);
+    this.coordinates.y = structuredClone(this.initialCoordinates[1]);
+    this.coordinates.z = structuredClone(this.initialCoordinates[2]);
 
-    this.marbleCS_X = this.initialMarbleCS_X;
-    this.marbleCS_Y = this.initialMarbleCS_Y;
-    this.marbleCS_Z = this.initialMarbleCS_Z;
+    this.marbleCS_X = structuredClone(this.initialMarbleCS_X);
+    this.marbleCS_Y = structuredClone(this.initialMarbleCS_Y);
+    this.marbleCS_Z = structuredClone(this.initialMarbleCS_Z);
 
-    this.foldLinesX = this.initialFoldLinesX;
-    this.foldLinesY = this.initialFoldLinesY;
-    this.foldLinesZ = this.initialFoldLinesZ;
+    this.foldLinesX = structuredClone(this.initialFoldLinesX);
+    this.foldLinesY = structuredClone(this.initialFoldLinesY);
+    this.foldLinesZ = structuredClone(this.initialFoldLinesZ);
+
+    this.matrixTransform();
+    return this;
   }
 
   rotatePlane(yaw: number, pitch: number, roll: number) {

@@ -129,6 +129,12 @@ const UpperPanel = () => {
               fontWeight={fontWeightSystem.SemiBold}
               fontSize={typographySystem.size_2}
               size="sm"
+              onClick={() => {
+                dispatchPlane({
+                  type: "RESET",
+                });
+                dispatchRedraw({ type: "TRIGGER" });
+              }}
             >
               Reset Plane
             </Button>

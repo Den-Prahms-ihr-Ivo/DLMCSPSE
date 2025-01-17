@@ -22,8 +22,14 @@ interface PlaneTranslateAction {
   y: number;
   z: number;
 }
+interface PlaneResetAction {
+  type: "RESET";
+}
 
-export type PlaneAction = PlaneRotateAction | PlaneTranslateAction;
+export type PlaneAction =
+  | PlaneRotateAction
+  | PlaneTranslateAction
+  | PlaneResetAction;
 
 const planeReducer = (
   planeWithErrors: PlaneWithErrors,
@@ -32,9 +38,14 @@ const planeReducer = (
   const { plane } = planeWithErrors;
 
   switch (action.type) {
+    case "RESET":
+      console.log(plane.initialTranslationVector);
+      return {
+        plane: plane.resetPlane(),
+        error: null,
+      };
     case "ROTATE":
       const { yaw, pitch, roll } = action;
-      console.log(yaw, pitch, roll);
       return {
         plane: plane.rotatePlane(yaw, pitch, roll),
         error: null,
