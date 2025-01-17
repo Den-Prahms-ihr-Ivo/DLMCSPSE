@@ -7,6 +7,7 @@ import BirdContext from "../state-management/context/birdContext";
 import PlaneContext from "../state-management/context/planeContext";
 import { Bird } from "../state-management/reducers/birdReducer";
 import { colourSystem } from "../../theme";
+import ShowCsContext from "../state-management/context/showCSSystem";
 
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
@@ -63,7 +64,7 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
   // ViewPortWidth is set to min 10m and otherwise to the furthest threat.
   ViewPortDistance = Math.max(
     ViewPortDistance,
-    5,
+    6,
     plane.getDistanceFromGround()
   );
 
@@ -80,6 +81,50 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
   };
 }
 
+function getCoordinateSystem(plane: Plane, show: boolean): Partial<PlotData>[] {
+  if (show) {
+    return [
+      {
+        type: "scatter3d",
+        mode: "lines",
+        x: plane.marbleCS_X[0],
+        y: plane.marbleCS_X[1],
+        z: plane.marbleCS_X[2],
+        hovertemplate: "<extra></extra>",
+        line: {
+          width: marbleCS_Thickness,
+          color: "#A31400",
+        },
+      },
+      {
+        type: "scatter3d",
+        mode: "lines",
+        x: plane.marbleCS_Y[0],
+        y: plane.marbleCS_Y[1],
+        z: plane.marbleCS_Y[2],
+        hovertemplate: "<extra></extra>",
+        line: {
+          width: marbleCS_Thickness,
+          color: "#255181",
+        },
+      },
+      {
+        type: "scatter3d",
+        mode: "lines",
+        x: plane.marbleCS_Z[0],
+        y: plane.marbleCS_Z[1],
+        z: plane.marbleCS_Z[2],
+        hovertemplate: "<extra></extra>",
+        line: {
+          width: marbleCS_Thickness,
+          color: "#9DBB58",
+        },
+      },
+    ];
+  }
+  return [];
+}
+
 /* tslint:disable */
 // @ts-nocheck
 const PlaneDiagram = ({ tmp }: Props) => {
@@ -87,6 +132,9 @@ const PlaneDiagram = ({ tmp }: Props) => {
   const { birds } = birdsWithErrors;
   const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
   const { plane } = planeWithErrors;
+
+  const { toggle: showCSToggle, dispatch: dispatchshowCSToggle } =
+    useContext(ShowCsContext);
 
   const planeCoordinates = plane.coordinates;
 
@@ -156,42 +204,9 @@ const PlaneDiagram = ({ tmp }: Props) => {
               opacity: 0.8,
             },
           },
-          {
-            type: "scatter3d",
-            mode: "lines",
-            x: plane.marbleCS_X[0],
-            y: plane.marbleCS_X[1],
-            z: plane.marbleCS_X[2],
-            hovertemplate: "<extra></extra>",
-            line: {
-              width: marbleCS_Thickness,
-              color: "#A31400",
-            },
-          },
-          {
-            type: "scatter3d",
-            mode: "lines",
-            x: plane.marbleCS_Y[0],
-            y: plane.marbleCS_Y[1],
-            z: plane.marbleCS_Y[2],
-            hovertemplate: "<extra></extra>",
-            line: {
-              width: marbleCS_Thickness,
-              color: "#255181",
-            },
-          },
-          {
-            type: "scatter3d",
-            mode: "lines",
-            x: plane.marbleCS_Z[0],
-            y: plane.marbleCS_Z[1],
-            z: plane.marbleCS_Z[2],
-            hovertemplate: "<extra></extra>",
-            line: {
-              width: marbleCS_Thickness,
-              color: "#9DBB58",
-            },
-          },
+
+          ...getCoordinateSystem(plane, showCSToggle),
+
           {
             type: "scatter3d",
             mode: "lines",

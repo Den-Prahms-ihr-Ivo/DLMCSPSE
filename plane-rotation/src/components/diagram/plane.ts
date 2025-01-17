@@ -125,7 +125,7 @@ export class Plane {
   ];
 
   // Verschiebungs Vektor aller Punkte im Raum
-  translationVector: [number, number, number] = [0, 0, 0];
+  translationVector: [number, number, number] = [0, 0, 2];
 
   initialTranslationVector = structuredClone(this.translationVector);
 

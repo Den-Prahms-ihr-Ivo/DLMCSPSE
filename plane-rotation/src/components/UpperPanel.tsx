@@ -22,6 +22,7 @@ import { useContext, useEffect, useRef } from "react";
 import BirdContext from "./state-management/context/birdContext";
 import PlaneContext from "./state-management/context/planeContext";
 import RedrawContext from "./state-management/context/redrawContext";
+import ShowCsContext from "./state-management/context/showCSSystem";
 
 const UpperPanel = () => {
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
@@ -30,6 +31,9 @@ const UpperPanel = () => {
   const { plane, error: planeError } = planeWithErrors;
 
   const { trigger, dispatch: dispatchRedraw } = useContext(RedrawContext);
+  const { toggle: showCSToggle, dispatch: dispatchshowCSToggle } =
+    useContext(ShowCsContext);
+
   const toast = useToast();
 
   const newThreatRefX = useRef<HTMLInputElement>(null);
@@ -118,10 +122,16 @@ const UpperPanel = () => {
                 fontSize={typographySystem.size_2}
                 color={colourSystem.Text.secondary}
               >
-                Show Coordinate System?
+                Hide Coordinate System?
               </Text>
             </Center>
-            <Switch colorScheme="teal" />
+            <Switch
+              colorScheme="teal"
+              checked={showCSToggle}
+              onChange={() => {
+                dispatchshowCSToggle({ type: "TOGGLE" });
+              }}
+            />
           </Flex>
           <Flex width="100%" justifyContent="space-between">
             <Button
