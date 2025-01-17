@@ -221,7 +221,7 @@ const BirdCard = ({
                   fontWeight={fontWeightSystem.SemiBold}
                   padding={0}
                 >
-                  {elevation}
+                  {elevation ? elevation : "-"}
                 </Heading>
                 <Text
                   color={colourSystem.Text.secondary}
