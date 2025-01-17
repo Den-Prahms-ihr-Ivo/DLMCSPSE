@@ -21,7 +21,12 @@ import ente from "../assets/birds/ente.webp";
 import ente_thumbnail from "../assets/birds/ente_thumbnail.webp";
 import eule_1 from "../assets/birds/eule_1.webp";
 import eule_1_thumbnail from "../assets/birds/eule_1_thumbnail.webp";
-
+import ficker from "../assets/birds/ficker.webp";
+import ficker_thumbnail from "../assets/birds/ficker_thumbnail.webp";
+import gelb from "../assets/birds/gelb.webp";
+import gelb_thumbnail from "../assets/birds/gelb_thumbnail.webp";
+import hallobittschon from "../assets/birds/hallobittschön.webp";
+import hallobittschon_thumbnail from "../assets/birds/hallobittschön_thumbnail.webp";
 const defaultLocation = { x: 0, y: 0, z: 0 };
 
 const birds: Bird[] = [
@@ -121,6 +126,33 @@ const birds: Bird[] = [
     imageURL: eule_1,
     thumbnailURL: eule_1_thumbnail,
     color: "#633090",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 12,
+    name: "HalloBittSchön",
+    imageURL: hallobittschon,
+    thumbnailURL: hallobittschon_thumbnail,
+    color: "#f68318",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 13,
+    name: "Ursula",
+    imageURL: ficker,
+    thumbnailURL: ficker_thumbnail,
+    color: "#055ccc",
+    location: defaultLocation,
+    isSelected: false,
+  },
+  {
+    id: 14,
+    name: "Günther",
+    imageURL: gelb,
+    thumbnailURL: gelb_thumbnail,
+    color: "#FDC005",
     location: defaultLocation,
     isSelected: false,
   },
