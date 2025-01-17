@@ -77,7 +77,7 @@ const Compass = () => {
       {birds.map((bird) => getBirdThreat(plane, bird))}
 
       {selectedBird && (
-        <Box position="absolute" zIndex="999" right="0px" bottom="10px">
+        <Box position="absolute" zIndex="999" right="-30px" bottom="-10px">
           <Center>
             <VStack gap={0}>
               <Text
@@ -102,7 +102,7 @@ const Compass = () => {
         </Box>
       )}
       {selectedBird && (
-        <Box position="absolute" zIndex="999" left="0px" bottom="10px">
+        <Box position="absolute" zIndex="999" left="-30px" bottom="-10px">
           <Center>
             <VStack gap={0}>
               <Text

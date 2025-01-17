@@ -183,8 +183,8 @@ const BirdCard = ({
             </Tooltip>
           </HStack>
 
-          <HStack width="100%" justifyContent={"space-between"}>
-            <Tooltip
+          <HStack width="100%" justifyContent={"space-around"}>
+            {/*<Tooltip
               hasArrow
               label={"Azimuth angle from plane to bird"}
               bg={colourSystem.Purple.front}
@@ -207,7 +207,7 @@ const BirdCard = ({
                   Azimuth
                 </Text>
               </VStack>
-            </Tooltip>
+            </Tooltip>*/}
 
             <Tooltip
               hasArrow
@@ -229,7 +229,7 @@ const BirdCard = ({
                   fontWeight={fontWeightSystem.SemiBold}
                   padding={0}
                 >
-                  Elevation
+                  Degree
                 </Text>
               </VStack>
             </Tooltip>

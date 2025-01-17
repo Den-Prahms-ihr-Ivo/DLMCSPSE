@@ -9,6 +9,12 @@ export function subtract2Point(pointA: Point, pointB: Point): Point {
   return X;
 }
 
+export function angleBetween2Points(A: Point, B: Point): number {
+  const tmp = dotProduct(A, B) / (vectorLength(A) * vectorLength(B));
+
+  return Math.acos(tmp);
+}
+
 export function dotProduct(pointA: Point, pointB: Point): number {
   return pointA.x * pointB.x + pointA.y * pointB.y + pointA.z * pointB.z;
 }

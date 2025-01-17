@@ -11,6 +11,7 @@ import {
   subtract2Point,
   rad2Degrees,
   calcAngleBetweenMarbleAndPoint,
+  angleBetween2Points,
 } from "../../math/helper";
 
 function deepCopy(array: number[][]) {
@@ -265,7 +266,6 @@ export class Plane {
   }
 
   getHorizontalDistance2Plane(p: Point): number {
-    // TODO: implement
     console.log(this.getDistance2Plane(p));
     console.log(this.getVerticalDistance2Plane(p));
     return Math.sqrt(
@@ -290,10 +290,15 @@ export class Plane {
     console.log("Im not implemented Yet");
     return 0;
   }
-  getElevation2Threat(location: Point): number {
+  getElevationAngle2Threat(p: Point): number {
     // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    // (A . B) / (|A|*|B|) * -1 if plane.Z > bird.Z
+    const tmp = angleBetween2Points(
+      { x: this.marbleX, y: this.marbleY, z: this.marbleZ },
+      p
+    );
+
+    return this.marbleZ > p.z ? tmp * -1 : tmp;
   }
 
   getAngle2Plane(location: Point): number {
@@ -321,8 +326,6 @@ export class Plane {
   }
 
   getDistanceFromGround(): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    return this.marbleZ;
   }
 }
