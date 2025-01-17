@@ -6,6 +6,7 @@ import { useContext } from "react";
 import BirdContext from "../state-management/context/birdContext";
 import PlaneContext from "../state-management/context/planeContext";
 import { Bird } from "../state-management/reducers/birdReducer";
+import { colourSystem } from "../../theme";
 
 const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
@@ -204,6 +205,62 @@ const PlaneDiagram = ({ tmp }: Props) => {
             },
           },
 
+          // **************************
+          // North
+          // **************************
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: [0, 4, 3.5, 4, 3.5],
+            y: [0, 0, -0.5, 0, 0.5],
+            z: [0, 0, 0, 0, 0],
+            hovertemplate: "<extra></extra>",
+            line: {
+              width: marbleCS_Thickness + 2,
+              color: colourSystem.Text.secondary,
+            },
+          },
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: [4.5, 5.5, 4.5, 5.5],
+            y: [-0.3, -0.3, -1, -1],
+            z: [0, 0, 0, 0],
+            hovertemplate: "<extra></extra>",
+            line: {
+              width: marbleCS_Thickness,
+              color: colourSystem.Text.secondary,
+            },
+          },
+          // **************************
+          // East
+          // **************************
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: [0, 0, -0.5, 0, 0.5],
+            y: [0, -4, -3.5, -4, -3.5],
+            z: [0, 0, 0, 0, 0],
+            hovertemplate: "<extra></extra>",
+            line: {
+              width: marbleCS_Thickness + 2,
+              color: colourSystem.Text.secondary,
+            },
+          },
+          {
+            type: "scatter3d",
+            mode: "lines",
+            x: [1.5, 1.5, 1, 1, 1, 0.5, 0.5],
+            y: [-5, -4.5, -4.5, -5, -4.5, -4.5, -5],
+            z: [0, 0, 0, 0, 0, 0, 0],
+            hovertemplate: "<extra></extra>",
+            line: {
+              width: marbleCS_Thickness,
+              color: colourSystem.Text.secondary,
+            },
+          },
+
+          // **************************
           // THREATS
           ...threats,
         ]}
