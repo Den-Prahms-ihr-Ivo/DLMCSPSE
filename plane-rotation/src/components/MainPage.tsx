@@ -19,6 +19,7 @@ const MainPage = () => {
       height="100%"
       templateAreas={`"inputField inputField" "diagram compass"`}
       gap={2}
+      paddingBottom={2}
     >
       <GridItem marginTop={4} marginBottom={1} area="inputField">
         <Center height="100%" width="100%">
@@ -31,11 +32,12 @@ const MainPage = () => {
         </Center>
       </GridItem>
       <GridItem
-        minWidth="540px"
+        minWidth="560px"
         marginTop={1}
         marginRight={1}
         marginBottom={4}
         area="diagram"
+        paddingBottom="20px"
       >
         <Center height="100%" width="100%">
           <Container
@@ -43,6 +45,7 @@ const MainPage = () => {
             variant="with-shadow"
           >
             <Center>
+              {/*
               <Button
                 onClick={() => {
                   dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
@@ -52,18 +55,19 @@ const MainPage = () => {
                 }}
               >
                 Test
-              </Button>
+              </Button> */}
               <PlaneDiagram tmp={redrawTrigger} />
             </Center>
           </Container>
         </Center>
       </GridItem>
       <GridItem
-        minHeight="430px"
+        minHeight="450px"
         marginTop={1}
         marginLeft={1}
         marginBottom={4}
         area="compass"
+        paddingBottom="20px"
       >
         <Center height="100%" width="100%">
           <Container

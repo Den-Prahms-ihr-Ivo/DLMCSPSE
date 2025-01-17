@@ -1,5 +1,7 @@
 import { MathInputType } from "../MathInput";
 import InputForm from "../InputForm";
+import { useContext } from "react";
+import BirdContext from "../state-management/context/birdContext";
 
 interface Props {
   translateBirdsRefX: React.RefObject<HTMLInputElement | null>;
@@ -12,6 +14,10 @@ const MoveThreatInput = ({
   translateBirdsRefY,
   translateBirdsRefZ,
 }: Props) => {
+  const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
+  const { birds, error: birdError } = birdsWithErrors;
+  const selectedBird = birds.find((bird) => bird.isSelected);
+
   const moveInputs: MathInputType[] = [
     {
       placeholder: "x",
@@ -36,7 +42,9 @@ const MoveThreatInput = ({
   return (
     <InputForm
       inputs={moveInputs}
-      superheading="Move Selected Bird"
+      superheading={
+        selectedBird ? "Move " + selectedBird.name : "Move Selected Bird"
+      }
       description="Move the selected bird in space."
     />
   );

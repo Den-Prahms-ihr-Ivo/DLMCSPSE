@@ -4,6 +4,22 @@ import {
   sineDegrees,
   yawPitchRoll2Matrix,
 } from "../src/math/eulerToMatrix";
+import { Plane } from "../src/components/diagram/plane";
+import {
+  azimuthAngle,
+  calcAngleBetweenMarbleAndPoint,
+  crossProduct,
+  dotProduct,
+  testAngle,
+  vectorLength,
+} from "../src/math/helper";
+import { Point } from "../src/math/types";
+
+function compare2Points(A: Point, B: Point) {
+  expect(A.x).toBeCloseTo(B.x);
+  expect(A.y).toBeCloseTo(B.y);
+  expect(A.z).toBeCloseTo(B.z);
+}
 
 describe("Euler 2 Matrix", () => {
   it.each([
@@ -146,3 +162,205 @@ describe("Euler 2 Matrix", () => {
     }
   );
 });
+
+describe("DotProduct", () => {
+  it.each([
+    {
+      pointA: { x: 1, y: 2, z: 3 },
+      pointB: { x: 4, y: -5, z: 6 },
+      expected: 12,
+    },
+    {
+      pointA: { x: 8, y: -2, z: 16 },
+      pointB: { x: -9, y: 8, z: 12 },
+      expected: 104,
+    },
+  ])("should return $expected", ({ pointA, pointB, expected }) => {
+    expect(dotProduct(pointA, pointB)).toBe(expected);
+  });
+});
+
+describe("VectorLength", () => {
+  it.each([
+    {
+      p: { x: 2, y: 4, z: 4 },
+      expected: 6,
+    },
+    {
+      p: { x: -1, y: 0, z: -3 },
+      expected: Math.sqrt(10),
+    },
+    {
+      p: { x: -1, y: -3, z: 4 },
+      expected: Math.sqrt(26),
+    },
+  ])("should return $expected", ({ p, expected }) => {
+    expect(vectorLength(p)).toBeCloseTo(expected);
+  });
+});
+
+describe("CrossProduct", () => {
+  it.each([
+    {
+      pointA: { x: 2, y: 4, z: -1 },
+      pointB: { x: 10, y: 25, z: 20 },
+      expected: { x: 105, y: -50, z: 10 },
+    },
+    {
+      pointA: { x: 2, y: 3, z: 4 },
+      pointB: { x: 5, y: 6, z: 7 },
+      expected: { x: -3, y: 6, z: -3 },
+    },
+  ])("should return $expected", ({ pointA, pointB, expected }) => {
+    const result = crossProduct(pointA, pointB);
+    compare2Points(result, expected);
+  });
+});
+
+describe("AzimuthAngle", () => {
+  const center = { x: 7, y: 7, z: 0 };
+  it.each([
+    {
+      point: { x: 7, y: 3, z: 0 },
+      expected: -90,
+    },
+    {
+      point: { x: 20, y: 7, z: 0 },
+      expected: 0,
+    },
+    {
+      point: { x: 7, y: 10, z: 0 },
+      expected: 90,
+    },
+    {
+      point: { x: 3, y: 7, z: 0 },
+      expected: 180,
+    },
+    {
+      point: { x: 6.9, y: 3, z: 0 },
+      expected: -91.4321,
+    },
+    {
+      point: { x: 7.1, y: 3, z: 0 },
+      expected: -88.5679,
+    },
+  ])("should return $expected", ({ point, expected }) => {
+    expect(azimuthAngle(point, center)).toBeCloseTo(expected);
+  });
+});
+
+describe("Relative Angle 2 Plane", () => {
+  it.each([
+    {
+      plane_X: 1,
+      plane_Y: 1,
+      threat_X: -1,
+      threat_Y: 1,
+      expected: 180,
+    },
+    {
+      plane_X: 1,
+      plane_Y: 0,
+      threat_X: -1,
+      threat_Y: 1,
+      expected: -153.4349,
+    },
+    {
+      plane_X: 0,
+      plane_Y: 0,
+      threat_X: -1,
+      threat_Y: 1,
+      expected: -135,
+    },
+    {
+      plane_X: -1,
+      plane_Y: 1,
+      threat_X: 0,
+      threat_Y: 0,
+      expected: 45,
+    },
+    {
+      plane_X: -1,
+      plane_Y: 1,
+      threat_X: 0,
+      threat_Y: 1,
+      expected: 0,
+    },
+    {
+      plane_X: -1,
+      plane_Y: 1,
+      threat_X: -4,
+      threat_Y: 1,
+      expected: 180,
+    },
+  ])(
+    "should return $expected°. For Threat at ($threat_X,$threat_Y) and plane af($plane_X,$plane_Y)",
+    ({ plane_X, plane_Y, threat_X, threat_Y, expected }) => {
+      const p = new Plane();
+      p.translatePlane(plane_X, plane_Y, 0);
+
+      expect(
+        p.getAngle2Plane({ x: threat_X, y: threat_Y, z: 9999 })
+      ).toBeCloseTo(expected);
+    }
+  );
+});
+
+describe("Plane Angle 2 North", () => {
+  it("should return 0", () => {
+    const p = new Plane();
+    expect(p.getAngle2North()).toBeCloseTo(0);
+  });
+
+  it("should return -45", () => {
+    const p = new Plane();
+    p.rotatePlane(45, 0, 0);
+    expect(p.getAngle2North()).toBeCloseTo(-45);
+  });
+  it("should return 45", () => {
+    const p = new Plane();
+    p.rotatePlane(-45, 0, 0);
+    expect(p.getAngle2North()).toBeCloseTo(45);
+  });
+
+  it("should return 0", () => {
+    const p = new Plane();
+    p.rotatePlane(0, 0, 45);
+    expect(p.getAngle2North()).toBeCloseTo(0);
+  });
+});
+it("should return -180", () => {
+  const p = new Plane();
+  p.rotatePlane(180, 0, 0);
+  expect(p.getAngle2North()).toBeCloseTo(-180);
+});
+
+/*
+describe("Dihedral Angle", () => {
+  it.each([
+    {
+      marbleVector: { A: { x: 0, y: 0, z: 1 }, B: { x: 1, y: 0, z: 1 } },
+      threat: { x: 0, y: 1, z: 1 },
+      expected: 90,
+    },
+    {
+      marbleVector: { A: { x: 0, y: 0, z: 1 }, B: { x: 1, y: 1, z: 1 } },
+      threat: { x: 0, y: 1, z: 1 },
+      expected: 45,
+    },
+    {
+      marbleVector: { A: { x: 0, y: 0, z: 1 }, B: { x: -1, y: 1, z: 1 } },
+      threat: { x: 0, y: 1, z: 1 },
+      expected: 45,
+    },
+    {
+      marbleVector: { A: { x: 0, y: 0, z: 1 }, B: { x: 1, y: 0, z: 1 } },
+      threat: { x: -1, y: 0, z: 1 },
+      expected: 0,
+    },
+  ])("should return $expected", ({ marbleVector, threat, expected }) => {
+    expect(calcAngleBetweenMarbleAndPoint(marbleVector, threat)).toBeCloseTo(
+      expected
+    );
+  });
+});*/

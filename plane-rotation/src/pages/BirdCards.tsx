@@ -34,16 +34,31 @@ function BirdCards() {
         >
           {birds.map((bird) => (
             //plane.getAngle2Plane(bird.location)
+
             <BirdCard
               key={bird.id}
               bird={bird}
-              angle2Threat={plane.getAngle2Plane(bird.location)}
-              distance2Plane={plane.getDistance2Plane(bird.location)}
-              horizontalDistance2Plane={plane.getHorizontalDistance2Plane(
-                bird.location
-              )}
-              azimuth={plane.getAzimuth2Threat(bird.location)}
-              elevation={plane.getElevation2Threat(bird.location)}
+              angle2Threat={
+                Math.round(
+                  ((360 + plane.getAngle2Plane(bird.location)) % 360) * 10
+                ) / 10
+              }
+              distance2Plane={
+                Math.round(plane.getDistance2Plane(bird.location) * 100) / 100
+              }
+              horizontalDistance2Plane={
+                Math.round(
+                  plane.getHorizontalDistance2Plane(bird.location) * 100
+                ) / 100
+              }
+              azimuth={
+                Math.round(plane.getAzimuth2Threat(bird.location) * 100) / 100
+              }
+              elevation={
+                Math.round(
+                  plane.getElevationAngle2Threat(bird.location) * 100
+                ) / 100
+              }
               altitude={bird.location.z}
               removeEvent={dispatchBird}
             />

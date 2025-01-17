@@ -5,6 +5,7 @@ export const colourSystem = {
   Accent: {
     accent_1: "#F64851",
     accent_2: "#432682",
+    accent_3: "#ffb900",
   },
   Purple: {
     back: "#6262EA",
@@ -116,9 +117,9 @@ const theme = extendTheme({
         //bgGradient: "linear(to-t, #4B379D, #262C83, #20253D)",
         //bgGradient: "linear(#e66465, #9198e5)",
         bgGradient: "linear(#20253D,#262C83, #4B379D)",
-
+        //"linear-gradient(to right bottom, rgba(32, 37, 61, 0.8),rgba(38, 44, 131, 0.8), rgba(75, 55, 157, 0.8)), url('" +
         backgroundImage:
-          "linear-gradient(to right bottom, rgba(32, 37, 61, 0.8),rgba(38, 44, 131, 0.8), rgba(75, 55, 157, 0.8)), url('" +
+          "linear-gradient(to right bottom, rgba(32, 37, 61, 0.7),rgba(38, 44, 131, 0.8), rgba(75, 55, 157, 1)), url('" +
           hero +
           "')",
         //backgroundSize: "cover",

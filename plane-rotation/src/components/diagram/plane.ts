@@ -6,6 +6,13 @@ import {
   multiply,
 } from "../../math/matrices";
 import { Point } from "../../math/types";
+import {
+  azimuthAngle,
+  subtract2Point,
+  rad2Degrees,
+  calcAngleBetweenMarbleAndPoint,
+  angleBetween2Points,
+} from "../../math/helper";
 
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
@@ -123,8 +130,11 @@ export class Plane {
   initialTranslationVector = structuredClone(this.translationVector);
 
   rotationMatrix: number[][] = [
-    [0, 1, 0],
+    //[0, 1, 0],
+    //[1, 0, 0],
+    //[0, 0, -1],
     [1, 0, 0],
+    [0, -1, 0],
     [0, 0, -1],
     //[1, 0, 0],
     //[0, 1, 0],
@@ -242,21 +252,37 @@ export class Plane {
     return this;
   }
 
-  getHorizontalDistance2Plane(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
-  }
-  getVerticalDistance2Plane(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+  getAngle2North(): number {
+    // return this.getAngle2Plane({ x: this.marbleX + 1, y: this.marbleY, z: 0 });
+
+    const A = {
+      x: this.marbleCS_X[0][1],
+      y: this.marbleCS_X[1][1],
+      z: this.marbleCS_X[2][1],
+    };
+    const B = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
+
+    return azimuthAngle(A, B);
   }
 
-  getDistance2Plane(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
+  getHorizontalDistance2Plane(p: Point): number {
+    console.log(this.getDistance2Plane(p));
+    console.log(this.getVerticalDistance2Plane(p));
+    return Math.sqrt(
+      this.getDistance2Plane(p) ** 2 - this.getVerticalDistance2Plane(p) ** 2
+    );
     return 0;
+  }
+  getVerticalDistance2Plane(p: Point): number {
+    return Math.abs(this.marbleZ - p.z);
+  }
+
+  getDistance2Plane(p: Point): number {
+    return Math.sqrt(
+      (p.x - this.marbleX) ** 2 +
+        (p.y - this.marbleY) ** 2 +
+        (p.z - this.marbleZ) ** 2
+    );
   }
 
   getAzimuth2Threat(location: Point): number {
@@ -264,21 +290,42 @@ export class Plane {
     console.log("Im not implemented Yet");
     return 0;
   }
-  getElevation2Threat(location: Point): number {
+  getElevationAngle2Threat(p: Point): number {
     // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    // (A . B) / (|A|*|B|) * -1 if plane.Z > bird.Z
+    const tmp = angleBetween2Points(
+      { x: this.marbleX, y: this.marbleY, z: this.marbleZ },
+      p
+    );
+
+    return this.marbleZ > p.z ? tmp * -1 : tmp;
   }
 
   getAngle2Plane(location: Point): number {
     // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    const center = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
+
+    const point = subtract2Point(
+      { x: location.x, y: location.y, z: location.z },
+      center
+    );
+
+    const rotatedPoint = multiply(this.rotationMatrix, [
+      [point.x],
+      [point.y],
+      [point.z],
+    ]);
+
+    const P = {
+      x: rotatedPoint[0][0],
+      y: rotatedPoint[1][0],
+      z: rotatedPoint[2][0],
+    };
+
+    return azimuthAngle(P);
   }
 
   getDistanceFromGround(): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
+    return this.marbleZ;
   }
 }
