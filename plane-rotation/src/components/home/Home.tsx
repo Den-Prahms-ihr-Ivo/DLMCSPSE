@@ -33,19 +33,22 @@ const Home = () => {
             height="100%"
             width="100%"
             margin="auto"
-            templateAreas={`"content images"`}
+            templateAreas={`"heading heading" "content images"`}
             templateColumns="1fr 400px"
             gap={0}
           >
+            <GridItem area="heading" margin={5}>
+              <Heading
+                textAlign="center"
+                fontWeight={fontWeightSystem.Bold}
+                fontSize={typographySystem.size_10}
+                padding={3}
+              >
+                Paper Plane Project Pitch
+              </Heading>
+            </GridItem>
             <GridItem area="content">
               <VStack gap={6}>
-                <Heading
-                  fontWeight={fontWeightSystem.Bold}
-                  fontSize={typographySystem.size_10}
-                  padding={3}
-                >
-                  Paper Plane Project Pitch
-                </Heading>
                 <Text fontWeight="bold">
                   Do you know the feeling, you are sitting at your desk and the
                   fear to be accidentally mistaken for a gang member slowly
@@ -82,7 +85,7 @@ const Home = () => {
             >
               <Center>
                 <Image
-                  transform="rotate(-5deg)"
+                  transform="translateY(-30px)"
                   width="400px"
                   display="block"
                   src={eichhorn}

@@ -56,7 +56,11 @@ const MainPage = () => {
               >
                 Test
               </Button> */}
-              <PlaneDiagram tmp={redrawTrigger} />
+              <PlaneDiagram
+                tmp={redrawTrigger}
+                viewPortWidth={600}
+                viewPortHeight={400}
+              />
             </Center>
           </Container>
         </Center>

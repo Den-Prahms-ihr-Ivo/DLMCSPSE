@@ -38,6 +38,8 @@ const threats: Data[] = [
 
 interface Props {
   tmp: number;
+  viewPortHeight: number;
+  viewPortWidth: number;
 }
 
 interface ViewCube {
@@ -127,7 +129,7 @@ function getCoordinateSystem(plane: Plane, show: boolean): Partial<PlotData>[] {
 
 /* tslint:disable */
 // @ts-nocheck
-const PlaneDiagram = ({ tmp }: Props) => {
+const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
   const { birds } = birdsWithErrors;
   const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
@@ -164,7 +166,7 @@ const PlaneDiagram = ({ tmp }: Props) => {
     z: viewCubeZ,
   } = calculateViewBoxCube(plane, birds);
   return (
-    <Box width="600px" height="400px">
+    <Box width={viewPortWidth + "px"} height={viewPortHeight + "px"}>
       <Plot
         id="Bitches"
         data={[
@@ -285,8 +287,8 @@ const PlaneDiagram = ({ tmp }: Props) => {
            * https://plotly.com/javascript/axes/
            */
           autosize: false,
-          width: 600,
-          height: 400,
+          width: viewPortWidth,
+          height: viewPortHeight,
           margin: {
             l: 0,
             r: 0,

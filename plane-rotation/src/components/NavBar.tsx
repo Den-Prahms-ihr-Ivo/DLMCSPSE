@@ -29,8 +29,8 @@ const tmpLinksOne = [
   {
     displayText: "Graph Detail View",
     icon: FaChartLine,
-    id: "/graph",
-    to: "/graph",
+    id: "/detail",
+    to: "/detail",
   },
 ];
 
