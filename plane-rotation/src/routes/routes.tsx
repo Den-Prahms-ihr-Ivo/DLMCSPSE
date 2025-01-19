@@ -6,6 +6,7 @@ import MainContent from "../pages/MainContent";
 import ErrorPage from "../pages/ErrorPage";
 import Math from "../pages/Math";
 import GraphDetail from "../pages/GraphDetail";
+import Impressum from "../pages/Impressum";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       { path: "birds/", element: <BirdCards /> },
       { path: "math/", element: <Math /> },
       { path: "detail/", element: <GraphDetail /> },
+      { path: "impressum/", element: <Impressum /> },
     ],
   },
 ]);

@@ -1,6 +1,7 @@
 import { HStack, Icon, Link, Text } from "@chakra-ui/react";
 import { FaHeart } from "react-icons/fa6";
 import { colourSystem, typographySystem } from "../theme";
+import { Link as DOMLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -20,7 +21,9 @@ const Footer = () => {
         />
       </HStack>
 
-      <Link fontSize={typographySystem.size_1}>Impressum</Link>
+      <DOMLink to="/impressum">
+        <Link fontSize={typographySystem.size_1}>Impressum</Link>
+      </DOMLink>
     </HStack>
   );
 };
