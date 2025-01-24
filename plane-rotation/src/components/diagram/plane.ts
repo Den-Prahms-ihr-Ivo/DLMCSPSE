@@ -9,8 +9,6 @@ import { Point } from "../../math/types";
 import {
   azimuthAngle,
   subtract2Point,
-  rad2Degrees,
-  calcAngleBetweenMarbleAndPoint,
   angleBetween2Points,
 } from "../../math/helper";
 
@@ -244,8 +242,6 @@ export class Plane {
     return this;
   }
 
-  calculateAngleAndDistance2Point() {}
-
   translatePlane(x: number, y: number, z: number): Plane {
     this.translationVector[0] += x;
     this.translationVector[1] += y;
@@ -256,8 +252,6 @@ export class Plane {
   }
 
   getAngle2North(): number {
-    // return this.getAngle2Plane({ x: this.marbleX + 1, y: this.marbleY, z: 0 });
-
     const A = {
       x: this.marbleCS_X[0][1],
       y: this.marbleCS_X[1][1],
@@ -274,7 +268,6 @@ export class Plane {
     return Math.sqrt(
       this.getDistance2Plane(p) ** 2 - this.getVerticalDistance2Plane(p) ** 2
     );
-    return 0;
   }
   getVerticalDistance2Plane(p: Point): number {
     return Math.abs(this.marbleZ - p.z);

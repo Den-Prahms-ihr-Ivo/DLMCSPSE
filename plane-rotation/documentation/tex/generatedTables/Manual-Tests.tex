@@ -3,9 +3,9 @@
     \def\arraystretch{1.5}
     \setlength\arrayrulewidth{1.2pt}
     \color{textgray}
-    \begin{xltabular}{\textwidth}{|X|X|M{3cm}|M{3cm}|}
+    \begin{xltabular}{\textwidth}{|X|X|M{2cm}|M{2cm}|}
 
-\caption*{} \label{tab:Requirements - Functional} \\
+\caption*{} \label{tab:manual_tests} \\
 
 \arrayrulecolor{linegray}\hline \rowcolor{lightgray} \multicolumn{1}{|c|}{\color{default}\textbf{Test Case}} & \multicolumn{1}{c|}{\color{default}\textbf{Expected Outcome}} & \multicolumn{1}{c|}{\color{default}\textbf{Satisfies}} & \multicolumn{1}{c|}{\color{default}\textbf{Status}}\\ \hline
 
@@ -18,7 +18,7 @@
 
 \hline 
  \endlastfoot 
-On the enquote{Paper Plane}-Page, click on enquote{Add Threat} 6 times. & Only 5 bird avatars shall be displayed and a grey circle showing {\ttfamily\enquote{+1}}. Pay attention that the first bird is the one that disappears after the 5th bird. \newline All birds shall be displayed at {\ttfamily(0,0,0)}. & {\color{purpleT}\ttfamily DLMCSPSE-224 \newline\newline DLMCSPSE-225-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+On the \enquote{Paper Plane}-Page, click on \enquote{Add Threat} 6 times. & Only 5 bird avatars shall be displayed and a grey circle showing {\ttfamily\enquote{+1}}. Pay attention that the first bird is the one that disappears after the 5th bird. \newline All birds shall be displayed at {\ttfamily(0,0,0)}. & {\color{purpleT}\ttfamily DLMCSPSE-224 \newline\newline DLMCSPSE-225-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
   Click \enquote{Add bird} without providing any number. \newline Click on the \enquote{X}-Icon next to the birds Avatar. \newline Add a bird at {\ttfamily (101,0,0)}. & A bird shall be added at {\ttfamily (0,0,0)}. \newline Now no bird shall be displayed. \newline No bird shall be added. A toast shall be displayed. & {\color{purpleT}\ttfamily DLMCSPSE-225} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
   Enter the coordinates {\ttfamily(1,2,3)} and click \enquote{Add Threat}. & A new bird shall be displayed at the specified coordinates. & {\color{purpleT}\ttfamily DLMCSPSE-225-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
   Enter the coordinates {\ttfamily (101,2,3)} and click \enquote{Add Threat}. & No new bird is added and a warning pop-up is displayed. & {\color{purpleT}\ttfamily DLMCSPSE-225-2} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 

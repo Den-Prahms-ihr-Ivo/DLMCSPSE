@@ -372,14 +372,14 @@ Manual_S: Column = {
     "display_text": "Satisfies",
     "is_tag": False,
     "is_code": True,
-    "column_type": "M{3cm}",
+    "column_type": "M{2cm}",
 }
 Manual_Status: Column = {
     "id": "Status",
     "display_text": "Status",
     "is_tag": True,
     "is_code": False,
-    "column_type": "M{3cm}",
+    "column_type": "M{2cm}",
 }
 
 MANUAL_TESTS: Table = {
@@ -435,7 +435,7 @@ MATH_TESTS: Table = {
     "label": "math_functions",
     "columns": [Math_ID, Manual_FM, Manual_D, Manual_C],
     "sort_vals": ["Coverage", "ID"],
-    "asc": [True, True],
+    "asc": [False, True],
 }
 
 TSV = "/Users/ivo/Documents/Uni/DLMCSPSE/plane-rotation/documentation/tables/Math-Tests.tsv"

@@ -42,6 +42,7 @@ export function azimuthAngle(A: Point, center?: Point): number {
   return rad2Degrees(Math.atan2(A.y, A.x)) % 360;
 }
 
+/*
 export function testAngle(A: Point, B: Point): number {
   const rad = Math.atan2(A.y, A.x);
 
@@ -64,6 +65,7 @@ export function calcAngleBetweenMarbleAndPoint(
    * The final angle between is calculated according to the dihedral angle: The dot product of the two normal vectors devided by the product of their lengths.
    * cos(phi) = Norm(n_A * n_B) / (Norm(n_A) * Norm(n_B))
    */
+/*
   const Z = structuredClone(marbleVector.A);
   Z.z = 0;
 
@@ -84,3 +86,4 @@ export function calcAngleBetweenMarbleAndPoint(
 
   return (dihedralAngle * 180) / Math.PI;
 }
+*/
