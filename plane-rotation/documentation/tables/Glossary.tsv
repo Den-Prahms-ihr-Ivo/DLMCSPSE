@@ -1,0 +1,6 @@
+Term	Definition	Colour
+Plane	A visual pleasing and more tangible object to visualise the effects of transformations.	gray
+Marble	A coordinate system that is offset from the center of the plane and is rotated along with the plane. It represents a point on the plane that is affected by its transformation. This system is the heart of all calculations made in this Tool.	gray
+Threat	A point in space to which the Azimuth \& Elevation as well as the distance from the \textit{Marble} is calculated.	gray
+Pilot	A more friendly and on theme alias for \textit{Marble}. Since the \textit{Marble} is currently not moveable, it serves as a stand-in for the head of a pilot.	gray
+Bird	A more friendly and on theme alias for \textit{Threat}.	gray

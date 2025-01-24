@@ -1,0 +1,225 @@
+
+\documentclass[11pt, a4paper, oneside, british]{article}
+
+
+%%
+%% Pakete & Formalia
+%%
+\usepackage[british]{babel} % neue deutsche Trennungsregeln, etc
+\usepackage[hidelinks]{hyperref} % Hyperlinks ohne Umrandungen
+\usepackage{setspace} % Abstände zwischen Absätzen
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry} % Seitenränder
+\setstretch{1.5} % 1,5 Zeilenabstand
+\usepackage{lipsum}  % Dummy-Texte
+\usepackage{titlesec} % define size for section headings
+\usepackage[nohyperlinks, printonlyused]{acronym} % Abkürzungen
+%\usepackage[utf8]{inputenc} % korrekte Darstellung von Umlauten
+\usepackage[T1]{fontenc} % enable hyphenation for languages with accented characters
+
+
+	
+\usepackage{color, colortbl}
+
+%% Schriftarten und -größen
+\usepackage{fontspec}
+%\setmainfont{Arial} % Hauptfont Arial (lualatex oder xelatex benötigt)
+\titleformat{\section}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesection}{1em}{} % Überschriften 1pt größer
+\titleformat{\subsection}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesubsection}{1em}{} % Überschriften 1pt größer
+\titleformat{\subsubsection}{\normalfont\fontsize{12pt}{1.5}\bfseries}{\thesubsubsection}{1em}{} % Überschriften 1pt größer
+\def\UrlFont{\rm} % Print URLs not in Typewriter Font
+\renewcommand{\footnotesize}{\fontsize{10pt}{1.5pt}\selectfont}
+
+% automatischens Einrücken von Absätzen verhindern
+\usepackage{changepage}
+\setlength{\parindent}{0pt}
+% 6pt Abstand nur zwischen Absätzen
+\setlength{\parskip}{6pt}{}
+
+% Leerseite ohne Seitennummer, nächste Seite rechts
+\newcommand{\blankpage}{
+ \clearpage{\pagestyle{empty}\cleardoublepage}
+}
+
+% Grafiken einbinden
+\usepackage{graphicx}
+% center images and tables
+\makeatletter
+\g@addto@macro\@floatboxreset\centering
+\makeatother
+
+
+
+\hypersetup{
+ pdfauthor={Ivo Prahm},
+ pdftitle={Paper Plane Rotations}, 
+  pdfsubject={DLMCSPSE},
+ pdfkeywords={DLMCSPSE, Project},
+ pdfcreator={lualatex},
+ pdfproducer={lualatex},
+}
+
+%%
+%% Bibliographie & Sondereinstellungen
+%%
+\usepackage[babel]{csquotes}
+\usepackage[backend=biber, style=apa, pagetracker, apamaxprtauth=20 ]{biblatex}
+
+%%
+%% Source Code Setup
+%%
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usepackage{xltabular}
+\usepackage{fontspec}
+
+\setmainfont{Asap}[
+    Path=./AsapFontFiles/,
+    Scale=0.9,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+\setmonofont{JetBrainsMono}[
+    Path=./JetbrainsFontFiles/,
+    Scale=0.75,
+    Extension = .ttf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+    ]
+
+\usepackage{csquotes}
+
+\usepackage{tcolorbox}
+    
+\definecolor{babyblue}{rgb}{0.82, 0.96, 0.936} 
+\definecolor{default}{rgb}{0.160, 0.164, 0.180}
+\definecolor{lightgray}{rgb}{0.922, 0.922, 0.922} 
+\definecolor{textgray}{rgb}{0.494, 0.505, 0.537} 
+\definecolor{linegray}{rgb}{0.866, 0.870, 0.882} 
+\definecolor{TAGgreen}{rgb}{0.729, 0.862, 0.501} 
+\definecolor{TAGred}{rgb}{0.929, 0.623, 0.576} 
+\definecolor{TAGgray}{rgb}{0.866, 0.882, 0.878} 
+\definecolor{TAGyellow}{rgb}{0.933, 0.788, 0.388} 
+\definecolor{TAGpurple}{rgb}{0.478, 0.282, 0.627} 
+\definecolor{purpleT}{rgb}{0.478, 0.282, 0.627} 
+
+\tcbset{on line, boxsep=1pt, left=3pt,right=3pt,top=2pt,bottom=1pt,colframe=TAGgreen, colback=TAGgreen}
+
+\setlength\intextsep{0mm}
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\makeatletter
+\renewcommand*{\apablx@ifrevnameappcomma}{\@secondoftwo}
+\makeatother
+
+\DefineBibliographyExtras{ngerman}{%
+  \renewcommand*{\finalandcomma}{}%
+}
+
+
+
+%% Bibliographie einbinden
+\addbibresource{references.bib} % your bib file
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Dokument
+%% ++++++++++++++++++++++++++++++++++++++++++
+\begin{document}
+\color{default}
+
+\pagenumbering{Roman} % Uppercase Roman numerals
+% \pagenumbering{gobble} % switch off page numbering
+\include{pages/cover} % Titelblatt
+
+\newpage
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Verzeichnisse
+%% ++++++++++++++++++++++++++++++++++++++++++
+\stepcounter{page}
+\setcounter{tocdepth}{3}
+\tableofcontents % Inhaltsverzeichnis
+
+
+
+\section{List of Acronyms}
+\begin{acronym}
+\acro{M2FR}[M2FR]{Moved to a Future Release}
+\end{acronym}
+%\label{last-roman-page}% Save last page of this chapter
+
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Hauptteil
+%% ++++++++++++++++++++++++++++++++++++++++++
+\blankpage
+\pagenumbering{arabic}
+
+\section{Conception Phase}
+\input{chapters/1_Conception_Phase} 
+\pagebreak
+\section{Implementation Phase}
+\input{chapters/2_Implementation_Phase} 
+\pagebreak
+\section{Test Document}
+\input{chapters/3_Test_Document} 
+\pagebreak
+\section{Finalisation Phase}
+\input{chapters/3_Finilization_Phase} 
+\pagebreak
+\section{Glossary}
+\input{chapters/X_Glossary} 
+\pagebreak
+%% ++++++++++++++++++++++++++++++++++++++++++
+%% Literatur
+%% ++++++++++++++++++++++++++++++++++++++++++
+\blankpage
+
+\phantomsection
+% set bibliography name
+\renewcommand{\bibname}{Literaturverzeichnis}
+\addcontentsline{toc}{section}{\bibname}
+% \nocite{*} % nur angeben, wenn auch nicht im Text zitierte Quellen 
+
+\begin{flushleft}
+
+\printbibliography[title=\bibname]
+\end{flushleft}
+
+% %% ++++++++++++++++++++++++++++++++++++++++++
+% %% Anhang
+% %% ++++++++++++++++++++++++++++++++++++++++++
+% \blankpage
+% \appendix
+% \include{pages/appendix} % Anhang % TODO: Add Appendix?
+
+\end{document}
+

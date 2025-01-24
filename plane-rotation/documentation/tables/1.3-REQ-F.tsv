@@ -1,0 +1,13 @@
+User Story	Scope	Colour
+As a user I want to be able to rotate the plane by providing euler angles.	MUST HAVE	TAGgreen
+As a user I want to be able to see the current angle and distance between a selected threat and the plane.	MUST HAVE	TAGgreen
+As a user I want to be abler to freely translate the plane in space by providing a translation vector in cartesian coordinates.	MUST HAVE	TAGgreen
+As a user I want to freely add and remove individual threats to the scene.	MUST HAVE	TAGgreen
+As a user I want to see a 3D representation of the plane and threats.	MUST HAVE	TAGgreen
+As a user I would like to see a 2D projection next to the 3D scene. Akin to the stereotypical image of a submarine radar.	MUST HAVE	TAGgreen
+As a user I want to move threats in space by providing a translation vector.	NICE TO HAVE	TAGyellow
+As a user I would like to enter a full transformation matrix by hand and see its effect on the plane and/or bird.	NICE TO HAVE	TAGyellow
+As a user I would like to move the calculation center arbitrarily.	NICE TO HAVE	TAGyellow
+As a user I would like to visually differentiate my added threats.	NICE TO HAVE	TAGyellow
+As a user I would like to see an animation of the entered movement.	NOT IN SCOPE	TAGred
+As a user I would like to use this tool on all my devices.	NOT IN SCOPE	TAGred

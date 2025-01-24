@@ -1,0 +1,72 @@
+\subsection{Problem Statement}
+Visual-spatial intelligence is challenging for the human brain and often times sheer impossible the more complex the layot becomes. Writers of test cases for software involved with more complex transformations and their interplay between objects frequently run into this issue. As well as students trying to gain an understanding of the math behind these transformations and what their calculated transformation matrix actually does.
+
+Since all these transformations are immensely abstract, a visual representation of the problem at hand would help to write better test cases, gain a better understanding of specific szenarios and therefore to facilitate the identification of possible edge cases. Hence, improving the test-suite even further. Which in turn will improve the reliability, robustness and maintanance of the delivered product.
+
+It is for that reason, that I am proposing a tailor made tool to assist the design process of aforementioned test cases.
+
+\subsection{Assumptions}
+Considering the target audience, a basic understanding of trigonometry is to be expected. Also it is  presumed that this application is likely not going to be used on mobile devices, as its intention lies more in a univerity milieu.
+
+Since the content of this web-app is aimed towards a more tech-savvy audience, backwards compatibility with older browsers is not considred as of now.
+
+\subsection{Risks and Measures for Risk Minimization}
+The goal could be too lofty and not possible to be built in the designated time frame by only one part-time developer. → Cut down on 
+\tcbox[colframe=TAGyellow, colback=TAGyellow]{\textbf{\footnotesize NICE TO HAVE}}
+-Requirements and Requirements that are not essential for the functionality of the project.
+
+Implementing a full frontend test-suite is out of scope for this project and may lead to problems due to insufficient testing. → Design a comprehensive checklist that is to be passed before every release.
+
+\newpage
+\subsection{Requirements}
+A very rough sketch of future requirements. Reminiscent of the first meeting with stakeholders in which a broad idea is sketched out and refined in later sprints.
+\subsubsection{Requirements - Non-Functional}
+\input{generatedTables/1.3-REQ-NF}
+
+\subsubsection{Requirements - Functional}
+\input{generatedTables/1.3-REQ-F}
+
+\subsection{Software Development Methodology}
+Since Scrum excels at projects with high levels of uncertainty that require an adaptive approach, and the idea for this app was only a rough sketch at the beginning of the project, Scrum is the perfect pick.
+
+Because this is not my fulltime occupation, I decided on three sprint intervals of roughly three weeks each to have enough implementation time for each sprint. After each of the following review phases the requirements get updated accordning to newly discovered requirements and ideas from the customer/me.
+
+As this project is developed only by me, the obligatory Scrum meetings are replaced with a relaxing run outside to contemplate ideas or do my sprint retrospective.
+
+\newpage
+\subsection{Timeline}
+The Timeline of the project plan is built according to the standard scrum sprint procedure.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{assets/timeline.png}
+    \label{fig:timeline}
+\end{figure}
+
+\subsection{Milestones and Deadlines}
+\input{generatedTables/MilestonesAndDeadlines}
+
+\newpage
+\subsection{ User Interaction and Design}
+
+Mock-up of the main intention and vital component of this project. All other minor aspects were designed on the fly according to the respective user stories.
+\begin{figure}[!h]
+    \centering
+    \caption{Main Page Mock-Up}
+    \includegraphics[width=\textwidth]{assets/mockup.png}
+    \label{fig:mockup}
+\end{figure}
+
+\subsection{System Design}
+
+Since the app is a self-contained single-page application and does not require a backend, isn’t part of any larger system that would justify a container diagram (yet), and has no need for any from of authorization at this point, the system design is omitted.
+
+As for 3rd-pary tools:
+\begin{itemize}
+    \item The App shall be developed in TypeScript using the vite framework. %\cite{Vite} 
+
+    \item For 3D Graphics the open source library plotlyjs shall be used. %\cite{PlotlyJS}
+
+    \item Testing is done using the vitest framework. %\cite{Vitest}
+
+    \item The App shall be deployed as a dockerized container on my personal server. % \cite{Docker}
+\end{itemize}

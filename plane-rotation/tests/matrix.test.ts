@@ -5,7 +5,6 @@ import {
   matrixTransformation,
   multiply,
 } from "../src/math/matrices";
-import { yawPitchRoll2Matrix } from "../src/math/eulerToMatrix";
 
 function compareMatrix(actual: number[][], expected: number[][]) {
   const numRows = actual.length;
@@ -99,7 +98,7 @@ describe("Plane", () => {
     // Assert - Confirm
     expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
     expect(y).toEqual([3, 0, 0.5, -3, -0.5, 0]);
-    expect(z).toEqual([0.7, 0.7, 0.7, 0.7, 0.7, -0.7]);
+    expect(z).toEqual([2.7, 2.7, 2.7, 2.7, 2.7, 1.3]);
   });
 });
 
@@ -149,26 +148,26 @@ describe("Matrix Transform", () => {
 });
 
 describe("getDistance2Plane", () => {
-  it("should return 2.34", () => {
+  it("should return 2.586", () => {
     const p = new Plane();
-    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(2.34);
+    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(2.586);
   });
-  it("should return 1.64", () => {
+  it("should return 3.448", () => {
     const p = new Plane();
     p.translatePlane(2, 2, 2);
-    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(1.64);
+    expect(p.getDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(3.448);
   });
 });
 
 describe("getVerticalDistance2Plane", () => {
-  it("should return 0.7", () => {
-    const p = new Plane();
-    expect(p.getVerticalDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(0.7);
-  });
   it("should return 1.3", () => {
     const p = new Plane();
-    p.translatePlane(2, 2, 2);
     expect(p.getVerticalDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(1.3);
+  });
+  it("should return 3.3", () => {
+    const p = new Plane();
+    p.translatePlane(2, 2, 2);
+    expect(p.getVerticalDistance2Plane({ x: 2, y: 1, z: 2 })).toBeCloseTo(3.3);
   });
 });
 

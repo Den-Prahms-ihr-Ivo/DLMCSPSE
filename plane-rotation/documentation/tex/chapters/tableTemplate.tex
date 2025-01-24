@@ -1,0 +1,31 @@
+\section{Test Document}
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\arrayrulewidth{1.2pt}
+\color{textgray}
+\begin{xltabular}{\textwidth}{|c|X|M{3cm}|}
+\caption{A sample long table.} \label{tab:long} \\
+
+\arrayrulecolor{linegray}\hline \rowcolor{lightgray} \multicolumn{1}{|c|}{\color{default}\textbf{First column}} & \multicolumn{1}{c|}{\color{default}\textbf{Second column}} & \multicolumn{1}{c|}{\color{default}\textbf{Third column}} \\ \hline 
+\endfirsthead
+
+\multicolumn{3}{c}%
+{\tablename\ \thetable{} -- continued from previous page} \\
+\hline \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \hline 
+\endhead
+
+\hline \multicolumn{3}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+One & abcdef ghjijklmn & \tcbox[colframe=red, colback=red]{Language2}\\ \hline
+One & abcdef ghjijklmn & \tcbox[colframe=yellow, colback=yellow]{Language2} \\ \hline
+One & abcdef ghjijklmn & \tcbox[colframe=green, colback=green]{Language2} \\ \hline
+One & abcdef ghjijklmn & 123.456778 \\ \hline
+One & abcdef ghjijklmn & 123.456778 
+\end{xltabular}
+\egroup
+\color{default}

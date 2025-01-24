@@ -1,0 +1,2 @@
+ID	Function/Method	Description	Coverage	Colour
+\textbf{ F1 }	{\ttfamily azimuthAngle(A: Point, center?: Point): number}	Calculates the angle measure (in radians, with $-\pi \textless \theta \le \pi$ between the positive x-axis and the ray from the origin to the point {\ttfamily(x,y)} in the Cartesian plane.\newline If a center point is provided, the angle is calculated from the new center position.	100\%	TAGgreen

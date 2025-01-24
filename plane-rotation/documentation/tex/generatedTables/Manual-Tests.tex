@@ -1,0 +1,40 @@
+
+    \bgroup
+    \def\arraystretch{1.5}
+    \setlength\arrayrulewidth{1.2pt}
+    \color{textgray}
+    \begin{xltabular}{\textwidth}{|X|X|M{3cm}|M{3cm}|}
+
+\caption*{} \label{tab:Requirements - Functional} \\
+
+\arrayrulecolor{linegray}\hline \rowcolor{lightgray} \multicolumn{1}{|c|}{\color{default}\textbf{Test Case}} & \multicolumn{1}{c|}{\color{default}\textbf{Expected Outcome}} & \multicolumn{1}{c|}{\color{default}\textbf{Satisfies}} & \multicolumn{1}{c|}{\color{default}\textbf{Status}}\\ \hline
+
+ \endfirsthead 
+ \multicolumn{4}{c}%
+{\tablename\ \thetable{} -- continued from previous page} \\ \hline \multicolumn{1}{|c|}{\textbf{Test Case}} & \multicolumn{1}{c|}{\textbf{Expected Outcome}} & \multicolumn{1}{c|}{\textbf{Satisfies}} & \multicolumn{1}{c|}{\textbf{Status}}\\ \hline 
+\endhead \hline 
+\multicolumn{4}{|r|}{{Continued on next page}} \\ \hline 
+\endfoot
+
+\hline 
+ \endlastfoot 
+On the enquote{Paper Plane}-Page, click on enquote{Add Threat} 6 times. & Only 5 bird avatars shall be displayed and a grey circle showing {\ttfamily\enquote{+1}}. Pay attention that the first bird is the one that disappears after the 5th bird. \newline All birds shall be displayed at {\ttfamily(0,0,0)}. & {\color{purpleT}\ttfamily DLMCSPSE-224 \newline\newline DLMCSPSE-225-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Click \enquote{Add bird} without providing any number. \newline Click on the \enquote{X}-Icon next to the birds Avatar. \newline Add a bird at {\ttfamily (101,0,0)}. & A bird shall be added at {\ttfamily (0,0,0)}. \newline Now no bird shall be displayed. \newline No bird shall be added. A toast shall be displayed. & {\color{purpleT}\ttfamily DLMCSPSE-225} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Enter the coordinates {\ttfamily(1,2,3)} and click \enquote{Add Threat}. & A new bird shall be displayed at the specified coordinates. & {\color{purpleT}\ttfamily DLMCSPSE-225-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Enter the coordinates {\ttfamily (101,2,3)} and click \enquote{Add Threat}. & No new bird is added and a warning pop-up is displayed. & {\color{purpleT}\ttfamily DLMCSPSE-225-2} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Click \enquote{Add Threat}. Enter the coordinates {\ttfamily (1,2,3)} and click \enquote{Add Threat} again. \newline Click on the little x of the first bird. & Only one bird avatar is displayed at {\ttfamily (1,2,3)} on each page and in the 3D-Scene. & {\color{purpleT}\ttfamily DLMCSPSE-225-3} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add two birds. \newline Click on a bird.\newline Click on another bird.\newline Click on the same bird again.\newline & First no bird shall be selected. \newline This bird shall now have a ring around it. And the compass component shall display $0$m to <BirdName> and <BirdName> at $0°$. \newline Now the other bird shall have a ring around it and the ring of the first bird shall disappear. \newline Now no bird shall have a ring. The extra values in the compass component shall now dissapear. & {\color{purpleT}\ttfamily DLMCSPSE-226 \newline DLMCSPSE-246} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Move the plane $-3$ on the $x$-axis. & The plane shall not move and a toast shall be displayed. & {\color{purpleT}\ttfamily DLMCSPSE-228-3} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add a bird at {\ttfamily (50,2,2)} \newline Move the plane $-10$ on the $x$-Axis. & Before doing anything. The scale of the scene shall be {\ttfamily (-6,6)} for $x$/$y$ and {\ttfamily (0,12)} for the $z$-Axis. \newline After the addition of the bird. The scale shall be: {\ttfamily (-50,50)} for $x$/$y$ and {\ttfamily (0,100)} for the $z$-Axis. \newline After the translation the scale shall be {\ttfamily (-60,60)} for $x$/$y$ and {\ttfamily (0,120)} for the $z$-Axis. & {\color{purpleT}\ttfamily DLMCSPSE-229 \newline DLMCSPSE-228-1/2} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add a bird at {\ttfamily (2,2,-3)}. \newline  Add a bird at {\ttfamily (2,2,2)}. And then try to move the bird z $-3$. \newline And then move the bird x $2$. & No bird shall be added and a toast ist expected. \newline A new dot in the colour of the bird is expected. \newline The bird shall not move and a toast shall pop up. \newline After the second translation the bird shall be at {\ttfamily (4,2,2)}. & {\color{purpleT}\ttfamily DLMCSPSE-232 \newline DLMCSPSE-231} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Rotate the plane yaw $405°$. & The plane shall point NE 45°. & {\color{purpleT}\ttfamily DLMCSPSE-233-2} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Randomly rotate the plane and click on \enquote{reset plane} & the plane shall now be at {\ttfamily 0,0,2}. & {\color{purpleT}\ttfamily DLMCSPSE-235} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Click \enquote{Hide Coordinate System} twice. & After the first click the coordinate system in the scene shall disappear and reappear after the second click. & {\color{purpleT}\ttfamily DLMCSPSE-239} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add a bird at {\ttfamily (2,2,2)}. And navigate to the \enquote{Bird} Page. \newline Navigate back. & A bird card shall be visible displaying the following information: \newline $2.83$ Meter \newline $2.83$ Meter \newline $-0.73$ Degree \newline $3.13$ Meter \newline After navigating back the information shall not be lost. & {\color{purpleT}\ttfamily DLMCSPSE-240} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Rotate the plane yaw $90°$. \newline Add another rotation yaw $225°$. & Before doing anything, the plane in the compass component shall point north. \newline After the rotation the plane shall point East. After the second rotation the plane shall point NW ($-45°$) & {\color{purpleT}\ttfamily DLMCSPSE-244} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add a Threat at (2,2,2). & A Bird Icon shall be displayed at roughly $315°$/$-45°$ in the compass component. & {\color{purpleT}\ttfamily DLMCSPSE-245-1} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  Add a Threat at {\ttfamily (14,0,0)} and a Threat at {\ttfamily (13,0,0)}. & The first one shall be indicated by an arrow and the second one shall be indicated by an icon at $0°$ & {\color{purpleT}\ttfamily DLMCSPSE-245-2} & \tcbox[colframe=TAGgreen, colback=TAGgreen]{\textbf{\footnotesize PASSED}} \\ \hline 
+  
+\end{xltabular} 
+ \egroup 
+ \color{default}

@@ -67,6 +67,16 @@ const birdReducer = (
     case "ADD":
       const location = { x: action.x, y: action.y, z: action.z };
 
+      if (location.z < 0)
+        return {
+          birds,
+          error: {
+            title: "A Bird can't go below ground level.",
+            description: "A bird is not a Hamster ;)",
+            status: "warning",
+          },
+        };
+
       if (action.plane.getHorizontalDistance2Plane(location) > 100) {
         return {
           birds: birds,

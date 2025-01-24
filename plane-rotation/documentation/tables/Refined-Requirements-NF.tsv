@@ -1,0 +1,5 @@
+Requirement	Importance	Status	Colour
+The Application shall run smoothly in the following browsers:\newline  Chrome $\ge$ 109\newline \newline FireFox $\ge$ 98\newline  \newline  Opera $\ge$ 100	HIGH	DONE	TAGgreen
+The application shall run as a dockersied container.	HIGH	PENDING	TAGyellow
+An instance of the project shall be directly accessible via the internet.	HIGH	PENDING	TAGyellow
+Images shall either have the format .svg or .webp.	MEDIUM	DONE	TAGgreen

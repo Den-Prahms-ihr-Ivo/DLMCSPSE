@@ -1,0 +1,59 @@
+\subsection{Objective}
+The purpose of this application is to provide an intuitive as well as interactive tool to visualise transformations and their respective effect on the relation to fixed points in three-dimensional space. 
+
+This tool is supposed to support the development of better test cases as well as aid students in the understanding of trigonometry. This tool is mainly aimed at software testers, as it helps them to get a more tangible vision of possible szenarios and now imaginable edge-cases. A secondary target group are (engineering-)students struggeling to get their head around trigonometry.
+
+Since rotations in space become far more difficult to envision if we are concerned about an arbitrary point on the plane, and its relation to fixed points in space, instead of its center, this issue is being addressed by this application.
+
+Although there are many other rotation visualisation tools out there, none of them visualize the relation to fixed points in space, let you move said points or the plane in space and don’t address afroementioned issues.
+
+\newpage
+\subsection{Requirements Refinement}
+Previous rough user stories now get a clear testable statement assigned to them. 
+
+Requirements that are tagged with \tcbox[colframe=TAGred, colback=TAGred]{\textbf{\footnotesize \acs{M2FR}}}, could not be implemented in time for the planned release and had to be moved to a future release. \newline Since these requirements are not essential for the core functionality and a timely release is ranked higher than the fulfillment of optional requirements, this was considered justified.
+
+
+\subsubsection{Functional}
+\input{generatedTables/Refined-Requirements-F}
+
+\subsubsection{Functional - Technical}
+ \textbf{TODO:!!!}
+Requirements for more technical aspects of the application that are not facing the user directly.
+\input{generatedTables/Refined-Requirements-FT}
+
+\subsubsection{Non-Functional}
+\input{generatedTables/Refined-Requirements-NF}
+
+\subsection{Out of Scope}
+\begin{itemize}
+\item \textbf{Possibility for the user to enter a full transformation matrix by hand.}
+\item \textbf{Adding a Trajectories} - via speed vectors in x,y and z direction. And calculating possible intersections/collisions.
+\item \textbf{Mobile responsiveness} - mobile users aren't the target audience. Therefore the extra time can not be justified.
+\item \textbf{A complete automated Frontend Test Suite} - currently I confined myself to manual tests after every major update to ensure correct functionality. This is feasible since the scope/functionality of this project is comparably small and the extra time can not be justified.
+\item \textbf{Backwards compatibility with older browser}
+\item \textbf{Assure correct rendering in more niche browsers}
+\item \textbf{Undo/Redo functionality}
+\item \textbf{Add a 2D (\enquote{Ship}-)Mode} - Still render everything in 3D but give the option to be limited to the ground and render the plane as a ship. In this case threats could come from above and below.
+\item \textbf{Move and rotate Marble arbitrarily} - The point on the plane from which all measurements are calculated shall be freely positionable in relation to the plane.
+\end{itemize}
+
+\subsection{Requirements that were moved to the next release.}
+
+These requirements were not fulfillable in the set time frame and had to be moved to the next release since they are not vital for the intended functionality of the app.
+
+\begin{itemize}
+\item {\textbf{\color{TAGpurple}\ttfamily DLMCSPSE-238 }}(Math Explanation Page)
+\item {\textbf{\color{TAGpurple}\ttfamily DLMCSPSE-237 }}(Math Explanation Page)
+\item {\textbf{\color{TAGpurple}\ttfamily DLMCSPSE-243 }}(404 Page)
+\end{itemize}
+
+\subsection{Documentation of Software \& System Architecture}
+TODO: !!!!
+
+a documentation of the software and system architecture
+
+Version and release control of the software and the corresponding architecture documentation must be established.
+
+\subsection{explanation of your design and implementation procedure ?!?!?!}
+TODO: ????

@@ -1,4 +1,4 @@
-import { it, expect, describe, beforeAll } from "vitest";
+import { it, expect, describe } from "vitest";
 import {
   cosineDegrees,
   sineDegrees,
@@ -7,10 +7,8 @@ import {
 import { Plane } from "../src/components/diagram/plane";
 import {
   azimuthAngle,
-  calcAngleBetweenMarbleAndPoint,
   crossProduct,
   dotProduct,
-  testAngle,
   vectorLength,
 } from "../src/math/helper";
 import { Point } from "../src/math/types";

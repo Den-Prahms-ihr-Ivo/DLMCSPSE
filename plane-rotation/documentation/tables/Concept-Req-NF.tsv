@@ -1,0 +1,4 @@
+Requirement	Scope	Colour
+The Application shall run in modern browsers.	MUST HAVE	TAGgreen
+An instance of the project shall be directly accessible via the internet.	MUST HAVE	TAGgreen
+The application shall run as a dockerized container.	NICE TO HAVE	TAGyellow

@@ -1,0 +1,44 @@
+%% Titelseite
+\def\usesf{}
+\let\usesf\sffamily % diese Zeile auskommentieren für normalen TeX Font
+
+\newsavebox{\Tutorin}
+\savebox{\Tutorin}{<Name des Tutors>}
+
+
+\setlength{\unitlength}{1pt}
+
+\begin{titlepage}
+%\vspace*{-39pt}\hspace*{300pt}\includegraphics[width=.27\paperwidth]{logos/IOSB}
+\vspace{-39pt}\hspace*{300pt}\includegraphics[width=.21\paperwidth]{logos/IU.png}
+
+\begin{center}
+\hbox{}
+\vfill
+{\usesf}
+{\huge\bfseries Software Engineering \par}
+\vskip 1.8cm
+Paper Plane Rotations\\[2mm]
+\vskip 1cm
+
+{\large\bfseries Ivo Prahm (IU14089444)\\}
+\vskip 1.2cm
+Computer Science (M.Sc.)\\
+% im Modul\\
+DLMCSPSE\\
+\today % TODO: Check Datum
+\vskip 3cm
+\begin{tabular}{p{3cm}l}
+%% Tutorin: & \usebox{\Tutorin} \\
+\end{tabular}
+\vfill
+\end{center}
+
+\end{titlepage}
+%% Titelseite Ende
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End:
