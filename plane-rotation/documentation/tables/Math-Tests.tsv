@@ -17,7 +17,7 @@ ID	Function/Method	Description	Coverage	Colour
 \textbf{F06}	{\ttfamily crossProduct(pointA: Point, pointB: Point): Point}	Calculates the cross product between two vectors	100\%	TAGgreen
 \textbf{F07}	{\ttfamily vectorLength(p: Point): number}	Calculates the length of a vector	100\%	TAGgreen
 \textbf{F08}	{\ttfamily dotProduct(pointA: Point, pointB: Point): number}	Calculates the dot product of to vectors	100\%	TAGgreen
-\textbf{F09}	{\ttfamily angleBetween2Points(A: Point, B: Point): number}	The final angle between is calculated according to the dihedral angle: The dot product of the two normal vectors divided by the product of their lengths. \newline cos(phi) = Norm(n_A * n_B) / (Norm(n_A) * Norm(n_B))	100\%	TAGgreen
+\textbf{F09}	{\ttfamily angleBetween2Points(A: Point, B: Point): number}	The final angle between is calculated according to the dihedral angle: The dot product of the two normal vectors divided by the product of their lengths. \newline $cos(phi) = Norm(n_A * n_B) / (Norm(n_A) * Norm(n_B))$	100\%	TAGgreen
 \textbf{F10}	{\ttfamily subtract2Point(pointA: Point, pointB: Point): Point}	Subtracts two vectors.	100\%	TAGgreen
 \textbf{F11}	{\ttfamily multiply(a: number[][], b: number[][]): number[][]}	Multiplies two matrices.	100\%	TAGgreen
 \textbf{F12}	{\ttfamily buildTransformationMatrix( \newline rotationMatrix: number[][], \newline  translationVector: number[] \newline ): number[][]}	Builds a transformation matrix from the rotation and translation matrix.	100\%	TAGgreen
