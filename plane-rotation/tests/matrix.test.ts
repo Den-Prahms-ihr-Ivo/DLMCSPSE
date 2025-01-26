@@ -86,6 +86,7 @@ describe("Plane", () => {
   beforeAll(() => {
     plane = new Plane();
   });
+
   it("should be transformed to center position", () => {
     // AAA Pattern.
     // Arrange - Set Up Environment
@@ -99,6 +100,38 @@ describe("Plane", () => {
     expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
     expect(y).toEqual([3, 0, 0.5, -3, -0.5, 0]);
     expect(z).toEqual([2.7, 2.7, 2.7, 2.7, 2.7, 1.3]);
+  });
+
+  it("should reset the plane", () => {
+    plane.translatePlane(1, 2, 3);
+
+    let x = plane.coordinates.x;
+    let y = plane.coordinates.y;
+    let z = plane.coordinates.z;
+
+    expect(x).not.toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(y).not.toEqual([3, 0, 0.5, -3, -0.5, 0]);
+    expect(z).not.toEqual([2.7, 2.7, 2.7, 2.7, 2.7, 1.3]);
+
+    plane.resetPlane();
+
+    x = plane.coordinates.x;
+    y = plane.coordinates.y;
+    z = plane.coordinates.z;
+
+    expect(x).toEqual([-3.5, 3.5, -3.5, -3.5, -3.5, -3.5]);
+    expect(y).toEqual([3, 0, 0.5, -3, -0.5, 0]);
+    expect(z).toEqual([2.7, 2.7, 2.7, 2.7, 2.7, 1.3]);
+  });
+
+  it.each([
+    { trans: { x: 0, y: 0, z: 0 }, expected: 3.3 },
+    { trans: { x: 1, y: 1, z: 0 }, expected: 3.3 },
+    { trans: { x: 0, y: 0, z: 1 }, expected: 4.3 },
+  ])("should return $expected m from ground", ({ trans, expected }) => {
+    plane.translatePlane(trans.x, trans.y, trans.z);
+
+    expect(plane.getDistanceFromGround()).toBeCloseTo(expected);
   });
 });
 

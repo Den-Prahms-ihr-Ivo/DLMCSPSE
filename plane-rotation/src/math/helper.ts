@@ -12,7 +12,7 @@ export function subtract2Point(pointA: Point, pointB: Point): Point {
 export function angleBetween2Points(A: Point, B: Point): number {
   const tmp = dotProduct(A, B) / (vectorLength(A) * vectorLength(B));
 
-  return Math.acos(tmp);
+  return rad2Degrees(Math.acos(tmp)) % 360;
 }
 
 export function dotProduct(pointA: Point, pointB: Point): number {

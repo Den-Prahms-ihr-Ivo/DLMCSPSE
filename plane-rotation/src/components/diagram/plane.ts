@@ -12,6 +12,7 @@ import {
   angleBetween2Points,
 } from "../../math/helper";
 
+/*
 function deepCopy(array: number[][]) {
   return JSON.parse(JSON.stringify(array));
 }
@@ -20,13 +21,14 @@ function translateMap(
   value: Datum | Datum[] | Datum[][],
   offset: number
 ): number {
-  /**
-   *  Since I din't find a good way to tell the typescript compiler that I will get a number and it will always be defined,
-   * I had to add these assertions and encapsulate them into a function to shut him up.
-   */
-  if (value !== undefined && typeof value === "number") return value + offset;
-  return 0;
-}
+*/
+/**
+ *  Since I din't find a good way to tell the typescript compiler that I will get a number and it will always be defined,
+ * I had to add these assertions and encapsulate them into a function to shut him up.
+ */
+//if (value !== undefined && typeof value === "number") return value + offset;
+//return 0;
+//}
 
 export class Plane {
   coordinates: Partial<PlotData>;
@@ -281,20 +283,23 @@ export class Plane {
     );
   }
 
+  /*
   getAzimuth2Threat(location: Point): number {
     // TODO: implement
     console.log("Im not implemented Yet");
     return 0;
   }
-  getElevationAngle2Threat(p: Point): number {
-    // TODO: implement
-    // (A . B) / (|A|*|B|) * -1 if plane.Z > bird.Z
-    const tmp = angleBetween2Points(
-      { x: this.marbleX, y: this.marbleY, z: this.marbleZ },
-      p
-    );
+  */
 
-    return this.marbleZ > p.z ? tmp * -1 : tmp;
+  getElevationAngle2Threat(p: Point): number {
+    // #1 Move to Center
+    const marble = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
+    p = subtract2Point(p, marble);
+
+    // #2 Calc Angle between x-Axis and threat
+    const tmp = angleBetween2Points({ x: 1, y: 0, z: 0 }, p);
+
+    return p.z > 0 ? tmp : -tmp;
   }
 
   getAngle2Plane(location: Point): number {

@@ -6,6 +6,7 @@ import {
 } from "../src/math/eulerToMatrix";
 import { Plane } from "../src/components/diagram/plane";
 import {
+  angleBetween2Points,
   azimuthAngle,
   crossProduct,
   dotProduct,
@@ -333,6 +334,37 @@ it("should return -180", () => {
   expect(p.getAngle2North()).toBeCloseTo(-180);
 });
 
+describe("Angle between 2 Points", () => {
+  it.each([
+    { A: { x: 1, y: 0, z: 0 }, B: { x: 0, y: 1, z: 0 }, expected: 90 },
+    { A: { x: 1, y: 2, z: 3 }, B: { x: 3, y: -2, z: 1 }, expected: 81.79 },
+    { A: { x: 1, y: 0, z: 0 }, B: { x: -1, y: 0, z: 0 }, expected: 180 },
+    { A: { x: 1, y: 0, z: 0 }, B: { x: 1, y: 0, z: 0 }, expected: 0 },
+  ])("should return $expected", ({ A, B, expected }) => {
+    expect(angleBetween2Points(A, B)).toBeCloseTo(expected);
+  });
+});
+
+describe("Elevation Angle 2 Threat", () => {
+  it.each([
+    { p: { x: 1, y: 0, z: 4.3 }, trans: { x: 0, y: 0, z: 0 }, expected: 45 },
+    { p: { x: 2, y: 0, z: 4.3 }, trans: { x: 1, y: 0, z: 0 }, expected: 45 },
+    { p: { x: 1, y: 1, z: 2.3 }, trans: { x: 1, y: 1, z: 0 }, expected: -90 },
+    { p: { x: 2, y: 1, z: 2.3 }, trans: { x: 1, y: 1, z: 0 }, expected: -45 },
+
+    { p: { x: -1, y: 0, z: 4.3 }, trans: { x: 0, y: 0, z: 0 }, expected: 135 },
+    { p: { x: 0, y: 0, z: 2.3 }, trans: { x: 0, y: 0, z: 0 }, expected: -90 },
+    { p: { x: -1, y: 1, z: 2.3 }, trans: { x: 0, y: 1, z: 0 }, expected: -135 },
+
+    { p: { x: 1, y: 1, z: 4.3 }, trans: { x: 1, y: 1, z: 0 }, expected: 90 },
+  ])("should return $expected", ({ p, trans, expected }) => {
+    const plane = new Plane();
+    plane.translatePlane(trans.x, trans.y, trans.z);
+
+    const angle = plane.getElevationAngle2Threat(p);
+    expect(angle).toBeCloseTo(expected);
+  });
+});
 /*
 describe("Dihedral Angle", () => {
   it.each([
