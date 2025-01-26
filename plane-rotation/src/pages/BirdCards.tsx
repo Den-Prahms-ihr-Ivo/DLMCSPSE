@@ -52,7 +52,7 @@ function BirdCards() {
                 ) / 100
               }
               azimuth={
-                Math.round(plane.getAzimuth2Threat(bird.location) * 100) / 100
+                Math.round(plane.getAngle2Plane(bird.location) * 100) / 100
               }
               elevation={
                 Math.round(
