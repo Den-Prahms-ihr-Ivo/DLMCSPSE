@@ -16,5 +16,5 @@ On my machine the workflow is as follows, assuming we currently are in the `pyth
 
 1. activate the virtual environment. `source venv/bin/activate`
 2. run `python main.py`, to create the latex files from the tsv data.
-3. `cd` to the latex folder and run: `biber main` and `lualatex -interaction=nonstopmode -jobname=DLMCSPSE01-IU14089444 main.tex`.
+3. `cd` to the latex folder and run: `biber DLMCSPSE01-IU14089444` and `lualatex -interaction=nonstopmode -jobname=DLMCSPSE01-IU14089444 main.tex`.
 4. Done.

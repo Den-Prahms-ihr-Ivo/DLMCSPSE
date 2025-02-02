@@ -5,6 +5,6 @@ Dockerfile
 .git
 .gitignore
 .env
-coverage
-documentation
-Mock-Up.png
+*.afdesign
+*.png
+plane-rotation/documentation

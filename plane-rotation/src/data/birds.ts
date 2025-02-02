@@ -25,8 +25,8 @@ import ficker from "../assets/birds/ficker.webp";
 import ficker_thumbnail from "../assets/birds/ficker_thumbnail.webp";
 import gelb from "../assets/birds/gelb.webp";
 import gelb_thumbnail from "../assets/birds/gelb_thumbnail.webp";
-import hallobittschon from "../assets/birds/hallobittschön.webp";
-import hallobittschon_thumbnail from "../assets/birds/hallobittschön_thumbnail.webp";
+import hallobittschon from "../assets/birds/hallobittschon.webp";
+import hallobittschon_thumbnail from "../assets/birds/hallobittschon_thumbnail.webp";
 const defaultLocation = { x: 0, y: 0, z: 0 };
 
 const birds: Bird[] = [
