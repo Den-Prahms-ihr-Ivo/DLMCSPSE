@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import InputForm from "../InputForm";
 import { MathInputType } from "../MathInput";
 

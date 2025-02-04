@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import eichhorn from "../../assets/Eichhorn.webp";
 import hand from "../../assets/Hand.webp";
-import { colourSystem, fontWeightSystem, typographySystem } from "../../theme";
+import { fontWeightSystem, typographySystem } from "../../theme";
 
 const Home = () => {
   return (

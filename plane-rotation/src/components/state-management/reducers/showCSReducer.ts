@@ -1,3 +1,6 @@
+/**
+ * Shall the coordinat System been shown?
+ */
 export interface showCSAction {
   type: "TOGGLE";
 }

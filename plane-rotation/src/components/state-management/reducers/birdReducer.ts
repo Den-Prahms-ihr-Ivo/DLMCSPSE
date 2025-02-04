@@ -1,6 +1,5 @@
 import birdData from "../../../data/birds";
 import { Plane } from "../../diagram/plane";
-import produce from "immer";
 
 export interface BirdsWithErrors {
   birds: Bird[];

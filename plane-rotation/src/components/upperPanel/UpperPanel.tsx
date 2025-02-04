@@ -16,23 +16,23 @@ import {
 } from "@chakra-ui/react";
 
 // Interfaces
-import Bird from "./Bird";
+import Bird from "../birds/BirdAvatar";
 
 // Fields for User Input
-import PlaneRotationInput from "./upperPanel/PlaneRotationInput";
-import PlaneTranslationInput from "./upperPanel/PlaneTranslationInput";
-import ThreatInput from "./upperPanel/ThreatInput";
-import MoveThreatInput from "./upperPanel/MoveThreatInput";
+import PlaneRotationInput from "./PlaneRotationInput";
+import PlaneTranslationInput from "./PlaneTranslationInput";
+import ThreatInput from "./ThreatInput";
+import MoveThreatInput from "./MoveThreatInput";
 
 // Customising Styles
-import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
+import { colourSystem, fontWeightSystem, typographySystem } from "../../theme";
 
 // Context
 import { useContext, useEffect, useRef } from "react";
-import BirdContext from "./state-management/context/birdContext";
-import PlaneContext from "./state-management/context/planeContext";
-import RedrawContext from "./state-management/context/redrawContext";
-import ShowCsContext from "./state-management/context/showCSSystem";
+import BirdContext from "../state-management/context/birdContext";
+import PlaneContext from "../state-management/context/planeContext";
+import RedrawContext from "../state-management/context/redrawContext";
+import ShowCsContext from "../state-management/context/showCSSystem";
 
 const UpperPanel = () => {
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
@@ -241,7 +241,6 @@ const UpperPanel = () => {
                 />
               ))}
             </AvatarGroup>
-
 
             <Button
               className="btn-secondary"

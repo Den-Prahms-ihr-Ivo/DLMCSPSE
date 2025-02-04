@@ -4,7 +4,7 @@
  */
 import { Avatar, AvatarBadge, Icon, Tooltip } from "@chakra-ui/react";
 import { FaXmark } from "react-icons/fa6";
-import { colourSystem } from "../theme";
+import { colourSystem } from "../../theme";
 
 interface Props {
   avatar: string;

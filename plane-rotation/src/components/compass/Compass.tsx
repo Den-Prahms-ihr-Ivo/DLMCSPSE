@@ -1,19 +1,22 @@
-import { Box, Center, Text, Tooltip, VStack } from "@chakra-ui/react";
+/**
+ * Overlays and rotates the different svgs according to their orentation in space.
+ */
+
+import { Box, Center, Text, VStack } from "@chakra-ui/react";
 import CompassBG from "./CompassBG";
 import CompassTriangle from "./CompassTriangle";
 import CompassThreatFar from "./CompassThreatFar";
 import CompassShadow from "./CompassShadow";
 import CompassThreatNear from "./CompassThreatNear";
 
-import crow from "../../assets/birds/crow.webp";
 import { colourSystem, fontWeightSystem, typographySystem } from "../../theme";
 import { useContext } from "react";
 import BirdContext from "../state-management/context/birdContext";
 import PlaneContext from "../state-management/context/planeContext";
 import { Bird } from "../state-management/reducers/birdReducer";
 import { Plane } from "../diagram/plane";
-import { multiply } from "../../math/matrices";
-// "#f64851"
+
+// #f64851
 // #39C656
 // #0686FF
 
@@ -42,10 +45,7 @@ function getBirdThreat(plane: Plane, bird: Bird): JSX.Element {
         Math.sin((plane.getAngle2Plane(bird.location) * Math.PI) / 180) * 100
       ) / 100;
 
-    console.log(x_off);
-    console.log(y_off);
-    //x_off = x_off < 0.2 ? x_off + 0.5 * Math.sign(x_off) : x_off;
-    //y_off = y_off < 0.2 ? y_off + 0.5 * Math.sign(y_off) : y_off;
+    // This value was found via experimenting and fits the compass reasonably well.
     const multiplier = hzDist < 6 ? 4 : 3;
 
     return (

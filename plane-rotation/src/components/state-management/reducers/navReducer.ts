@@ -1,3 +1,6 @@
+/**
+ * Which is the active nav item?
+ */
 export interface NavAction {
   type: "ACTIVATE";
 }

@@ -3,7 +3,7 @@
  */
 import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
-import UpperPanel from "./UpperPanel";
+import UpperPanel from "./upperPanel/UpperPanel";
 import Compass from "./compass/Compass";
 import PlaneDiagram from "./diagram/planeDiagram";
 import { useContext } from "react";

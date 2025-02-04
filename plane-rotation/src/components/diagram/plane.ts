@@ -1,4 +1,7 @@
-import { Datum, PlotData } from "plotly.js";
+/**
+ * Plane class
+ */
+import { PlotData } from "plotly.js";
 import { yawPitchRoll2Matrix } from "../../math/eulerToMatrix";
 import {
   buildTransformationMatrix,
@@ -12,28 +15,11 @@ import {
   angleBetween2Points,
 } from "../../math/helper";
 
-/*
-function deepCopy(array: number[][]) {
-  return JSON.parse(JSON.stringify(array));
-}
-
-function translateMap(
-  value: Datum | Datum[] | Datum[][],
-  offset: number
-): number {
-*/
-/**
- *  Since I din't find a good way to tell the typescript compiler that I will get a number and it will always be defined,
- * I had to add these assertions and encapsulate them into a function to shut him up.
- */
-//if (value !== undefined && typeof value === "number") return value + offset;
-//return 0;
-//}
 
 export class Plane {
   coordinates: Partial<PlotData>;
 
-  // Used these abbreviations to make the arrays easier to look at when they get autoformatted.
+  // Used these abbreviations to make the arrays easier to look at when they get autoformatted by vsCode.
   // Plane Width
   pW = 3.0;
   // Plane Length
@@ -124,7 +110,7 @@ export class Plane {
     ],
   ];
 
-  // Verschiebungs Vektor aller Punkte im Raum
+  // Verschiebungsvektor aller Punkte im Raum
   translationVector: [number, number, number] = [0, 0, 2];
 
   initialTranslationVector = structuredClone(this.translationVector);
@@ -144,6 +130,7 @@ export class Plane {
   initialRotationMatrix = structuredClone(this.rotationMatrix);
 
   constructor() {
+    // this.coordinates are the coordinates expected by plotly.js
     this.coordinates = {
       type: "mesh3d",
       opacity: 1,
@@ -156,11 +143,14 @@ export class Plane {
 
       hovertemplate: "<extra></extra>",
     };
-    // TODO: Marbel und Coordinate System sollen Teil des Fulgzeuges sein.
+
     this.matrixTransform();
   }
 
   matrixTransform() {
+    /**
+     * Applies all transformations to the initial Plane, Coordinate System and Marble
+     */
     const transformationMatrix = buildTransformationMatrix(
       this.rotationMatrix,
       this.translationVector
@@ -214,6 +204,9 @@ export class Plane {
   }
 
   resetPlane(): Plane {
+    /**
+     * Resets plane to its original location and orientation
+     */
     this.rotationMatrix = structuredClone(this.initialRotationMatrix);
     this.translationVector = structuredClone(this.initialTranslationVector);
 
@@ -239,7 +232,6 @@ export class Plane {
       yawPitchRoll2Matrix(yaw, pitch, roll)
     );
 
-    // AUSLAGERN IN MATRIX!!!
     this.matrixTransform();
     return this;
   }
@@ -254,6 +246,9 @@ export class Plane {
   }
 
   getAngle2North(): number {
+    /**
+     * Calculates the angle between the planes x-Axis and the x-Axis of the ground coordinate system.
+     */
     const A = {
       x: this.marbleCS_X[0][1],
       y: this.marbleCS_X[1][1],
@@ -265,31 +260,30 @@ export class Plane {
   }
 
   getHorizontalDistance2Plane(p: Point): number {
-    console.log(this.getDistance2Plane(p));
-    console.log(this.getVerticalDistance2Plane(p));
+    /**
+     * Horizontal distance between a point in space and the planes marble
+     */
     return Math.sqrt(
       this.getDistance2Plane(p) ** 2 - this.getVerticalDistance2Plane(p) ** 2
     );
   }
   getVerticalDistance2Plane(p: Point): number {
+    /**
+     * Vertical distance between a point in space and the planes marble
+     */
     return Math.abs(this.marbleZ - p.z);
   }
 
   getDistance2Plane(p: Point): number {
+    /**
+     * Direct distance between a point in space and the planes marble
+     */
     return Math.sqrt(
       (p.x - this.marbleX) ** 2 +
         (p.y - this.marbleY) ** 2 +
         (p.z - this.marbleZ) ** 2
     );
   }
-
-  /*
-  getAzimuth2Threat(location: Point): number {
-    // TODO: implement
-    console.log("Im not implemented Yet");
-    return 0;
-  }
-  */
 
   getElevationAngle2Threat(p: Point): number {
     // #1 Move to Center
@@ -303,7 +297,9 @@ export class Plane {
   }
 
   getAngle2Plane(location: Point): number {
-    // TODO: implement
+    /**
+     * Angle between a point in space and the planes x-Axis
+     */
     const center = { x: this.marbleX, y: this.marbleY, z: this.marbleZ };
 
     const point = subtract2Point(

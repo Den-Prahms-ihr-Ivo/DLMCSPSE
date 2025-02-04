@@ -1,6 +1,9 @@
+/**
+ * Draws the Plane and the graph
+ */
 import { Box } from "@chakra-ui/react";
 import Plot from "react-plotly.js";
-import { Data, PlotData } from "plotly.js";
+import { PlotData } from "plotly.js";
 import { Plane } from "./plane";
 import { useContext } from "react";
 import BirdContext from "../state-management/context/birdContext";
@@ -9,32 +12,7 @@ import { Bird } from "../state-management/reducers/birdReducer";
 import { colourSystem } from "../../theme";
 import ShowCsContext from "../state-management/context/showCSSystem";
 
-const marbleCS_Length = 2;
 const marbleCS_Thickness = 4;
-
-/*
-const threats: Data[] = [
-  // X-Axis
-  {
-    opacity: 1,
-    type: "scatter3d",
-    x: [-4],
-    y: [-4],
-    z: [5],
-    mode: "markers",
-    text: ["Bitches"],
-    hovertemplate: "<b>%{text}</b><extra></extra><br>(%{x},%{y},%{z})",
-    showlegend: false,
-    showscale: false,
-    marker: {
-      color: "rgb(207, 13, 13)",
-      size: 6,
-      symbol: "circle",
-      opacity: 1,
-    },
-  },
-];
-*/
 
 interface Props {
   tmp: number;
@@ -49,6 +27,12 @@ interface ViewCube {
 }
 
 function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
+  /**
+   * Calculates the best size for the view cube. Beacuse it has to be a cube so the
+   * Plane does not appear distorted.
+   * The largest distance is applied to all sides or at least 10m
+   */
+
   // Calculate the distance to all birds.
   let distances = birds.map((bird) => [
     plane.getHorizontalDistance2Plane(bird.location),
@@ -70,6 +54,7 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
     plane.getDistanceFromGround()
   );
 
+  // The view port shall be centered around the plane
   return {
     x: [
       plane.translationVector[0] - ViewPortDistance,
@@ -84,6 +69,9 @@ function calculateViewBoxCube(plane: Plane, birds: Bird[]): ViewCube {
 }
 
 function getCoordinateSystem(plane: Plane, show: boolean): Partial<PlotData>[] {
+  /**
+   * Returns an array of the necessary data for planes coordinate system to be drawn by plotly
+   */
   if (show) {
     return [
       {
@@ -130,6 +118,7 @@ function getCoordinateSystem(plane: Plane, show: boolean): Partial<PlotData>[] {
 /* tslint:disable */
 // @ts-nocheck
 const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
+  // tmp is needed to be redrawn by react.
   const { birdsWithErrors, dispatch: dispatchBird } = useContext(BirdContext);
   const { birds } = birdsWithErrors;
   const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
@@ -140,6 +129,7 @@ const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
 
   const planeCoordinates = plane.coordinates;
 
+  // Turn all birds into fitting data points.
   const threats: Partial<PlotData>[] = birds.map((bird) => {
     return {
       opacity: 1,
@@ -158,7 +148,6 @@ const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
       },
     };
   });
-  console.log(threats);
 
   const {
     x: viewCubeX,
@@ -222,6 +211,7 @@ const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
             },
           },
 
+          // Drawing World Coordinate System on the ground:
           // **************************
           // North
           // **************************
@@ -279,6 +269,7 @@ const PlaneDiagram = ({ tmp, viewPortWidth, viewPortHeight }: Props) => {
 
           // **************************
           // THREATS
+          // **************************
           ...threats,
         ]}
         layout={{
