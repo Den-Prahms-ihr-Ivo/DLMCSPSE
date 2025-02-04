@@ -88,5 +88,13 @@ The following 3rd party libraries were finally used in the making of this applic
   \item PlotlyJS (\cite{PlotlyJS}), because it is the only graphing library I found that I could misuse for drawing shapes rather than the intended purpose of presenting data graphically. On top of it all it is well documented.
   \item Vite (\cite{Vite}) as a modern building tool, to get the app ready for production.
   \item Vitest (\cite{Vitest}), since I'm already using vite, the corresponding testing framework was the only logical choice.
-  \item Docker (\cite{Docker}), which was not really necessary for my application in the end. But since the task asked for it, the webserver still runs as a dockerized container, running an NGINX \cite{NGINX} on the backend, serving the distribution version of this web application.
+  \item Docker (\cite{Docker}), which was not really necessary for my application in the end. But since the task asked for it, the webserver still runs as a dockerized container, running an NGINX \cite{NGINX} on the backend, serving the distribution version of this web application. Thanks to problems with \acs{CORS}, docker can also be used to run the application locally on your machine. See listing \ref{lst:docker} for more details.
 \end{itemize}
+
+\begin{lstlisting}[label=lst:docker]
+  docker build -t paper-plane .
+  docker run -p 3137:80 paper-plane
+
+  # And then access the page via:
+  http://localhost
+\end{lstlisting}
