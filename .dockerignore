@@ -1,0 +1,10 @@
+plane-rotation/node_modules
+plane-rotation/npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+.env
+*.png
+*.afdesign
+*.pdf

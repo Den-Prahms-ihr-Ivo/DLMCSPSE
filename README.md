@@ -5,7 +5,13 @@ All information regarding this project can be found in the accompanying pdf:
 
 ## Usage
 
-The final application is accessible by opening `index.html` in the `dist`-folder.
+The final application is accessible in the `dist`-folder. Sadly it can not just be opend in a browser due to CORS.
+
+`docker build -t paper-plane .`
+`docker run -p 3137:80 paper-plane`
+
+And then access the page via:
+`http://localhost`
 
 ## Python-Files
 

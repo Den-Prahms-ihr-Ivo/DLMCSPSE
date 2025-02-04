@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build_withoutTSC": "vite build",
     "preview": "vite preview --host --port 3137",
     "test": "vitest",
     "test:ui": "vitest --ui",

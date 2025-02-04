@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 176 157" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-129.667,-172.715)">
+        <g transform="matrix(1,0,0,1,55.0143,-521.356)">
+            <g transform="matrix(0.313945,0,0,0.299523,-658.651,151.61)">
+                <g id="Plane">
+                    <path d="M2335.77,2278.77L2530.26,2244.35L2813.56,1923.87L2612.33,2240.54L2656.49,2333.82L2700.69,2251.1L2815.34,2274.99L2896.24,1811.09L2335.77,2278.77Z" style="fill:rgb(248,248,250);"/>
+                    <path d="M2612.33,2240.54L2700.69,2251.1L2658.04,2333.82L2612.33,2240.54Z" style="fill:rgb(235,235,235);"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
