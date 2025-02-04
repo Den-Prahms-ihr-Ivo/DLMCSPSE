@@ -1,3 +1,6 @@
+/**
+ * A template for a grouped input component
+ */
 import { Box, Heading, HStack, Text, VStack } from "@chakra-ui/react";
 
 import MathInput, { MathInputType } from "./MathInput";

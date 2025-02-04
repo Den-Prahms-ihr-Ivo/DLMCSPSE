@@ -53,6 +53,9 @@ These requirements were not fulfillable in the set time frame and had to be move
 \subsection{Documentation of Software \& System Architecture}
 
 The basic architecture of this web-application follows the schematic sketched in Figure \ref{fig:flow_chart}.
+The respective reducer, which is basically just a function, defines actions that atomic components can dispatch, for example \textcode{ROTATEPLANE} or \textcode{TRANSLATEPLANE}. This way, the reducer is the single place where updates for the, for instance, plane rotation logic have to be performed or new logic is to be added. The reducer returns the updated instance (either a transformed plane or an updated array of birds) which is then used to update the overarching context and further propagated to the corresponding components by react.
+
+Atomic components are the parts of the web application that the user interacts with. They are either used to display information to the user, like in the \textcode{BirdCardComponent}, or to enable the user to input information into the system, like the \textcode{MathInputComponent}.
 
 \begin{figure}[!h]
   \centering
@@ -60,8 +63,6 @@ The basic architecture of this web-application follows the schematic sketched in
   \includegraphics[width=\textwidth]{assets/Flow-Diagram.png}
   \label{fig:flow_chart}
 \end{figure}
-
-\newpage
 
 Pages (rectangles) and Components (circles) that are involved in updating and consuming the state context are presented in Figure  \ref{fig:uml_diagram}.
 
@@ -72,19 +73,20 @@ Pages (rectangles) and Components (circles) that are involved in updating and co
   \label{fig:uml_diagram}
 \end{figure}
 
+\blankpage
 \newpage
 \subsection{Design and Implementation Procedure}
 The design process was mostly defined by drawing and redefining new mock-ups that were refined after each sprint. The implementation of mathematical functions followed a \ac{TDD} procedure.
 
 \subsection{Used 3rd Party Libraries}
-The following 3rd party libraries were finally used in the making of this application. 
+The following 3rd party libraries were finally used in the making of this application.
 \begin{itemize}
-  \item React (\cite{React})
-  \item React Router (\cite{ReactRouter})
-  \item React Icons (\cite{ReactIcons})
-  \item Chakra-UI (\cite{chakra})
-  \item PlotlyJS (\cite{PlotlyJS})
-  \item Vite (\cite{Vite})
-  \item Vitest (\cite{Vitest})
-  \item Docker (\cite{Docker})
+  \item React (\cite{React}), because of its simple design and vast ecosystem and the "ease" of state updates.
+  \item React Router (\cite{ReactRouter}) as a well established way to navigate a website. 
+  \item React Icons (\cite{ReactIcons}) as a nice and easy way to display common FontAwesome (\cite{FA}) Icons.
+  \item Chakra-UI (\cite{chakra}), again for its ease of use and customizability of existing designs.
+  \item PlotlyJS (\cite{PlotlyJS}), because it is the only graphing library I found that I could misuse for drawing shapes rather than the intended purpose of presenting data graphically. On top of it all it is well documented.
+  \item Vite (\cite{Vite}) as a modern building tool, to get the app ready for production.
+  \item Vitest (\cite{Vitest}), since I'm already using vite, the corresponding testing framework was the only logical choice.
+  \item Docker (\cite{Docker}), which was not really necessary for my application in the end. But since the task asked for it, the webserver still runs as a dockerized container, running an NGINX \cite{NGINX} on the backend, serving the distribution version of this web application.
 \end{itemize}

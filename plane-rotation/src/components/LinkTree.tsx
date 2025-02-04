@@ -1,3 +1,6 @@
+/**
+ * A template that is used by the Navbar to display routing links
+ */
 import {
   Heading,
   VStack,

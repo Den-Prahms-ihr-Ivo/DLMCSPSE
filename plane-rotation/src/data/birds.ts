@@ -1,3 +1,8 @@
+/**
+ * An array of instances of the Bird-interface.
+ * These are used to give life to threats. 
+ * A new threat is chosen randomly from these available birds.
+ */
 import { Bird } from "../components/state-management/reducers/birdReducer";
 import tanne from "../assets/birds/tanne.webp";
 import tanne_thumbnail from "../assets/birds/tanne_thumbnail.webp";

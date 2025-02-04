@@ -1,3 +1,6 @@
+/**
+ * Template for the later Input Elements for user Input.
+ */
 import {
   Box,
   Heading,

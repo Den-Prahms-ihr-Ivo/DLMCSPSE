@@ -1,3 +1,6 @@
+/**
+ * Structure of the upper panel of the main page.
+ */
 import {
   Text,
   Button,
@@ -11,13 +14,20 @@ import {
   useToast,
   AvatarGroup,
 } from "@chakra-ui/react";
+
+// Interfaces
+import Bird from "./Bird";
+
+// Fields for User Input
 import PlaneRotationInput from "./upperPanel/PlaneRotationInput";
 import PlaneTranslationInput from "./upperPanel/PlaneTranslationInput";
 import ThreatInput from "./upperPanel/ThreatInput";
 import MoveThreatInput from "./upperPanel/MoveThreatInput";
-import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
-import Bird from "./Bird";
 
+// Customising Styles
+import { colourSystem, fontWeightSystem, typographySystem } from "../theme";
+
+// Context
 import { useContext, useEffect, useRef } from "react";
 import BirdContext from "./state-management/context/birdContext";
 import PlaneContext from "./state-management/context/planeContext";
@@ -34,8 +44,10 @@ const UpperPanel = () => {
   const { toggle: showCSToggle, dispatch: dispatchshowCSToggle } =
     useContext(ShowCsContext);
 
+  // For Error Toasts
   const toast = useToast();
 
+  // References for User Input
   const newThreatRefX = useRef<HTMLInputElement>(null);
   const newThreatRefY = useRef<HTMLInputElement>(null);
   const newThreatRefZ = useRef<HTMLInputElement>(null);
@@ -52,8 +64,10 @@ const UpperPanel = () => {
   const rotatePlaneRefPitch = useRef<HTMLInputElement>(null);
   const rotatePlaneRefRoll = useRef<HTMLInputElement>(null);
 
+  // maximum number of birds that shall be shown in the upper panel
   const showOnlyNBirds = 5;
 
+  // Was there an error adding Birds?
   useEffect(() => {
     if (birdError) {
       toast({
@@ -189,7 +203,6 @@ const UpperPanel = () => {
                   z: Number(newThreatRefZ.current?.value),
                   plane: plane,
                 });
-                // newThreatRefX.current.value = "";
               }}
             >
               Add Threat
@@ -205,7 +218,6 @@ const UpperPanel = () => {
             translateBirdsRefZ={translateBirdsRefZ}
           />
           <HStack width="100%" justifyContent="space-between">
-            {/* <Stack spacing={4} maxWidth="200px" direction="row" align="center"> */}
             <AvatarGroup
               size="lg"
               maxWidth="200px"
@@ -213,7 +225,7 @@ const UpperPanel = () => {
               spacing={-5}
             >
               {birds.map((bird) => (
-                // Du darfst maximal 7 Vögel anzeigen
+                // Du darfst maximal 5 Vögel anzeigen
                 <Bird
                   key={bird.id}
                   avatar={bird.thumbnailURL}
@@ -229,7 +241,7 @@ const UpperPanel = () => {
                 />
               ))}
             </AvatarGroup>
-            {/*</Stack>*/}
+
 
             <Button
               className="btn-secondary"
@@ -253,8 +265,6 @@ const UpperPanel = () => {
       </GridItem>
     </Grid>
   );
-  // InputConsole
-  // ThreatPanel
 };
 
 export default UpperPanel;

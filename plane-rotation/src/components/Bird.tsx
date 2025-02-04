@@ -1,4 +1,8 @@
-import { Avatar, AvatarBadge, Icon, Stack, Tooltip } from "@chakra-ui/react";
+/**
+ * Sadly confusingly named. This is an Bird Avatar that is displayed on the main page.
+ * The little circles with an image.
+ */
+import { Avatar, AvatarBadge, Icon, Tooltip } from "@chakra-ui/react";
 import { FaXmark } from "react-icons/fa6";
 import { colourSystem } from "../theme";
 

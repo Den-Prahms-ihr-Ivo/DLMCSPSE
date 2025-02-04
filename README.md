@@ -1,6 +1,11 @@
 # DLMCSPSE
 
-## TODO:.....
+All information regarding this project can be found in the accompanying pdf:
+`DLMCSPSE01-IU14089444.pdf`
+
+## Usage
+
+The final application is accessible by opening `index.html` in the `dist`-folder.
 
 ## Python-Files
 

@@ -1,5 +1,11 @@
 Requirement	Importance	Status	Colour
-The Application shall run smoothly in the following browsers:\newline  Chrome $\ge$ 109\newline \newline FireFox $\ge$ 98\newline  \newline  Opera $\ge$ 100	HIGH	DONE	TAGgreen
-The application shall run as a dockersied container.	HIGH	PENDING	TAGyellow
-An instance of the project shall be directly accessible via the internet.	HIGH	PENDING	TAGyellow
+The Application shall run smoothly in the following browsers:\newline  Chrome (Version $\ge$ 109)\newline \newline FireFox (Version $\ge$ 98)\newline  \newline  Opera (Version $\ge$ 100)	HIGH	DONE	TAGgreen
+The application shall run as a dockersied container.	HIGH	DONE	TAGgreen
+An instance of the project shall be directly accessible via the internet.	HIGH	DONE	TAGgreen
 Images shall either have the format .svg or .webp.	MEDIUM	DONE	TAGgreen
+In Terms of usability, the user shall navigate the page without losing entered information.	HIGH	DONE	TAGgreen
+New birds/threats shall be addbale by a single click.	MEDIUM	DONE	TAGgreen
+The The loading time shall not exceed 1 second to increase customer satisfaction (\cite{LoadTime}).	MEDIUM	DONE	TAGgreen
+The The loading time shall not exceed 3 seconds to not lose customers (\cite{LoadTime}).	HIGH	DONE	TAGgreen
+For further usability it shall not be necessary to have to fill out every input field to be able to add new birds or translations.	MEDIUM	DONE	TAGgreen 
+A faulty input shall not delete all progress that has been made so far, to not frustrate customers.	MEDIUM	DONE	TAGgreen 

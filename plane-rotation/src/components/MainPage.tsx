@@ -1,18 +1,20 @@
-import { Button, Center, Container, Grid, GridItem } from "@chakra-ui/react";
+/**
+ * The structure of the main page arranging the sub components.
+ */
+import { Center, Container, Grid, GridItem } from "@chakra-ui/react";
 import { colourSystem } from "../theme";
 import UpperPanel from "./UpperPanel";
 import Compass from "./compass/Compass";
 import PlaneDiagram from "./diagram/planeDiagram";
 import { useContext } from "react";
 import RedrawContext from "./state-management/context/redrawContext";
-import PlaneContext from "./state-management/context/planeContext";
 
 const MainPage = () => {
-  // TODO: WIRING :(
+  // The redraw is nedded, because the plane stays the same instance and
+  // react does not trigger a redraw if properties on a class change.
+  // A workaround is using this dummy counter to trigger a redraw.
   const { trigger: redrawTrigger, dispatch: dispatchRedraw } =
     useContext(RedrawContext);
-
-  const { planeWithErrors, dispatch: dispatchPlane } = useContext(PlaneContext);
 
   return (
     <Grid
@@ -45,17 +47,6 @@ const MainPage = () => {
             variant="with-shadow"
           >
             <Center>
-              {/*
-              <Button
-                onClick={() => {
-                  dispatchPlane({ type: "ROTATE", yaw: 45, pitch: 0, roll: 0 });
-                  // React erkennt nicht, dass sich Plant geändert hat und triggert so kein redraw ...
-                  // Am simpelsten war es einfach eine Laufvariable hinzuzufügen, die dann ein redraw triggert. :)
-                  dispatchRedraw({ type: "TRIGGER" });
-                }}
-              >
-                Test
-              </Button> */}
               <PlaneDiagram
                 tmp={redrawTrigger}
                 viewPortWidth={600}

@@ -1,3 +1,6 @@
+/**
+ * Navbar Component that is shown on the right hand side of the application.
+ */
 import { HStack, VStack, Image, Text } from "@chakra-ui/react";
 import logo from "../assets/logo.svg";
 import LinkTree from "./LinkTree";
@@ -8,7 +11,6 @@ import {
   FaPaperPlane,
   FaCrow,
   FaSuperscript,
-  FaMap,
   FaChartLine,
 } from "react-icons/fa6";
 import { typographySystem } from "../theme";
@@ -17,6 +19,8 @@ interface Props {
   activeNavItem?: string;
 }
 
+// Two different Link-Arrays that are devided by a small visual devider.
+// LinksOne are on top.
 const tmpLinksOne = [
   { displayText: "Home", icon: FaHouse, id: "/", to: "/" },
   {
